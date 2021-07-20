@@ -19,30 +19,36 @@
                 </div>
             </div>
         </div>
-        <div class="product" v-for="(product,index) in item.productlist" :key="index" @touchstart="touchstart($event)" @touchend="touchend($event,index)" ref="product">
-            <div id="arrow">
+        <div class="product" v-for="(product,index) in item.productlist" :key="index">
+            <div class="arrow-left" style="left:0">
+                <img src="../../assets/items/left-arrow.png">
             </div>
-            <div class="ppic">
-                <img :src="product.imageURLs[0]">
+            <div class="arrow-right" style="right:0">
+                <img src="../../assets/items/right-arrow.png">
             </div>
-            <div class="des">
-                <div class="des-head">
-                    <div class="brand">{{product.brand}}</div>
-                    <div class="model">{{product.model}}</div>
+            <div class="product-view" @touchstart="touchstart($event)" @touchend="touchend($event,index)" ref="product">
+                <div class="ppic">
+                    <img :src="product.imageURLs[0]">
                 </div>
-                <div class="des-text">
-                    <p>{{product.origin}}</p>
+                <div class="des">
+                    <div class="des-head">
+                        <div class="brand">{{product.brand}}</div>
+                        <div class="model">{{product.model}}</div>
+                    </div>
+                    <div class="des-text">
+                        <p>{{product.origin}}</p>
+                    </div>
+                    <button>Detaylı İncele</button>
                 </div>
-                <button>Detaylı İncele</button>
-            </div>
-            <div class="differences">
-                <div class="pm">
-                    <img src="../../assets/items/pm.png">
+                <div class="differences">
+                    <div class="pm">
+                        <img src="../../assets/items/pm.png">
+                    </div>
+                    <p class="diff-item" v-for="(spec,ind) in product.specs" :key="ind">{{spec}}</p>
                 </div>
-                <p class="diff-item" v-for="(spec,ind) in product.specs" :key="ind">{{spec}}</p>
-            </div>
-            <div class="pvideo">
-                <iframe :src="product.videolink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="pvideo">
+                    <iframe @focus="focusframe($event)" :src="product.videolink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -66,8 +72,9 @@ export default {
     },
 
     computed:{
-        ...mapGetters(["getComparisons"])
-        
+
+        ...mapGetters(["getComparisons"]),
+            
     },
 
     mounted(){
@@ -86,25 +93,48 @@ export default {
 
     methods:{
         
-        touchstart(event){            
+        touchstart(event){        
+            event.preventDefault();
+            
+                
             this.touch.startX=event.changedTouches[0].clientX
         },
 
         touchend(event,index){
+            event.preventDefault()
+
             this.touch.endX=event.changedTouches[0].clientX
 
             let product = this.$refs.product[index]
+            let right = document.getElementsByClassName("arrow-right")
+            let left = document.getElementsByClassName("arrow-left")
 
-            if(this.touch.endX<this.touch.startX){
-                if(this.touch.swipe[index]<this.touch.swipe.length-1){
+            if(this.touch.endX<this.touch.startX-20){
+                if(this.touch.swipe[index]<2){
                     this.touch.swipe[index]++
                     product.style.transform="translateX(-"+(this.touch.swipe[index]*100)+"%)"
+                    if(this.touch.swipe[index]==2){
+                        right[index].style.display="none"
+                        left[index].style.display="flex"
+                    }
+                    else{
+                        right[index].style.display="flex"
+                        left[index].style.display="flex"
+                    }
                 }
             }
-            else{
+            else if(this.touch.endX-20>this.touch.startX){
                 if(this.touch.swipe[index]!=0){
                     this.touch.swipe[index]--
                     product.style.transform="translateX(-"+(this.touch.swipe[index]*100)+"%)"
+                    if(this.touch.swipe[index]==0){
+                        left[index].style.display="none"
+                        right[index].style.display="flex"
+                    }
+                    else{
+                        left[index].style.display="flex"
+                        right[index].style.display="flex"
+                    }
                 }
             }
         }
@@ -179,12 +209,16 @@ export default {
             border-radius: .5vmax;
             box-shadow: 0 0 1vmax -.5vmax grey;
             overflow: hidden;
-            transition: all .5s ease-in-out;
         }
-            #arrow{
+            .arrow-right, .arrow-left{
                 display: none;
             }
+            .product-view{
+                box-sizing: border-box;
+                width: 100%;
+            }
             .des{
+                box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
@@ -279,7 +313,7 @@ export default {
         padding-inline: 0;
     }
         #info{
-            padding: 4vw;
+            padding-inline: 8vw;
         }
             .head{
                 font-size: 2.5vmax;
@@ -290,6 +324,7 @@ export default {
             }
                 .section{
                     font-size: 1.8vmax;
+                    line-height: 2.5vh;
                 }
 
         .product{
@@ -303,58 +338,92 @@ export default {
             margin-inline: 0;
             display: flex;
             flex-direction: row;
-            flex-wrap: nowrap;
             align-items: center;
-            overflow: visible;
             justify-content: flex-start;
             position:relative;
             border-radius: none;
-            touch-action: auto;
+            padding-inline: 0;
         }
-            #arrow{
-                display: block;
+            .arrow-right, .arrow-left{
                 box-sizing: border-box;
                 position: absolute;
-                top:0;
-                right: -3%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                top: 0;
                 height: 100%;
-                width:6%;
-                background-image: linear-gradient(to right, white, rgba(30,30,100,.2),white);
+                width: 3vw;
+                z-index: 2;
+                opacity: .7;
+                animation: toright 2s ease-in-out alternate infinite;
             }
-            .ppic{
-                min-width: 50vw;
-                max-height: 100%;
-            }
-            .des{
-                min-width: 50vw;
-                max-height: 100%;
-            }
-                .brand{
-                    font-size: 2.2vmax;
+                .arrow-left{
+                    display:none
                 }
-                .model{
-                    font-size: 2vmax;
+                .arrow-right img, .arrow-left img{
+                    height: 20%;
+                    width: 100%;
+                    object-fit:fill;
                 }
-            .differences{
-                min-width: 100vw;
-                max-height: 100%;
-                /*grid-area: 2/1;*/
-                padding-inline: 1vmax;
+            @keyframes toright{
+                from{
+                    /*transform: translateX(0);*/
+                    opacity:.1
+                }
+                to{
+                    /*transform:translateX(20px);*/
+                    opacity: .25;
+                }
             }
-                .diff-item{
-                    font-size: 1.5vmax;
-                }
-            .pvideo{
-                box-sizing: border-box;
-                max-height: 100%;
-                min-width: 100vw;
-                /*grid-area: 3/1/ span 1/span 2;*/
+            .product-view{
                 margin: 0;
-                padding: 0;
+                padding:0 ;
+                height: 100%;
+                min-width:100%;
+                width: fit-content;
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                overflow: visible;
+                justify-content: flex-start;
+                transition: all .5s ease-in-out;
             }
-                .pvideo iframe{
-                    height: 100%;
-                    width: auto;
+                .ppic{
+                    min-width: 50vw;
+                    max-height: 100%;
                 }
+                .des{
+                    min-width: 50vw;
+                    max-height: 100%;
+                }
+                    .brand{
+                        font-size: 2.2vmax;
+                    }
+                    .model{
+                        font-size: 2vmax;
+                    }
+                .differences{
+                    min-width: 100vw;
+                    max-height: 100%;
+                    /*grid-area: 2/1;*/
+                    padding-inline: 3vmax;
+                }
+                    .diff-item{
+                        font-size: 1.5vmax;
+                    }
+                .pvideo{
+                    box-sizing: border-box;
+                    max-height: 100%;
+                    min-width: 100vw;
+                    /*grid-area: 3/1/ span 1/span 2;*/
+                    margin: 0;
+                    padding: 0;
+                }
+                    .pvideo iframe{
+                        height: 100%;
+                        width: auto;
+                    }
     }
 </style>

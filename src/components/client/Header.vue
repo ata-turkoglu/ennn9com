@@ -163,8 +163,17 @@ export default {
         padding: 0;
         padding-inline: 1vw;
         margin: 0;
-        margin-top: 3vh;
+        margin-top: 1vh;
         background-color:whitesmoke;
+    }
+    #header::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: -1vh;
+        height: 1vh;
+        width: 100%;
+        background-color: rgb(30,30,100);
     }
         #lg{
             box-sizing: border-box;
@@ -219,7 +228,7 @@ export default {
                 height: .16vmax;
                 bottom: -25%;
                 left: -10%;
-                background-color: rgb(50, 50, 100);
+                background-color: rgb(30, 30, 100);
                 transform-origin: bottom right;
                 transition: transform .25s ease-out;
             }
@@ -322,6 +331,7 @@ export default {
             margin-top:0;
             position: relative;
             z-index: 3;
+            margin-top:.3vh;
         }
             #lg{
                 font-size: 6vh;
