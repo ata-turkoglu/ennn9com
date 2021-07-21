@@ -163,15 +163,15 @@ export default {
         padding: 0;
         padding-inline: 1vw;
         margin: 0;
-        margin-top: 1vh;
+        margin-top: .3vh;
         background-color:whitesmoke;
     }
     #header::before{
         content: "";
         position: absolute;
         left: 0;
-        top: -1vh;
-        height: 1vh;
+        top: -.3vh;
+        height: .3vh;
         width: 100%;
         background-color: rgb(30,30,100);
     }

@@ -27,4 +27,24 @@ export default {
     font-family: "Ubuntu";
     src: url("./assets/fonts/Ubuntu/Ubuntu-Regular.ttf");
   }
+
+  ::-webkit-scrollbar {
+    width: .7vmax;
+    height: 0.5vmax;
+    background-color: whitesmoke;
+  }
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 .5vmax rgba(0,0,0,0.3);
+      box-shadow: inset 0 0 .5vmax rgba(0,0,0,0.3);
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      background: rgb(30,30,100);
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+      background: rgb(30,30,100);
+  }
 </style>

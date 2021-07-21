@@ -20,10 +20,10 @@
             </div>
         </div>
         <div class="product" v-for="(product,index) in item.productlist" :key="index">
-            <div class="arrow-left" style="left:0">
+            <div class="arrow-left" style="left:0" @click="left(index)">
                 <img src="../../assets/items/left-arrow.png">
             </div>
-            <div class="arrow-right" style="right:0">
+            <div class="arrow-right" style="right:0" @click="right(index)">
                 <img src="../../assets/items/right-arrow.png">
             </div>
             <div class="product-view" @touchstart="touchstart($event)" @touchend="touchend($event,index)" ref="product">
@@ -137,6 +137,44 @@ export default {
                     }
                 }
             }
+        },
+
+        left(index){
+            let product = this.$refs.product[index]
+            let right = document.getElementsByClassName("arrow-right")
+            let left = document.getElementsByClassName("arrow-left")
+
+            if(this.touch.swipe[index]!=0){
+                this.touch.swipe[index]--
+                product.style.transform="translateX(-"+(this.touch.swipe[index]*100)+"%)"
+                if(this.touch.swipe[index]==0){
+                    left[index].style.display="none"
+                    right[index].style.display="flex"
+                }
+                else{
+                    left[index].style.display="flex"
+                    right[index].style.display="flex"
+                }
+            }
+        },
+
+        right(index){
+            let product = this.$refs.product[index]
+            let right = document.getElementsByClassName("arrow-right")
+            let left = document.getElementsByClassName("arrow-left")
+
+            if(this.touch.swipe[index]<2){
+                this.touch.swipe[index]++
+                product.style.transform="translateX(-"+(this.touch.swipe[index]*100)+"%)"
+                if(this.touch.swipe[index]==2){
+                    right[index].style.display="none"
+                    left[index].style.display="flex"
+                }
+                else{
+                    right[index].style.display="flex"
+                    left[index].style.display="flex"
+                }
+            }
         }
     }
 }
@@ -203,110 +241,117 @@ export default {
             width: 100%;
             padding: 1vmax;
             margin-block: 1vmax;
-            display: grid;
-            grid-template-columns: 20% 30% 30% auto;
-            grid-template-rows: 100%;
+            display: flex;
             border-radius: .5vmax;
             box-shadow: 0 0 1vmax -.5vmax grey;
             overflow: hidden;
         }
             .arrow-right, .arrow-left{
                 display: none;
+                cursor: pointer;
             }
+                .arrow-right img, .arrow-left img{
+                    display: none;
+                }
             .product-view{
                 box-sizing: border-box;
+                position: relative;
                 width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template-columns: 20% 30% 30% auto;
+                grid-template-rows: 100%;
             }
-            .des{
-                box-sizing: border-box;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: space-between;
-                height:100%;
-            }
-                .des-head{
+                .des{
+                    box-sizing: border-box;
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
-                    justify-content: flex-start;
+                    justify-content: space-between;
+                    height:100%;
                 }
-                    .brand{
-                        font-size: 1.3vmax;
-                        margin-right: 1vmax;
-                        font-weight: 600;
+                    .des-head{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: flex-start;
                     }
-                    .model{
-                        font-size: 1.1vmax;
+                        .brand{
+                            font-size: 1.3vmax;
+                            margin-right: 1vmax;
+                            font-weight: 600;
+                        }
+                        .model{
+                            font-size: 1.1vmax;
+                        }
+                    .des button{
+                        border: none;
+                        font-weight: 700;
+                        padding-block: .5vmax;
+                        padding-inline: 1vmax;
+                        border-radius: .5vmax;
+                        background-color: rgb(255, 174, 119);
+                        box-shadow: 0 0 .7vmax -.2vmax grey;
+                        cursor:pointer;
                     }
-                .des button{
-                    border: none;
-                    font-weight: 700;
-                    padding-block: .5vmax;
-                    padding-inline: 1vmax;
-                    border-radius: .5vmax;
-                    background-color: rgb(255, 165, 105);
-                    box-shadow: 0 0 .7vmax -.2vmax grey;
-                    cursor:pointer;
-                }
-                .des button:hover{
-                    box-shadow:none
-                }
+                    .des button:hover{
+                        box-shadow:none
+                    }
 
-            .differences{
-                box-sizing: border-box;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: start;
-                overflow: auto;
-            }
-                .pm{
-                    height: 10%;
-                    width: 12%;
-                    object-fit: contain;
+                .differences{
+                    box-sizing: border-box;
+                    height: 100%;
                     display: flex;
-                    align-items: center;
-                    justify-content: left;
-                    margin-bottom: 1vmax;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: start;
+                    overflow: auto;
                 }
-                    .pm img{
+                    .pm{
+                        height: 10%;
+                        width: 12%;
+                        object-fit: contain;
+                        display: flex;
+                        align-items: center;
+                        justify-content: left;
+                        margin-bottom: 1vmax;
+                    }
+                        .pm img{
+                            height: 100%;
+                            width: auto;
+                            object-fit: contain;
+
+                        }
+                    .diff-item{
+                        margin: 0;
+                        margin-bottom: .2vmax;
+                        padding: 0;
+                        font-size: .9vmax;
+                        color:black;
+                        text-align: left;
+                    }
+
+
+                .ppic{
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    padding-inline: 1vmax;
+                }
+                    .ppic img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+
+                .pvideo{
+                    box-sizing: border-box;
+                    height: 100%;
+                    width: 100%;
+                }
+                    .pvideo iframe{
                         height: 100%;
                         width: auto;
-                        object-fit: contain;
-
                     }
-                .diff-item{
-                    margin: 0;
-                    margin-bottom: .2vmax;
-                    padding: 0;
-                    font-size: .9vmax;
-                    color:black;
-                    text-align: left;
-                }
-
-
-            .ppic{
-                box-sizing: border-box;
-                overflow: hidden;
-                padding-inline: 1vmax;
-            }
-                .product img{
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-                }
-
-            .pvideo{
-                box-sizing: border-box;
-                height: 100%;
-                width: 100%;
-            }
-                .pvideo iframe{
-                    height: 100%;
-                    width: auto;
-                }
 
     @media screen and (max-width:768px) {
     #view{
@@ -328,7 +373,7 @@ export default {
                 }
 
         .product{
-            height: 50vw;
+            height: 25vh;
             width: 100vw;
             /*
             grid-template-columns: 50% 50%;
@@ -361,6 +406,7 @@ export default {
                     display:none
                 }
                 .arrow-right img, .arrow-left img{
+                    display: flex;
                     height: 20%;
                     width: 100%;
                     object-fit:fill;
@@ -380,12 +426,10 @@ export default {
                 padding:0 ;
                 height: 100%;
                 min-width:100%;
-                width: fit-content;
-                position: relative;
                 display: flex;
-                flex-direction: row;
-                flex-wrap: nowrap;
                 align-items: center;
+                justify-content: flex-start;
+                width: fit-content;
                 overflow: visible;
                 justify-content: flex-start;
                 transition: all .5s ease-in-out;
@@ -394,6 +438,11 @@ export default {
                     min-width: 50vw;
                     max-height: 100%;
                 }
+                    .ppic img{
+                        width: 25vh;
+                        height: 100%;
+                        object-fit: contain;
+                    }
                 .des{
                     min-width: 50vw;
                     max-height: 100%;
@@ -403,6 +452,11 @@ export default {
                     }
                     .model{
                         font-size: 2vmax;
+                    }
+                    .des button{
+                        height: 4.5vh;
+                        padding-inline: 2vmax;
+                        margin-bottom: 1vmax;
                     }
                 .differences{
                     min-width: 100vw;

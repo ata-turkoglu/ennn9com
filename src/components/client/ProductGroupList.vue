@@ -4,7 +4,7 @@
             <p class="header">{{item.title}}</p>
             <hr>
             <div class="container">
-                <div class="nav">
+                <div class="nav" style="left:0">
                     <img class="arrow" src="../../assets/items/left-arrow.png" @click="left($event)">
                 </div>
                 <div class="item-list">
@@ -19,7 +19,7 @@
                     </div>
 
                 </div>
-                <div class="nav">
+                <div class="nav" style="right:0">
                     <img class="arrow" src="../../assets/items/right-arrow.png" @click="right($event)">
                 </div>
             </div>
@@ -29,7 +29,7 @@
             <hr>
             <div class="container">
                 
-                <div class="nav">
+                <div class="nav" style="left:0">
                     <img class="arrow" src="../../assets/items/left-arrow.png" @click="left($event)">
                 </div>
                 <div class="item-list">
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="nav">
+                <div class="nav" style="right:0">
                     <img class="arrow" src="../../assets/items/right-arrow.png" @click="right($event)">
                 </div>
             </div>
@@ -108,7 +108,7 @@
             <hr>
             <div class="container">
                 
-                <div class="nav">
+                <div class="nav" style="left:0">
                     <img class="arrow" src="../../assets/items/left-arrow.png" @click="left($event)">
                 </div>
                 <div class="item-list">
@@ -176,7 +176,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="nav">
+                <div class="nav" style="right:0">
                     <img class="arrow" src="../../assets/items/right-arrow.png" @click="right($event)">
                 </div>
             </div>
@@ -211,7 +211,7 @@ export default {
             }
         },
 
-        mouse_move1(event){
+        mouse_move1(event){           
             event.target.draggable=false
             if(this.drag){
                 event.target.parentElement.parentElement.parentElement.scrollLeft-=event.movementX
@@ -275,7 +275,7 @@ export default {
                 margin: 0;
                 padding: 0;
                 text-align: left;
-                font-size: 1.2vmax;
+                font-size: 2.5vh;
                 font-weight: 700;
                 filter: drop-shadow( 0 0 .8vmax rgb(10, 10, 10, .4));
             }
@@ -290,19 +290,26 @@ export default {
                 width: 100%;
                 display: flex;
                 align-items: center;
-                
+                position: relative;
+                margin:0;
             }
                 .nav{
+                    box-sizing: border-box;
+                    position: absolute;
                     height: 100%;
-                    width: 2vmax;
+                    width: 1.5vmax;
+                    top:0;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    z-index: 1;
                 }
                     .arrow{
                         height: 4vmax;
                         width: 100%;
                         cursor: pointer;
+                        margin: 0;
+                        padding:0;
                     }
                 .item-list{
                     position: relative;
@@ -321,8 +328,9 @@ export default {
                         max-width: 15vmax;
                         padding: 0;
                         margin: 1vmax;
-                        border-radius: .5vmax;
-                        box-shadow: 0 0 1vmax -.2vmax grey;
+                        /*box-shadow: 0 0 1vmax -.2vmax grey;
+                        border-radius: .5vmax;*/
+                        background-color: whitesmoke;
                         display: grid;
                         grid-template-rows: 75% 25%;
                         grid-template-columns: 100%;
@@ -340,6 +348,8 @@ export default {
                         box-shadow: none;
                         /*border: 1px solid rgb(220, 220, 220);*/
                         box-shadow: 0 0 .5vmax -.2vmax rgb(0, 153, 204);
+                        transform: translateY(-1vh);
+                        transition: transform .2s ease-in;
                     }
                         .item-image{
                             height: 100%;
