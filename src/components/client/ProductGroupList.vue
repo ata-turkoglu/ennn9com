@@ -5,11 +5,11 @@
             <hr>
             <div class="container">
                 <div class="nav" style="left:0">
-                    <img class="arrow" src="../../assets/items/left-arrow.png" @click="left($event)">
+                    <img class="arrow" src="../../assets/items/left-arrow.png" @click="left($event,index)">
                 </div>
                 <div class="item-list">
                     
-                    <div v-for="(content,indx) in item.contents" :key="indx" class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false" @mouseout="drag=false" @click="gotoComp(item.title,content.id)">
+                    <div v-for="(content,indx) in item.contents" :key="indx" class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown.capture="mouse_down($event)" @mousemove="mouse_move($event)" @mouseup="drag=false" @mouseout="drag=false" @click="gotoComp(item.title,content.id)">
                         <div class="item-image">
                             <img :src="content.image" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false" @mouseout="drag=false">
                         </div>
@@ -20,7 +20,7 @@
 
                 </div>
                 <div class="nav" style="right:0">
-                    <img class="arrow" src="../../assets/items/right-arrow.png" @click="right($event)">
+                    <img class="arrow" src="../../assets/items/right-arrow.png" @click="right($event,index)">
                 </div>
             </div>
         </div>
@@ -30,67 +30,100 @@
             <div class="container">
                 
                 <div class="nav" style="left:0">
-                    <img class="arrow" src="../../assets/items/left-arrow.png" @click="left($event)">
+                    <img class="arrow" src="../../assets/items/left-arrow.png" @click="left($event,1)">
                 </div>
-                <div class="item-list">
+
+                <div class="item-list" :style="drag?{cursor: 'grabbing'}:null" @mousedown="mouse_down($event)" @mousemove="mouse_move($event)" @mouseup="drag=false">
                     
-                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false" @mouseout="drag=false">
+                    <div class="item" >
                         <div class="item-image">
-                            <img src="../../assets/images/temp.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false" @mouseout="drag=false">
+                            <img src="../../assets/images/temp.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
                         </div>
                         <div class="text">
                             Temassız Ateş Ölçerler
                         </div>
                     </div>
 
-                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false" @mouseout="drag=false">
+                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false">
                         <div class="item-image">
-                            <img src="../../assets/images/temp2.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false" @mouseout="drag=false">
+                            <img src="../../assets/images/temp2.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
                         </div>
                         <div class="text">
                             Kulaktan Ateş Ölçerler
                         </div>
                     </div>
 
-                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false" @mouseout="drag=false">
+                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false">
                         <div class="item-image">
-                            <img src="../../assets/images/temp3.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false" @mouseout="drag=false">
+                            <img src="../../assets/images/temp3.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
                         </div>
                         <div class="text">
                             Dijital Ateş Ölçerler
                         </div>
                     </div>
 
-                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false" @mouseout="drag=false">
+                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false">
                         <div class="item-image">
-                            <img src="../../assets/images/childseat.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false" @mouseout="drag=false">
+                            <img src="../../assets/images/childseat.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
                         </div>
                         <div class="text">
                             Çocuk Bisiklet Koltukları
                         </div>
                     </div>
 
-                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false" @mouseout="drag=false">
+                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false">
                         <div class="item-image">
-                            <img src="../../assets/images/childseat.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false" @mouseout="drag=false">
+                            <img src="../../assets/images/childseat.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
                         </div>
                         <div class="text">
                             Çocuk Bisiklet Koltukları
                         </div>
                     </div>
 
-                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false" @mouseout="drag=false">
+                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false">
                         <div class="item-image">
-                            <img src="../../assets/images/stroller.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false" @mouseout="drag=false">
+                            <img src="../../assets/images/stroller.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
                         </div>
                         <div class="text">
                             Bebek Arabaları
                         </div>
                     </div>
 
-                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false" @mouseout="drag=false">
+                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false">
                         <div class="item-image">
-                            <img src="../../assets/images/stroller.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false" @mouseout="drag=false">
+                            <img src="../../assets/images/stroller.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
+                        </div>
+                        <div class="text">
+                            Bebek Arabaları
+                        </div>
+                    </div>
+                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false">
+                        <div class="item-image">
+                            <img src="../../assets/images/stroller.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
+                        </div>
+                        <div class="text">
+                            Bebek Arabaları
+                        </div>
+                    </div>
+                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false">
+                        <div class="item-image">
+                            <img src="../../assets/images/stroller.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
+                        </div>
+                        <div class="text">
+                            Bebek Arabaları
+                        </div>
+                    </div>
+                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false">
+                        <div class="item-image">
+                            <img src="../../assets/images/stroller.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
+                        </div>
+                        <div class="text">
+                            Bebek Arabaları
+                        </div>
+                    </div>
+                    <div class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown="drag=true" @mousemove="mouse_move($event)" @mouseup="drag=false">
+                        <div class="item-image">
+                            <img src="../../assets/images/stroller.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
                         </div>
                         <div class="text">
                             Bebek Arabaları
@@ -98,7 +131,7 @@
                     </div>
                 </div>
                 <div class="nav" style="right:0">
-                    <img class="arrow" src="../../assets/items/right-arrow.png" @click="right($event)">
+                    <img class="arrow" src="../../assets/items/right-arrow.png" @click="right($event,1)">
                 </div>
             </div>
         </div>
@@ -186,11 +219,12 @@
 
 <script>
 import { mapGetters } from "vuex"
+
 export default {
     
     data(){
         return{
-            drag:false
+            drag:false,
         }
     },
 
@@ -203,41 +237,70 @@ export default {
     },
 
     methods:{
+
+        mouse_down(event){
+            console.log(event)
+            this.drag=true
+        },
         
         mouse_move(event){
+            //event.preventDefault();
+            
             event.target.draggable=false
             if(this.drag){
                 event.target.parentElement.parentElement.scrollLeft-=event.movementX
+                //event.target.style.transform="translateX(-30px)"
             }
         },
 
         mouse_move1(event){           
+            event.preventDefault();
             event.target.draggable=false
             if(this.drag){
                 event.target.parentElement.parentElement.parentElement.scrollLeft-=event.movementX
             }
         },
 
-        left(event){
-            let a=0
-            let intrvl = setInterval(()=>{
-                event.target.parentElement.nextSibling.scrollLeft-=a
-                a++
-                if(a==25){
-                    clearInterval(intrvl)
-                }
-            },20)
+        left(event,index){
+
+            /*if(window.innerWidth>768){
+                let a=0
+                let intrvl = setInterval(()=>{
+                    event.target.nextSibling.scrollLeft-=a
+                    a++
+                    if(a==25){
+                        clearInterval(intrvl)
+                    }
+                },20)
+            }else{
+                let element = document.getElementsByClassName("item-list")[index]
+                element.style.transform="translateX(0vw)"
+            }*/
+
+            let element = document.getElementsByClassName("item-list")[index]
+                element.style.transform="translateX(0vw)"
+            
         },
 
-        right(event){
-            let a=0
-            let intrvl = setInterval(()=>{
-                event.target.parentElement.previousSibling.scrollLeft+=a
-                a++
-                if(a==25){
-                    clearInterval(intrvl)
-                }
-            },20)
+        right(event,index){
+
+            /*if(window.innerWidth>768){
+                let a=0
+                let intrvl = setInterval(()=>{
+                    event.target.parentElement.previousSibling.scrollLeft+=a
+                    a++
+                    if(a==25){
+                        clearInterval(intrvl)
+                    }
+                },20)
+            }else{
+                let element = document.getElementsByClassName("item-list")[index]
+                element.style.transform="translateX(-102vw)"
+            }*/
+
+            let element = document.getElementsByClassName("item-list")[index]
+                element.style.transform="translateX(-102vw)"
+            
         },
 
         gotoComp(cat,id){
@@ -292,6 +355,7 @@ export default {
                 align-items: center;
                 position: relative;
                 margin:0;
+                overflow: hidden;
             }
                 .nav{
                     box-sizing: border-box;
@@ -317,7 +381,8 @@ export default {
                     height: 100%;
                     width: 100%;
                     display: flex;
-                    overflow: hidden;
+                    overflow:hidden;
+                    transition: transform .5s ease-in-out
                 }
                     .item{
                         height: 15vmax;
@@ -328,8 +393,8 @@ export default {
                         max-width: 15vmax;
                         padding: 0;
                         margin: 1vmax;
-                        /*box-shadow: 0 0 1vmax -.2vmax grey;
-                        border-radius: .5vmax;*/
+                        margin-inline: .5vmax;
+                        box-shadow: 0 0 .7vmax -.2vmax grey;                        
                         background-color: whitesmoke;
                         display: grid;
                         grid-template-rows: 75% 25%;
@@ -374,4 +439,18 @@ export default {
                             font-weight: 700;
                             
                         }
+
+    @media screen and (max-width:768px) {
+        #list{
+            padding-inline: 0;
+        }
+            .header{
+                padding-inline: 1vw;
+            }
+        .item{
+            min-width: 33vw;
+            min-height: 45vw;
+            margin: .5vw;
+        }
+    }
 </style>

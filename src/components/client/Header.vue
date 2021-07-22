@@ -6,44 +6,44 @@
 
         <div v-show="menu" id="navigation">
             <router-link 
-                tag="p"
-                to="/"
-                class="nav-item"
-                exact-active-class="nav_item_active"
-                @click.native="menuClose()"
-                >Anasayfa</router-link>
-
-                <router-link 
-                tag="p"
-                to="/bloglist"
-                class="nav-item"
-                exact-active-class="nav_item_active"
-                @click.native="menuClose()"
-                >Blog</router-link>
+             tag="p"
+             to="/"
+             class="nav-item"
+             exact-active-class="nav_item_active"
+             @click.native="menuClose()"
+            >Anasayfa</router-link>
 
             <router-link 
-                tag="p"
-                to="/productgrouplist"
-                class="nav-item"
-                exact-active-class="nav_item_active"
-                @click.native="menuClose()"
-                >Karşılaştırmalar</router-link>
+             tag="p"
+             to="/bloglist"
+             class="nav-item"
+             exact-active-class="nav_item_active"
+             @click.native="menuClose()"
+            >Blog</router-link>
 
-                <router-link 
-                tag="p"
-                to="/productlist"
-                class="nav-item"
-                exact-active-class="nav_item_active"
-                @click.native="menuClose()"
-                >Keşif</router-link>
+            <router-link 
+             tag="p"
+             to="/productgrouplist"
+             class="nav-item"
+             exact-active-class="nav_item_active"
+             @click.native="menuClose()"
+            >Karşılaştırmalar</router-link>
 
-                <router-link 
-                tag="p"
-                to="/addproduct"
-                class="nav-item"
-                exact-active-class="nav_item_active"
-                @click.native="menuClose()"
-                >Sağlık</router-link>
+            <router-link 
+             tag="p"
+             to="/productlist"
+             class="nav-item"
+             exact-active-class="nav_item_active"
+             @click.native="menuClose()"
+            >Keşif</router-link>
+
+            <router-link 
+             tag="p"
+             to="/addproduct"
+             class="nav-item"
+             exact-active-class="nav_item_active"
+             @click.native="menuClose()"
+            >Sağlık</router-link>
         </div>
 
         <div v-show="menu" id="tosocial">

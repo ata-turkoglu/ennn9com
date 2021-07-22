@@ -42,9 +42,9 @@ export default {
   ::-webkit-scrollbar-thumb {
       -webkit-border-radius: 6px;
       border-radius: 6px;
-      background: rgb(30,30,100);
+      background: rgb(20,20,90,.7);
   }
   ::-webkit-scrollbar-thumb:window-inactive {
-      background: rgb(30,30,100);
+      background: rgb(40,40,110,.7);
   }
 </style>
