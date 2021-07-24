@@ -2,13 +2,18 @@
     <div id="list">
         <div id="nav">
             <div id="filter1">
-                <!--<p v-for="(item,index) in getFilters.categories" :key="index" @click="filter1(item.title), isCat=index" :class="{'border1':isCat==index}">{{item.title}}</p>-->
-                <p @click="filter1(null), isCat=0" :class="{'border1':isCat==0}">Tümü</p>
-                <p @click="filter1('Hamilelik'), isCat=1" :class="{'border1':isCat==1}">Hamilelik</p>
-                <p @click="filter1('Bebek'), isCat=2" :class="{'border1':isCat==2}">Bebek</p>
-                <p @click="filter1('Çocuk'), isCat=3" :class="{'border1':isCat==3}">Çocuk</p>
-                <p @click="filter1('Moda'), isCat=4" :class="{'border1':isCat==4}">Moda</p>
-                <p @click="filter1('Kozmetik'), isCat=5" :class="{'border1':isCat==5}">Kozmetik</p>
+                <div class="filter-tag">
+                    {{filt1}}
+                </div>
+                <div class="filter-list">
+                    <!--<p v-for="(item,index) in getFilters.categories" :key="index" @click="filter1(item.title), isCat=index" :class="{'border1':isCat==index}">{{item.title}}</p>-->
+                    <p @click="filter1(null), isCat=0" :class="{'border1':isCat==0}">Tümü</p>
+                    <p @click="filter1('Hamilelik'), isCat=1" :class="{'border1':isCat==1}">Hamilelik</p>
+                    <p @click="filter1('Bebek'), isCat=2" :class="{'border1':isCat==2}">Bebek</p>
+                    <p @click="filter1('Çocuk'), isCat=3" :class="{'border1':isCat==3}">Çocuk</p>
+                    <p @click="filter1('Moda'), isCat=4" :class="{'border1':isCat==4}">Moda</p>
+                    <p @click="filter1('Kozmetik'), isCat=5" :class="{'border1':isCat==5}">Kozmetik</p>
+                </div>
             </div>
             <div id="filter2">
                 <p v-for="(item,index) in subCategories" :key="index" @click="filter2(item),isSub=index" :class="{'border2':isSub==index}">{{item}}</p>
@@ -138,6 +143,8 @@ export default {
     
     data(){
         return{
+            filt1:null,
+            filt2:null,
             filters:{
                 categories:[]
             },
@@ -186,7 +193,7 @@ export default {
         flex-wrap: wrap;
         margin: 0;
         margin-top: 2vmax;
-        padding: 0;
+        padding-block: 2vh;
         padding-inline: 1vmax;
     }
 
@@ -211,24 +218,34 @@ export default {
             align-items: center;
             justify-content: flex-start;
         }
-            #filter1 p{
+            .filter-list{
+                box-sizing: border-box;
+                width: 100%;
+                height: fit-content;
                 margin: 0;
-                padding-block: .3vmax;
-                padding-inline: .5vmax;
-                margin-right:2vmax;
-                margin-bottom: 1vmax;
-                cursor: pointer;
-                position: relative;
+                padding: 0;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
             }
-            #filter1 p:after{
-                content: "";
-                position: absolute;
-                bottom: -4%;
-                background-color: rgb(30, 30, 100);
-                height: 1px;
-                width: 200%;
-                left:-50%
-            }
+                #filter1 p{
+                    margin: 0;
+                    padding-block: .3vmax;
+                    padding-inline: .5vmax;
+                    margin-right:2vmax;
+                    margin-bottom: 1vmax;
+                    cursor: pointer;
+                    position: relative;
+                }
+                #filter1 p:after{
+                    content: "";
+                    position: absolute;
+                    bottom: -4%;
+                    background-color: rgb(30, 30, 100);
+                    height: 1px;
+                    width: 200%;
+                    left:-50%
+                }
 
         #filter2{
             box-sizing: border-box;
@@ -281,7 +298,7 @@ export default {
             height: 12vmax;
             width: 12vmax;
             cursor: pointer;
-            box-shadow: 0 0 1vmax -.2vmax grey;
+            box-shadow: 0 0 1.7vmax whitesmoke;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -371,15 +388,32 @@ export default {
         }
 
     @media screen and (max-width:768px) {
+        #list{
+            padding-inline: 0;
+        }
         #filter1{
             width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 1vmax;
+            background-color: whitesmoke;
         }
             #filter1 p{
-                font-size: 1.5vmax;
+                margin: 0;
+                margin-bottom: 1.2vmax;
+                padding: 0;
+                font-size: 2vmax;
+                font-weight: 600;
             }
             #filter1 p::after{
                 display: none;
             }
+                .border1{
+                    border: none;
+                }
         #filter2{
             width:100%;
             flex-wrap: wrap;

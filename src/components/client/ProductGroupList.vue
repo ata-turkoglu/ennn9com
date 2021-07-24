@@ -7,11 +7,29 @@
                 <div class="nav" style="left:0">
                     <img class="arrow" src="../../assets/items/left-arrow.png" @click="left($event,index)">
                 </div>
-                <div class="item-list">
+                <div class="item-list" ref="itemlist">
                     
-                    <div v-for="(content,indx) in item.contents" :key="indx" class="item" :style="drag?{cursor: 'grabbing'}:null" @mousedown.capture="mouse_down($event)" @mousemove="mouse_move($event)" @mouseup="drag=false" @mouseout="drag=false" @click="gotoComp(item.title,content.id)">
+                    <div 
+                     v-for="(content,indx) in item.contents" 
+                     :key="indx" 
+                     class="item"
+                     :style="drag?{cursor:'grabbing'}:null" 
+                     @mousedown.prevent="mouse_down()" 
+                     @mousemove.prevent="mouse_move($event)" 
+                     @mouseup.prevent="mouse_up(item.title,content.id)" 
+                     @mouseout="drag=false"
+                     @touchstart="touchstart($event,indx)"
+                     @touchmove="touchmove($event)"
+                     @touchend="touchend(item.title,content.id)"
+                    >
                         <div class="item-image">
-                            <img :src="content.image" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false" @mouseout="drag=false">
+                            <img 
+                             :src="content.image" 
+                             @mousedown.prevent="mouse_down()" 
+                             @mousemove.prevent="mouse_move1($event)" 
+                             @mouseup.prevent="mouse_up(item.title,content.id)" 
+                             @mouseout="drag=false"
+                            >
                         </div>
                         <div class="text">
                             {{content.name}}
@@ -225,6 +243,12 @@ export default {
     data(){
         return{
             drag:false,
+            click:null,
+            touch:{
+                startX:null,
+                endX:null,
+                swipe:[]
+            }
         }
     },
 
@@ -238,18 +262,24 @@ export default {
 
     methods:{
 
-        mouse_down(event){
-            console.log(event)
+        mouse_down(){
             this.drag=true
+            this.click=new Date().getTime()
+        },
+
+        mouse_up(cat,id){
+            this.drag=false
+            if(new Date().getTime()-this.click<100){
+                this.$router.push({name:"ComparisonView", params:{cat:cat,id:id}})
+            }
         },
         
-        mouse_move(event){
-            //event.preventDefault();
-            
+        mouse_move(event){       
+            event.preventDefault();
             event.target.draggable=false
             if(this.drag){
+                event.target.parentElement.parentElement.style.cursor="grabbing"
                 event.target.parentElement.parentElement.scrollLeft-=event.movementX
-                //event.target.style.transform="translateX(-30px)"
             }
         },
 
@@ -262,11 +292,19 @@ export default {
         },
 
         left(event,index){
+            let a=0
+                let intrvl = setInterval(()=>{
+                    event.target.parentElement.nextSibling.scrollLeft-=a
+                    a++
+                    if(a==30){
+                        clearInterval(intrvl)
+                    }
+                },20)
 
             /*if(window.innerWidth>768){
                 let a=0
                 let intrvl = setInterval(()=>{
-                    event.target.nextSibling.scrollLeft-=a
+                    event.target.parentElement.nextSibling.scrollLeft-=a
                     a++
                     if(a==25){
                         clearInterval(intrvl)
@@ -276,20 +314,23 @@ export default {
                 let element = document.getElementsByClassName("item-list")[index]
                 element.style.transform="translateX(0vw)"
             }*/
-
-            let element = document.getElementsByClassName("item-list")[index]
-                element.style.transform="translateX(0vw)"
-            
         },
 
         right(event,index){
-
+            let a=0
+            let intrvl = setInterval(()=>{
+                event.target.parentElement.previousSibling.scrollLeft+=a
+                a++
+                if(a==30){
+                    clearInterval(intrvl)
+                }
+            },20)
             /*if(window.innerWidth>768){
                 let a=0
                 let intrvl = setInterval(()=>{
                     event.target.parentElement.previousSibling.scrollLeft+=a
                     a++
-                    if(a==25){
+                    if(a==30){
                         clearInterval(intrvl)
                     }
                 },20)
@@ -297,14 +338,25 @@ export default {
                 let element = document.getElementsByClassName("item-list")[index]
                 element.style.transform="translateX(-102vw)"
             }*/
-
-            let element = document.getElementsByClassName("item-list")[index]
-                element.style.transform="translateX(-102vw)"
-            
         },
 
-        gotoComp(cat,id){
-            this.$router.push({name:"ComparisonView", params:{cat:cat,id:id}})
+        touchstart(event){
+            event.preventDefault();
+            this.click=new Date().getTime()            
+            this.touch.startX=event.changedTouches[0].clientX
+        },
+
+        touchend(cat,id){
+            if(new Date().getTime()-this.click<100){
+                this.$router.push({name:"ComparisonView", params:{cat:cat,id:id}})
+            }
+
+        },
+
+        touchmove(event){
+            this.touch.endX=event.changedTouches[0].clientX
+            this.$refs.itemlist[0].scrollLeft-=(this.touch.endX-this.touch.startX)*2
+            this.touch.startX=event.changedTouches[0].clientX
         }
     }
 }
@@ -385,9 +437,9 @@ export default {
                     transition: transform .5s ease-in-out
                 }
                     .item{
-                        height: 15vmax;
-                        min-height: 15vmax;
-                        max-height: 15vmax;
+                        height: 20vmax;
+                        min-height: 20vmax;
+                        max-height: 20vmax;
                         width: 15vmax;
                         min-width: 15vmax;
                         max-width: 15vmax;
@@ -449,7 +501,7 @@ export default {
             }
         .item{
             min-width: 33vw;
-            min-height: 45vw;
+            min-height: 44vw;
             margin: .5vw;
         }
     }

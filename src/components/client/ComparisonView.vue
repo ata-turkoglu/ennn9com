@@ -94,9 +94,7 @@ export default {
     methods:{
         
         touchstart(event){        
-            event.preventDefault();
-            
-                
+            event.preventDefault();                
             this.touch.startX=event.changedTouches[0].clientX
         },
 
@@ -418,7 +416,7 @@ export default {
                 }
                 to{
                     /*transform:translateX(20px);*/
-                    opacity: .25;
+                    opacity: .5;
                 }
             }
             .product-view{
