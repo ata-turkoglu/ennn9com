@@ -1,22 +1,31 @@
 <template>
     <div id="list">
         <div id="nav">
-            <div id="filter1">
-                <div class="filter-tag">
-                    {{filt1}}
-                </div>
-                <div class="filter-list">
-                    <!--<p v-for="(item,index) in getFilters.categories" :key="index" @click="filter1(item.title), isCat=index" :class="{'border1':isCat==index}">{{item.title}}</p>-->
-                    <p @click="filter1(null), isCat=0" :class="{'border1':isCat==0}">Tümü</p>
-                    <p @click="filter1('Hamilelik'), isCat=1" :class="{'border1':isCat==1}">Hamilelik</p>
-                    <p @click="filter1('Bebek'), isCat=2" :class="{'border1':isCat==2}">Bebek</p>
-                    <p @click="filter1('Çocuk'), isCat=3" :class="{'border1':isCat==3}">Çocuk</p>
-                    <p @click="filter1('Moda'), isCat=4" :class="{'border1':isCat==4}">Moda</p>
-                    <p @click="filter1('Kozmetik'), isCat=5" :class="{'border1':isCat==5}">Kozmetik</p>
-                </div>
+            <div 
+             id="filter1"
+             ref="f1"
+             tabindex="100"
+             @touchstart="touchstart($event)"
+             @touchmove="touchmove($event)"
+             @touchend="touchend($event)"
+            >
+                <!--<p v-for="(item,index) in getFilters.categories" :key="index" @click="filter1(item.title), isCat=index" :class="{'border1':isCat==index}">{{item.title}}</p>-->
+                <p @click="filter1(null), isCat=0" class="filter1-p" :class="{'border1':isCat==0}">Tümü</p>
+                <p @click="filter1('Hamilelik'), isCat=1" class="filter1-p" tabindex="1" :class="{'border1':isCat==1}">Hamilelik</p>
+                <p @click="filter1('Bebek'), isCat=2" class="filter1-p" tabindex="2" :class="{'border1':isCat==2}">Bebek</p>
+                <p @click="filter1('Çocuk'), isCat=3" class="filter1-p" tabindex="3" :class="{'border1':isCat==3}">Çocuk</p>
+                <p @click="filter1('Moda'), isCat=4" class="filter1-p" tabindex="4" :class="{'border1':isCat==4}">Moda</p>
+                <p @click="filter1('Kozmetik'), isCat=5" class="filter1-p" tabindex="5" :class="{'border1':isCat==5}">Kozmetik</p>
             </div>
-            <div id="filter2">
-                <p v-for="(item,index) in subCategories" :key="index" @click="filter2(item),isSub=index" :class="{'border2':isSub==index}">{{item}}</p>
+            <div 
+             id="filter2"
+             ref="f2"
+             tabindex="200"
+             @touchstart="touchstart($event)"
+             @touchmove="touchmove($event)"
+             @touchend="touchend($event)"
+            >
+                <p v-for="(item,index) in subCategories" :key="index" @click="filter2(item),isSub=index" :tabindex="index" class="filter2-p" :class="{'border2':isSub==index}">{{item}}</p>
             </div>
         </div>
         <div class="container">
@@ -150,7 +159,14 @@ export default {
             },
             subCategories:[],
             isCat:0,
-            isSub:null
+            isSub:null,
+
+            click:null,
+            drag:false,
+            touch:{
+                startX:null,
+                endX:null,
+            }
         }
     },
 
@@ -179,6 +195,41 @@ export default {
 
         filter2(value){
             this.$store.commit("setFilter2",value)
+        },
+
+        touchstart(event){
+            event.preventDefault();
+            this.click=new Date().getTime()            
+            this.touch.startX=event.changedTouches[0].clientX
+        },
+
+        touchend(event){
+            if(new Date().getTime()-this.click<100 && event.target.localName=="p"){
+                if(event.target.parentElement.tabIndex==100 || event.target.tabIndex==100){
+                    if(event.target.innerText=="Tümü"){
+                        this.filter1(null)
+                        this.isCat=0
+                    }else{
+                        this.filter1(event.target.innerText)
+                        this.isCat=event.target.tabIndex
+                    }
+                }else if(event.target.parentElement.tabIndex==200 || event.target.tabIndex==200){
+                    this.filter2(event.target.innerText)
+                    this.isSub=event.target.tabIndex
+                    console.log(this.isSub)
+                }
+            }
+
+        },
+
+        touchmove(event){
+            this.touch.endX=event.changedTouches[0].clientX
+            if(event.target.parentElement.tabIndex==100 || event.target.tabIndex==100){
+                this.$refs.f1.scrollLeft-=(this.touch.endX-this.touch.startX)*2
+            }else if(event.target.parentElement.tabIndex==200 || event.target.tabIndex==200){
+                this.$refs.f2.scrollLeft-=(this.touch.endX-this.touch.startX)*2
+            }
+            this.touch.startX=event.changedTouches[0].clientX
         }
     }
 }
@@ -192,9 +243,16 @@ export default {
         display: flex;
         flex-wrap: wrap;
         margin: 0;
-        margin-top: 2vmax;
-        padding-block: 2vh;
+        margin-top: 0;
+        padding-block: 1vh;
         padding-inline: 1vmax;
+    }
+
+    #inf{
+        margin:0;
+        margin-bottom: 1vmax;
+        padding: 0;
+        font-size: 3vmax;
     }
 
     #nav{
@@ -218,34 +276,15 @@ export default {
             align-items: center;
             justify-content: flex-start;
         }
-            .filter-list{
-                box-sizing: border-box;
-                width: 100%;
-                height: fit-content;
+            .filter1-p{
                 margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
+                padding-block: .3vmax;
+                padding-inline: .5vmax;
+                margin-right:2vmax;
+                margin-bottom: 1vmax;
+                cursor: pointer;
+                position: relative;
             }
-                #filter1 p{
-                    margin: 0;
-                    padding-block: .3vmax;
-                    padding-inline: .5vmax;
-                    margin-right:2vmax;
-                    margin-bottom: 1vmax;
-                    cursor: pointer;
-                    position: relative;
-                }
-                #filter1 p:after{
-                    content: "";
-                    position: absolute;
-                    bottom: -4%;
-                    background-color: rgb(30, 30, 100);
-                    height: 1px;
-                    width: 200%;
-                    left:-50%
-                }
 
         #filter2{
             box-sizing: border-box;
@@ -253,14 +292,14 @@ export default {
             height: fit-content;
             margin: 0;
             padding: 0;
-            left: 50%;
-            top: 50%;
+            /*left: 50%;
+            top: 50%;*/
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: flex-end;
         }
-            #filter2 p{
+            .filter2-p{
                 margin: 0;
                 padding-block: .3vmax;
                 padding-inline: .5vmax;
@@ -268,6 +307,7 @@ export default {
                 margin-bottom: 1vmax;
                 cursor: pointer;
                 font-size: .9vmax;
+                position: relative;
             }
 
             .border1{
@@ -390,36 +430,97 @@ export default {
     @media screen and (max-width:768px) {
         #list{
             padding-inline: 0;
+            margin-top:.5vh;
         }
         #filter1{
             width: 100%;
             height: fit-content;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
             padding: 1vmax;
             background-color: whitesmoke;
+            overflow: hidden;
         }
-            #filter1 p{
+            .filter1-p{
                 margin: 0;
-                margin-bottom: 1.2vmax;
+                margin-inline: 2vmax;
                 padding: 0;
-                font-size: 2vmax;
+                padding-bottom: .5vmax;
+                font-size: 2.1vmax;
                 font-weight: 600;
             }
-            #filter1 p::after{
-                display: none;
+            .filter1-p::after{
+                content: "";
+                position: absolute;
+                height: .2vmax;
+                width: 120%;
+                left: -10%;
+                bottom: -10%;
+                transform: scaleX(0);
+                background-color: rgb(30, 30, 100);
+                transform-origin: bottom;
+                transition: transform .25s ease-out;
             }
-                .border1{
-                    border: none;
-                }
+            .filter1-p:hover:after{
+                height: .22vmax;
+                transform: scaleX(1);
+                transform-origin: bottom;
+            }
+            .border1{
+                border: none;
+            }
+            .border1::after{
+                content: "";
+                height: .3vmax;
+                position: absolute;
+                width: 120%;
+                border-radius: .1vmax; 
+                transform: none;
+            }
         #filter2{
-            width:100%;
-            flex-wrap: wrap;
+            width: 100%;
+            height: fit-content;
+            padding: 1vmax;
+            padding-block: 1vmax;
+            background-color: whitesmoke;
+            overflow: hidden;
+            margin-top: 1.5vh;
+            justify-content: flex-start;
         }
-            #filter2 p{
-                font-size: 1vmax;
+            .filter2-p{
+                margin: 0;
+                padding: 0;
+                margin-inline: 2vmax;
+                padding-block: 0.5vmax;
+                margin-block: 0;
+                font-size: 1.4vmax;
+                font-weight: 600;
+            }
+            .filter2-p::after{
+                content: "";
+                position: absolute;
+                height: .15vmax;
+                width: 120%;
+                left: -10%;
+                bottom: -10%;
+                transform: scaleX(0);
+                background-color: rgb(30, 30, 100);
+                transform-origin: bottom;
+                transition: transform .25s ease-out;
+            }
+            .filter2-p:hover:after{
+                height: .15vmax;
+                transform: scaleX(1);
+                transform-origin: bottom;
+            }
+            .border2{
+                border: none;
+            }
+            .border2::after{
+                content: "";
+                height: .3vmax;
+                position: absolute;
+                width: 120%;
+                border-radius: .1vmax; 
+                transform: none;
             }
         .container{
             display: grid;
