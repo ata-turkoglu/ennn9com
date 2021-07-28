@@ -1,31 +1,47 @@
 <template>
     <div id="list">
         <div id="nav">
-            <div 
-             id="filter1"
-             ref="f1"
-             tabindex="100"
-             @touchstart="touchstart($event)"
-             @touchmove="touchmove($event)"
-             @touchend="touchend($event)"
-            >
-                <!--<p v-for="(item,index) in getFilters.categories" :key="index" @click="filter1(item.title), isCat=index" :class="{'border1':isCat==index}">{{item.title}}</p>-->
-                <p @click="filter1(null), isCat=0" class="filter1-p" :class="{'border1':isCat==0}">Tümü</p>
-                <p @click="filter1('Hamilelik'), isCat=1" class="filter1-p" tabindex="1" :class="{'border1':isCat==1}">Hamilelik</p>
-                <p @click="filter1('Bebek'), isCat=2" class="filter1-p" tabindex="2" :class="{'border1':isCat==2}">Bebek</p>
-                <p @click="filter1('Çocuk'), isCat=3" class="filter1-p" tabindex="3" :class="{'border1':isCat==3}">Çocuk</p>
-                <p @click="filter1('Moda'), isCat=4" class="filter1-p" tabindex="4" :class="{'border1':isCat==4}">Moda</p>
-                <p @click="filter1('Kozmetik'), isCat=5" class="filter1-p" tabindex="5" :class="{'border1':isCat==5}">Kozmetik</p>
+            <div class="filter">
+                <div class="arrow" style="left:0; display:none">
+                    <img src="../../assets/items/left-arrow.png">
+                </div>
+                <div class="arrow" style="right:0">
+                    <img src="../../assets/items/right-arrow.png">
+                </div>
+                <div 
+                id="filter1"
+                ref="f1"
+                tabindex="100"
+                @touchstart="touchstart($event)"
+                @touchmove="touchmove($event)"
+                @touchend="touchend($event)"
+                >
+                    <!--<p v-for="(item,index) in getFilters.categories" :key="index" @click="filter1(item.title), isCat=index" :class="{'border1':isCat==index}">{{item.title}}</p>-->
+                    <p @click="filter1(null), isCat=0" class="filter1-p" :class="{'border1':isCat==0}">Tümü</p>
+                    <p @click="filter1('Hamilelik'), isCat=1" class="filter1-p" tabindex="1" :class="{'border1':isCat==1}">Hamilelik</p>
+                    <p @click="filter1('Bebek'), isCat=2" class="filter1-p" tabindex="2" :class="{'border1':isCat==2}">Bebek</p>
+                    <p @click="filter1('Çocuk'), isCat=3" class="filter1-p" tabindex="3" :class="{'border1':isCat==3}">Çocuk</p>
+                    <p @click="filter1('Moda'), isCat=4" class="filter1-p" tabindex="4" :class="{'border1':isCat==4}">Moda</p>
+                    <p @click="filter1('Kozmetik'), isCat=5" class="filter1-p" tabindex="5" :class="{'border1':isCat==5}">Kozmetik</p>
+                </div>
             </div>
-            <div 
-             id="filter2"
-             ref="f2"
-             tabindex="200"
-             @touchstart="touchstart($event)"
-             @touchmove="touchmove($event)"
-             @touchend="touchend($event)"
-            >
-                <p v-for="(item,index) in subCategories" :key="index" @click="filter2(item),isSub=index" :tabindex="index" class="filter2-p" :class="{'border2':isSub==index}">{{item}}</p>
+            <div class="filter" style="margin-top:1.5vh">
+                <div v-if="isCat>0" class="arrow" style="left:0; display:none">
+                    <img src="../../assets/items/left-arrow.png">
+                </div>
+                <div v-if="isCat>0" class="arrow" style="right:0">
+                    <img src="../../assets/items/right-arrow.png">
+                </div>
+                <div 
+                id="filter2"
+                ref="f2"
+                tabindex="200"
+                @touchstart="touchstart($event)"
+                @touchmove="touchmove($event)"
+                @touchend="touchend($event)"
+                >
+                    <p v-for="(item,index) in subCategories" :key="index" @click="filter2(item),isSub=index" :tabindex="index" class="filter2-p" :class="{'border2':isSub==index}">{{item}}</p>
+                </div>
             </div>
         </div>
         <div class="container">
@@ -191,6 +207,16 @@ export default {
                     this.subCategories=this.filters.categories.find(cat=>cat.title==value).sub
                 }, 500);
             }
+            
+            setTimeout(() => {
+                let f2 = this.$refs.f2
+                if(f2.scrollWidth<=f2.clientWidth && this.isCat>0){
+                    f2.parentElement.firstChild.style.display="none"
+                    f2.parentElement.firstChild.nextSibling.style.display="none"
+                }else if(f2.scrollWidth>f2.clientWidth && this.isCat>0){
+                    f2.parentElement.firstChild.nextSibling.style.display="flex"
+                }
+            },550);
         },
 
         filter2(value){
@@ -223,12 +249,43 @@ export default {
         },
 
         touchmove(event){
+            let f1 = this.$refs.f1
+            let f2 = this.$refs.f2
+            let sw1 = f1.scrollWidth-f1.clientWidth
+            let sw2 = f2.scrollWidth-f2.clientWidth
+
             this.touch.endX=event.changedTouches[0].clientX
+
             if(event.target.parentElement.tabIndex==100 || event.target.tabIndex==100){
-                this.$refs.f1.scrollLeft-=(this.touch.endX-this.touch.startX)*2
+            
+                f1.scrollLeft-=(this.touch.endX-this.touch.startX)*2
+                
+                if(f1.scrollLeft<f1.clientWidth*0.05){
+                    f1.parentElement.firstChild.style.display="none"
+                }else if(f1.scrollLeft>sw1-f1.clientWidth*0.05){
+                    f1.parentElement.firstChild.nextSibling.style.display="none"
+                    f1.parentElement.firstChild.style.display="flex"
+                }else{
+                    f1.parentElement.firstChild.style.display="flex"
+                    f1.parentElement.firstChild.nextSibling.style.display="flex"
+                }
+
             }else if(event.target.parentElement.tabIndex==200 || event.target.tabIndex==200){
-                this.$refs.f2.scrollLeft-=(this.touch.endX-this.touch.startX)*2
+                
+                f2.scrollLeft-=(this.touch.endX-this.touch.startX)*2
+                
+                if(f2.scrollLeft<f2.clientWidth*0.05){
+                    f2.parentElement.firstChild.style.display="none"
+                }else if(f2.scrollLeft>sw2-f2.clientWidth*0.05){
+                    f2.parentElement.firstChild.nextSibling.style.display="none"
+                    f2.parentElement.firstChild.style.display="flex"
+                }else{
+                    f2.parentElement.firstChild.style.display="flex"
+                    f2.parentElement.firstChild.nextSibling.style.display="flex"
+                }
+            
             }
+
             this.touch.startX=event.changedTouches[0].clientX
         }
     }
@@ -432,7 +489,33 @@ export default {
             padding-inline: 0;
             margin-top:.5vh;
         }
+        .filter{
+            width: 100%;
+            height: fit-content;
+            position: relative;
+            box-sizing: border-box;
+        }
+            .arrow{
+                box-sizing: border-box;
+                position:absolute;
+                display: flex;
+                height: 100%;
+                width: 1vmax;
+                overflow: hidden;
+                background-color: whitesmoke;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1;
+            }
+                .arrow img{
+                    height: auto;
+                    box-sizing: border-box;
+                    width: 1vmax;
+                    object-fit: contain;
+                }
         #filter1{
+            position: relative;
             width: 100%;
             height: fit-content;
             padding: 1vmax;
@@ -441,9 +524,9 @@ export default {
         }
             .filter1-p{
                 margin: 0;
-                margin-inline: 2vmax;
+                margin-inline: 2.5vmax;
                 padding: 0;
-                padding-bottom: .5vmax;
+                padding-block: .5vmax;
                 font-size: 2.1vmax;
                 font-weight: 600;
             }
@@ -476,13 +559,13 @@ export default {
                 transform: none;
             }
         #filter2{
+            position: relative;
             width: 100%;
             height: fit-content;
             padding: 1vmax;
             padding-block: 1vmax;
             background-color: whitesmoke;
             overflow: hidden;
-            margin-top: 1.5vh;
             justify-content: flex-start;
         }
             .filter2-p{
@@ -491,8 +574,9 @@ export default {
                 margin-inline: 2vmax;
                 padding-block: 0.5vmax;
                 margin-block: 0;
-                font-size: 1.4vmax;
+                font-size: 1.6vmax;
                 font-weight: 600;
+                min-width: 6vmax;
             }
             .filter2-p::after{
                 content: "";

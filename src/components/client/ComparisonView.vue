@@ -94,12 +94,12 @@ export default {
     methods:{
         
         touchstart(event){        
-            event.preventDefault();                
+            //event.preventDefault();                
             this.touch.startX=event.changedTouches[0].clientX
         },
 
         touchend(event,index){
-            event.preventDefault()
+            //event.preventDefault()
 
             this.touch.endX=event.changedTouches[0].clientX
 
