@@ -157,4 +157,23 @@ export default {
                         border-radius: .3vmax;
                         padding-inline: .5vmax;
                     }
+
+    @media screen and (max-width:768px) {
+        #slide{
+            height: 27.1vh;
+        }
+
+        .offers{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+            .offer-item{
+                height: 20vh;
+                width: 20vh;
+                margin: 1vmax;
+            }
+    }
 </style>

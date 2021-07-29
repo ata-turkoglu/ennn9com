@@ -225,7 +225,7 @@ export default {
                 width: 120%;
                 border-radius: .1vmax ;
                 transform: scaleX(0);
-                height: .16vmax;
+                height: .2vmax;
                 bottom: -25%;
                 left: -10%;
                 background-color: rgb(30, 30, 100);
@@ -233,7 +233,7 @@ export default {
                 transition: transform .25s ease-out;
             }
             .nav-item:hover:after{
-                height: .16vmax;
+                height: .2vmax;
                 transform: scaleX(1);
                 transform-origin: bottom left;
             }
@@ -285,7 +285,7 @@ export default {
             height: 4vmax;
             cursor: pointer;
             transition: all .5s ease-in-out;
-            margin-right: 1vw;
+            margin-right: 2.5vw;
         }
             .menu-btn-burger{
                 width: 4vmax;
@@ -328,7 +328,7 @@ export default {
         #header{
             height: 8vh;
             position: relative;
-            margin-top:0;
+            margin-right:0;
             position: relative;
             z-index: 3;
             margin-top:.3vh;
@@ -340,6 +340,7 @@ export default {
                 position: absolute;
                 top: 100%;
                 right: 0;
+                margin-right: 0;
                 height: fit-content;
                 width: 100vw;
                 min-height: 50vh;

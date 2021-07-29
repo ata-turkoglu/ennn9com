@@ -7,9 +7,7 @@
             <img src="../../assets/items/right-arrow.png" @click="fwd">
             <img src="../../assets/items/left-arrow.png" @click="back">
         </div>
-        <div id="bg">
-            <img src="../../assets/images/logo.png">
-        </div>
+
     </div>
 </template>
 
@@ -115,5 +113,15 @@ export default {
             justify-content: center;
             z-index: -1;
         }
+
+    @media screen and (max-width:768px) {
+        #slider{
+            width: 100%;
+            height: 27.1vh;
+        }
+            #nav img{
+                filter: drop-shadow(0 0 1vmax whitesmoke);
+            }
+    }
 
 </style>

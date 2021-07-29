@@ -2,10 +2,10 @@
     <div id="list">
         <div id="nav">
             <div class="filter">
-                <div class="arrow" style="left:0; display:none">
+                <div class="arrow left-arrow">
                     <img src="../../assets/items/left-arrow.png">
                 </div>
-                <div class="arrow" style="right:0">
+                <div class="arrow right-arrow">
                     <img src="../../assets/items/right-arrow.png">
                 </div>
                 <div 
@@ -26,10 +26,10 @@
                 </div>
             </div>
             <div class="filter" style="margin-top:1.5vh">
-                <div v-if="isCat>0" class="arrow" style="left:0; display:none">
+                <div v-if="isCat>0" class="arrow left-arrow">
                     <img src="../../assets/items/left-arrow.png">
                 </div>
-                <div v-if="isCat>0" class="arrow" style="right:0">
+                <div v-if="isCat>0" class="arrow right-arrow">
                     <img src="../../assets/items/right-arrow.png">
                 </div>
                 <div 
@@ -192,9 +192,45 @@ export default {
 
     created(){
         this.filters=this.getFilters
+        window.addEventListener("resize",this.arrows)
+    },
+
+    mounted(){
+        if(window.innerWidth<768){
+            let f1 = this.$refs.f1
+            f1.parentElement.firstChild.style.display="none"
+            if(f1.clientWidth+25>=f1.scrollWidth){
+                f1.parentElement.firstChild.nextSibling.style.display="none"
+            }
+        }
+    },
+
+    beforeDestroy(){
+        window.removeEventListener("resize",this.arrows)
     },
 
     methods:{
+
+        arrows(){
+            console.log("sss")
+            if(window.innerWidth<768){
+                let f1 = this.$refs.f1
+                let f2 = this.$refs.f2
+                if(f1.clientWidth>=f1.scrollWidth){
+                    f1.parentElement.firstChild.style.display="none"
+                    f1.parentElement.firstChild.nextSibling.style.display="none"
+                }else{
+                    f1.parentElement.firstChild.nextSibling.style.display="flex"
+                }
+
+                if(f2.clientWidth>=f2.scrollWidth && this.isCat>0){
+                    f2.parentElement.firstChild.style.display="none"
+                    f2.parentElement.firstChild.nextSibling.style.display="none"
+                }else if(f2.clientWidth<f2.scrollWidth && this.isCat>0){
+                    f2.parentElement.firstChild.nextSibling.style.display="flex"
+                }
+            }
+        },
 
         filter1(value){
             this.isSub=null
@@ -210,7 +246,7 @@ export default {
             
             setTimeout(() => {
                 let f2 = this.$refs.f2
-                if(f2.scrollWidth<=f2.clientWidth && this.isCat>0){
+                if(f2.scrollWidth<=f2.clientWidth+10 && this.isCat>0){
                     f2.parentElement.firstChild.style.display="none"
                     f2.parentElement.firstChild.nextSibling.style.display="none"
                 }else if(f2.scrollWidth>f2.clientWidth && this.isCat>0){
@@ -321,6 +357,20 @@ export default {
         align-items:stretch;
         justify-content:center;    
     }
+        .arrow{
+            display: none;
+        }
+            .left-arrow{
+                display: none;
+                left: 0;
+                padding-right: 2.5vw;
+                background-image: linear-gradient(to right, whitesmoke, whitesmoke, transparent);
+            }
+            .right-arrow{
+                right: -1px;
+                padding-left: 2.5vw;
+                background-image: linear-gradient(to left, whitesmoke, whitesmoke, transparent);
+            }
 
         #filter1{
             box-sizing: border-box;
@@ -500,9 +550,9 @@ export default {
                 position:absolute;
                 display: flex;
                 height: 100%;
-                width: 1vmax;
+                width: fit-content;
                 overflow: hidden;
-                background-color: whitesmoke;
+                /*background-color: whitesmoke;*/
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -533,7 +583,7 @@ export default {
             .filter1-p::after{
                 content: "";
                 position: absolute;
-                height: .2vmax;
+                height: .3vmax;
                 width: 120%;
                 left: -10%;
                 bottom: -10%;
@@ -543,7 +593,7 @@ export default {
                 transition: transform .25s ease-out;
             }
             .filter1-p:hover:after{
-                height: .22vmax;
+                height: .3vmax;
                 transform: scaleX(1);
                 transform-origin: bottom;
             }
@@ -581,7 +631,7 @@ export default {
             .filter2-p::after{
                 content: "";
                 position: absolute;
-                height: .15vmax;
+                height: .2vmax;
                 width: 120%;
                 left: -10%;
                 bottom: -10%;
@@ -591,7 +641,7 @@ export default {
                 transition: transform .25s ease-out;
             }
             .filter2-p:hover:after{
-                height: .15vmax;
+                height: .25vmax;
                 transform: scaleX(1);
                 transform-origin: bottom;
             }

@@ -66,11 +66,12 @@ export default {
     }
 
         p{  
-            color: sandybrown;
+            color: rgb(30, 30, 100);
             font-size: 2.5vmax;
             font-weight: 700;
             z-index: 2;
-            filter: drop-shadow( 0 .3vmax .8vmax rgb(0, 0, 0, .5));
+            /*filter: drop-shadow( 0 .3vmax .8vmax rgb(0, 0, 0, .5));*/
+            filter: drop-shadow( 0 .1vmax 1vmax whitesmoke);
             user-select: none;
         }
 
@@ -86,11 +87,11 @@ export default {
             padding-inline: 1vmax;
             border: none;
             border-radius: .3vmax;
-            color: rgb(80, 30, 30);
+            color: rgb(30, 30, 100);
             font-size: 1.5vmax;
             font-weight: 700;
             box-shadow: 0 .2vmax .5vmax -0.2vmax rgb(50, 50, 50);
-            background-color:sandybrown;
+            background-color:whitesmoke;
             cursor: pointer;
         }
 
@@ -119,5 +120,16 @@ export default {
     }
     .fade-enter, .fade-leave-to{
         opacity: 0;
+    }
+
+
+
+    @media screen and (max-width:768px) {
+        .slide{
+            padding-left: 0;
+        }
+        img{
+            left:0
+        }
     }
 </style>
