@@ -341,7 +341,7 @@ export default {
                 top: 100%;
                 right: 0;
                 margin-right: 0;
-                height: fit-content;
+                height: 92vh;
                 width: 100vw;
                 min-height: 50vh;
                 align-items: flex-end;

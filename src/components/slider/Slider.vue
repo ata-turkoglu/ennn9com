@@ -23,6 +23,12 @@ export default {
                 require("../../assets/images/mom.jpg"),
                 require("../../assets/images/mom2.jpg"),
                 require("../../assets/images/mom3.jpg"),
+                require("../../assets/images/temp3.jpg"),
+                require("../../assets/images/baby-smile.jpg"),
+                require("../../assets/images/stroller.jpg"),
+                require("../../assets/images/childseat.jpg"),
+                require("../../assets/images/temp.jpg"),
+                require("../../assets/images/temp2.jpg"),
             ],
             index:0,
             intrvl:null
@@ -32,6 +38,7 @@ export default {
         this.timer()
     },
     methods:{
+
         timer(){
             this.intrvl=setInterval(() => {
                 if(this.index==this.images.length-1){
@@ -40,10 +47,12 @@ export default {
                     this.index++
                 }
             }, 10000);
+            console.log("timer")
         },
 
         stop(){
             clearInterval(this.intrvl)
+            console.log("stop")
         },
 
         fwd(){
@@ -101,24 +110,14 @@ export default {
                 transition-duration: 0.2s;
             }
 
-        #bg{
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: -1;
-        }
-
     @media screen and (max-width:768px) {
         #slider{
             width: 100%;
-            height: 27.1vh;
+            height: 25.9vh;
         }
+            #nav{
+                width: 4%;
+            }
             #nav img{
                 filter: drop-shadow(0 0 1vmax whitesmoke);
             }

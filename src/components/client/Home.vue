@@ -6,10 +6,14 @@
         <div id="slide">
             <slider/>
         </div>
+        <div id="bg">
+            <img src="../../assets/images/mombaby.jpg">
+        </div>
+        <list-slide/>
 
         <div class="clearfix"></div>
 
-        <div class="list">
+        <!--<div class="list">
             <p class="offer-head">Son İncelenen Ürünler</p>
             <hr>
             <div class="offers">
@@ -42,7 +46,7 @@
                     <p>100 TL</p>
                 </div>
             </div>
-        </div>
+        </div>-->
 
 
     </div>
@@ -50,9 +54,11 @@
 
 <script>
 import Slider from "../slider/Slider.vue"
+import ListSlide from "../client/utilities/ListSlide.vue"
 export default {
     components:{
-        Slider
+        Slider,
+        ListSlide
     }
 }
 </script>
@@ -68,13 +74,8 @@ export default {
     }
         #bg{
             box-sizing: border-box;
-            height: 100vh;
+            height: 25.9vh;
             width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-
         }
         
             #bg img{
@@ -94,7 +95,7 @@ export default {
         }
 
         .clearfix{
-            height: 26vh;
+            height:0;
         }
 
         .list{
@@ -159,21 +160,24 @@ export default {
                     }
 
     @media screen and (max-width:768px) {
-        #slide{
-            height: 27.1vh;
+        #home{
+            padding-top: 0;
         }
-
-        .offers{
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-        }
-            .offer-item{
-                height: 20vh;
-                width: 20vh;
-                margin: 1vmax;
+            #slide{
+                height: 25.9vh;
             }
+
+            .offers{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+            }
+                .offer-item{
+                    height: 20vh;
+                    width: 20vh;
+                    margin: 1vmax;
+                }
     }
 </style>

@@ -1,6 +1,15 @@
 <template>
-    <transition name="slide-forward" mode="out-in">
-        <div class="slide" v-show="visible">
+    <transition :name="dir" mode="out-in">
+        <div 
+         id="slide"
+         class="slide"
+         v-show="visible"
+         @mouseleave="timer" 
+         @mouseover="stop"
+         @touchstart="touchstart($event)"
+         @touchmove="touchmove($event)"
+         @touchend="touchend($event)"
+         >
             <img :src="image.image">
             <transition name="fade">
                 <div id="info">
@@ -16,14 +25,69 @@
 export default {
     
     props:["image"],
+
+    data(){
+        return{
+            touch:{
+                startX:null,
+                endX:null,
+                state:null,
+                direction:null
+            }
+        }
+    },
     
     computed:{
+
         visible(){
             return this.image.index==this.$parent.index
         },
+
         dir(){
-            return this.$parent.slideDirection
+            return this.touch.direction
         }
+
+    },
+
+    methods:{
+
+        timer(){
+            this.$parent.timer()
+        },
+
+        stop(){
+            this.$parent.stop()
+        },
+
+        touchstart(event){
+            event.preventDefault();  
+            this.$parent.stop()          
+            this.touch.startX=event.changedTouches[0].clientX
+        },
+
+        touchend(event){
+            event.preventDefault()
+            if(this.touch.state=="fwd"){
+                this.touch.direction="slide-forward"
+                this.$parent.fwd()
+            }
+            else if(this.touch.state=="back"){
+                this.touch.direction="slide-back"
+                this.$parent.back()  
+            }
+        },
+
+        touchmove(event){
+            this.touch.endX=event.changedTouches[0].clientX
+            if(this.touch.endX-this.touch.startX>0){
+                this.touch.state="fwd"
+                console.log("right")
+            }else{
+                this.touch.state="back"
+                console.log("left")
+            }
+            this.touch.startX=event.changedTouches[0].clientX
+        },
     }
 }
 </script>
@@ -56,7 +120,7 @@ export default {
         top: 0;
         left: 5%;
         height: 90%;
-        width: 94%;
+        width: 90%;
         display: grid;
         grid-template-rows: 70% 30%;
         align-items: center;
@@ -101,18 +165,35 @@ export default {
         }
 
     .slide-forward-enter-active {
-        animation: slide-right-in 2s ease-in;
+        animation: slide-right-in 1s ease-in;
     }
     .slide-forward-leave-active {
         animation: slide-right-out 2s ease-in;
     }
+
+    .slide-back-enter-active {
+        animation: slide-left-in 1s ease-in;
+    }
+    .slide-back-leave-active {
+        animation: slide-left-out 2s ease-in;
+    }
+
     @keyframes slide-right-out{
-        from  { transform: translateX(0%);}
-        to { transform: translateX(200%);} 
+        from  { transform: translateX(0%); opacity: 1}
+        to { transform: translateX(350%); opacity: .5;} 
     }
     @keyframes slide-right-in{
-        from  { transform: translateX(200%);}
-        to { transform: translateX(0);} 
+        from  { transform: translateX(-1%); opacity: .5;}
+        to { transform: translateX(0); opacity: 1;} 
+    }
+
+    @keyframes slide-left-out{
+        from  { transform: translateX(0%);}
+        to { transform: translateX(-350%);} 
+    }
+    @keyframes slide-left-in{
+        from  { transform: translateX(1%); z-index: -2;}
+        to { transform: translateX(0); z-index: 0;} 
     }
 
     .fade-enter-active, .fade-leave-active {
@@ -122,6 +203,8 @@ export default {
         opacity: 0;
     }
 
+    
+
 
 
     @media screen and (max-width:768px) {
@@ -129,7 +212,18 @@ export default {
             padding-left: 0;
         }
         img{
-            left:0
+            left:0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            object-fit: contain;
         }
+
+
+        
+        
     }
 </style>
