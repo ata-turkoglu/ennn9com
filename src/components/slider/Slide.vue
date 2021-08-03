@@ -7,13 +7,13 @@
          @mouseleave="timer" 
          @mouseover="stop"
          @touchstart="touchstart($event)"
-         @touchmove="touchmove($event)"
          @touchend="touchend($event)"
          >
             <img :src="image.image">
             <transition name="fade">
                 <div id="info">
-                    <p>Beraber Oynayabileceğiniz Oyunlar</p>
+                    <p v-if="side=='right'">Beraber Oynayabileceğiniz Oyunlar</p>
+                    <p v-if="side=='left'">Trendleri Takip Edin</p>
                     <button>İncele</button>
                 </div>
             </transition>
@@ -24,7 +24,7 @@
 <script>
 export default {
     
-    props:["image"],
+    props:["image","side"],
 
     data(){
         return{
@@ -32,7 +32,6 @@ export default {
                 startX:null,
                 endX:null,
                 state:null,
-                direction:null
             }
         }
     },
@@ -44,7 +43,7 @@ export default {
         },
 
         dir(){
-            return this.touch.direction
+            return this.$parent.direction
         }
 
     },
@@ -59,32 +58,20 @@ export default {
             this.$parent.stop()
         },
 
-        touchstart(event){
-            event.preventDefault();  
+        touchstart(event){ 
             this.$parent.stop()          
             this.touch.startX=event.changedTouches[0].clientX
         },
 
         touchend(event){
-            event.preventDefault()
-            if(this.touch.state=="fwd"){
-                this.touch.direction="slide-forward"
-                this.$parent.fwd()
-            }
-            else if(this.touch.state=="back"){
-                this.touch.direction="slide-back"
-                this.$parent.back()  
-            }
-        },
-
-        touchmove(event){
             this.touch.endX=event.changedTouches[0].clientX
-            if(this.touch.endX-this.touch.startX>0){
-                this.touch.state="fwd"
-                console.log("right")
-            }else{
-                this.touch.state="back"
-                console.log("left")
+
+            if(this.touch.endX-this.touch.startX>25){
+                this.$parent.direction="slide-forward"
+                this.$parent.fwd()
+            }else if(this.touch.endX-this.touch.startX<-25){
+                this.$parent.direction="slide-back"
+                this.$parent.back()  
             }
             this.touch.startX=event.changedTouches[0].clientX
         },
@@ -99,14 +86,12 @@ export default {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        padding-left: 1vmax;
     }
     img{
         /*border-radius: .5vmax 0 0 .5vmax;
         box-shadow: -.2vmax .2vmax .5vmax -0.2vmax rgb(50, 50, 50);*/
         z-index: 1;
         position: absolute;
-        left: 10px;
         top: 0;
         right: 0;
         bottom: 0;
@@ -165,35 +150,35 @@ export default {
         }
 
     .slide-forward-enter-active {
-        animation: slide-right-in 1s ease-in;
+        animation: slide-right-in 1s ease-out;
     }
     .slide-forward-leave-active {
-        animation: slide-right-out 2s ease-in;
+        animation: slide-right-out 1s ease-out;
     }
 
     .slide-back-enter-active {
-        animation: slide-left-in 1s ease-in;
+        animation: slide-left-in 1s ease-out;
     }
     .slide-back-leave-active {
-        animation: slide-left-out 2s ease-in;
+        animation: slide-left-out 1s ease-out;
     }
 
     @keyframes slide-right-out{
-        from  { transform: translateX(0%); opacity: 1}
-        to { transform: translateX(350%); opacity: .5;} 
+        from  { transform: translateX(0%);}
+        to { transform: translateX(100%);} 
     }
     @keyframes slide-right-in{
-        from  { transform: translateX(-1%); opacity: .5;}
-        to { transform: translateX(0); opacity: 1;} 
+        from  { transform: translateX(-100%);}
+        to { transform: translateX(0);} 
     }
 
     @keyframes slide-left-out{
         from  { transform: translateX(0%);}
-        to { transform: translateX(-350%);} 
+        to { transform: translateX(-100%);} 
     }
     @keyframes slide-left-in{
-        from  { transform: translateX(1%); z-index: -2;}
-        to { transform: translateX(0); z-index: 0;} 
+        from  { transform: translateX(100%);}
+        to { transform: translateX(0);} 
     }
 
     .fade-enter-active, .fade-leave-active {

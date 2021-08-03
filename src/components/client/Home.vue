@@ -3,11 +3,13 @@
         <!--<div id="bg">
             <img src="../../assets/images/mombaby.jpg">
         </div>-->
-        <div id="slide">
-            <slider/>
-        </div>
-        <div id="bg">
-            <img src="../../assets/images/mombaby.jpg">
+        <div id="first">
+            <div id="slide">
+                <slider side="right"/>
+            </div>
+            <div id="slide">
+                <slider side="left"/>
+            </div>
         </div>
         <list-slide/>
 
@@ -70,29 +72,42 @@ export default {
        margin: 0;
        padding: 0;
        padding-block: 4vh;
+       padding-top:0;
        box-sizing: border-box;
     }
-        #bg{
+        #first{
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: center;
             box-sizing: border-box;
-            height: 25.9vh;
+            height: 60vh;
             width: 100%;
+            margin: 0;
+            padding: 0;
         }
-        
-            #bg img{
+            #bg{
+                box-sizing: border-box;
                 height: 100%;
                 width: 100%;
-                object-fit: cover;
-                filter: brightness(80%);
             }
+            
+                #bg img{
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    filter: brightness(80%);
+                }
 
-        #slide{
-            height: 50vh;
-            width: 100%;
-            display: flex;
-            box-sizing: border-box;
-            align-items: center;
-            justify-content: flex-end;
-        }
+            #slide{
+                height: 100%;
+                width: 100%;
+                display: flex;
+                box-sizing: border-box;
+                align-items: center;
+                justify-content: flex-end;
+                overflow: hidden;
+            }
 
         .clearfix{
             height:0;
@@ -163,9 +178,16 @@ export default {
         #home{
             padding-top: 0;
         }
-            #slide{
-                height: 25.9vh;
+            #first{
+                flex-direction: column;
+                height: 51.8vh;
             }
+                #slide{
+                    height: 25.9vh;
+                }
+                #bg{
+                    height: 25.9vh;
+                }
 
             .offers{
                 display: flex;

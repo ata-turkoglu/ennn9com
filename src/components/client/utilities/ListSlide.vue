@@ -43,6 +43,30 @@
                 <img src="../../../assets/images/offer7.jpg">
                 <p>100 TL</p>
             </div>
+            <div class="item">
+                <img src="../../../assets/images/offer1.jpg">
+                <p>90 TL</p>
+            </div>
+            <div class="item">
+                <img src="../../../assets/images/offer2.jpg">
+                <p>200 TL</p>
+            </div>
+            <div class="item">
+                <img src="../../../assets/images/offer3.jpg">
+                <p>375 TL</p>
+            </div>
+            <div class="item">
+                <img src="../../../assets/images/offer4.jpg">
+                <p>4000 TL</p>
+            </div>
+            <div class="item">
+                <img src="../../../assets/images/offer5.jpg">
+                <p>150 TL</p>
+            </div>
+            <div class="item">
+                <img src="../../../assets/images/offer6.jpg">
+                <p>900 TL</p>
+            </div>
         </div>
     </div>
 </template>
