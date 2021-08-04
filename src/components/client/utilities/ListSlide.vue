@@ -17,56 +17,58 @@
         <div class="items">
             <div class="item">
                 <img src="../../../assets/images/offer1.jpg">
-                <p>90 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer2.jpg">
-                <p>200 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer3.jpg">
-                <p>375 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer4.jpg">
-                <p>4000 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer5.jpg">
-                <p>150 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer6.jpg">
-                <p>900 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer7.jpg">
-                <p>100 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer1.jpg">
-                <p>90 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer2.jpg">
-                <p>200 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer3.jpg">
-                <p>375 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer4.jpg">
-                <p>4000 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer5.jpg">
-                <p>150 TL</p>
             </div>
             <div class="item">
                 <img src="../../../assets/images/offer6.jpg">
-                <p>900 TL</p>
             </div>
+            <div class="item">
+                <img src="../../../assets/images/offer5.jpg">
+            </div>
+            <div class="item">
+                <img src="../../../assets/images/offer6.jpg">
+            </div>
+            <div class="item">
+                <img src="../../../assets/images/offer7.jpg">
+            </div>
+            <div class="item">
+                <img src="../../../assets/images/offer1.jpg">
+            </div>
+        </div>
+        <div class="slide-head">
+            <p>Tümü</p>
         </div>
     </div>
 </template>
@@ -92,7 +94,7 @@
 
             touchend(cat,id){
                 if(new Date().getTime()-this.click<100){
-                    this.$router.push({name:"ComparisonView", params:{cat:cat,id:id}})
+                    console.log()
                 }
 
             },
@@ -139,6 +141,7 @@
         padding:0;
         height: 17vh;
         overflow: hidden;
+        margin-top: 1vh;
     }
         .slide-head{
             position: relative;
@@ -155,6 +158,7 @@
                 box-sizing: border-box;
                 margin: 0;
                 padding: 0;
+                font-weight: 700;
             }
         .items{
             display: flex;
@@ -173,7 +177,6 @@
                 box-sizing: border-box;
                 height: 100%;
                 width: fit-content;
-
             }
                 .item img{
                     box-sizing: border-box;

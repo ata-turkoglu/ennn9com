@@ -12,6 +12,7 @@
                         <option>Moda</option>
                         <option>Kozmetik</option>
                     </select>
+                    <input id="adjective" type="text" placeholder="Ennn" v-model="comp.adj">
                     <input id="header" type="text" placeholder="Başlık" v-model="comp.name">
                     <input type="file" accept="image/*" ref="inputImage" :style="{'display':'none'}" @change="addImage($event)">
                 </div>
@@ -78,6 +79,7 @@ export default {
             comp:{
                 image:null,
                 category:null,
+                adj:null,
                 name:null,
                 text1:null,
                 text2:null,
@@ -176,6 +178,15 @@ export default {
                     width:30%;
                 }
                     #header{
+                        box-sizing: border-box;
+                        width: 100%;
+                        height: 2.5vmax;
+                        border-radius: .5vmax ;
+                        margin-bottom: 1vmax;
+                        outline: none;
+                        padding-inline: 1vmax;
+                    }
+                    #adjective{
                         box-sizing: border-box;
                         width: 100%;
                         height: 2.5vmax;

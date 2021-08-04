@@ -186,6 +186,7 @@ export default new Vuex.Store({
       let key
       let img
       await db.collection("comparisons").add({
+        adj:comp.adj,
         name:comp.name,
         category:comp.category,
         text1:comp.text1,

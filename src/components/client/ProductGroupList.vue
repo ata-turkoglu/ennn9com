@@ -32,6 +32,7 @@
                             >
                         </div>
                         <div class="text">
+                            Ennn {{content.adj}}<br>
                             {{content.name}}
                         </div>
                     </div>
@@ -58,6 +59,7 @@
                             <img src="../../assets/images/temp.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
                         </div>
                         <div class="text">
+                            Ennn Uygun <br>
                             Temassız Ateş Ölçerler
                         </div>
                     </div>
@@ -67,6 +69,7 @@
                             <img src="../../assets/images/temp2.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
                         </div>
                         <div class="text">
+                            Ennn Çok Satılan <br>
                             Kulaktan Ateş Ölçerler
                         </div>
                     </div>
@@ -76,6 +79,7 @@
                             <img src="../../assets/images/temp3.jpg" @mousedown="drag=true" @mousemove="mouse_move1($event)" @mouseup="drag=false">
                         </div>
                         <div class="text">
+                            Ennn Uzun Ömürlü <br>
                             Dijital Ateş Ölçerler
                         </div>
                     </div>
@@ -489,7 +493,6 @@ export default {
                             justify-content: center;
                             font-size: 1.2vmax;
                             font-weight: 700;
-                            
                         }
 
     @media screen and (max-width:768px) {
@@ -503,6 +506,10 @@ export default {
             min-width: 33vw;
             min-height: 44vw;
             margin: .5vw;
+        }
+        .text{
+            font-size: 1.3vmax;
+            line-height: 1.8vmax;
         }
     }
 </style>

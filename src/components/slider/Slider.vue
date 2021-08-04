@@ -3,7 +3,7 @@
         <div v-for="(image,index) in (side=='right'?images:images2)" :key="index">
             <slide :image="{image,index}" :side="side"></slide>
         </div>
-        <div id="nav">
+        <div id="slider-nav">
             <img src="../../assets/items/right-arrow.png" @click="fwd">
             <img src="../../assets/items/left-arrow.png" @click="back">
         </div>
@@ -47,7 +47,8 @@ export default {
             index:0,
             intrvl:null,
             direction:"slide-forward",
-            ilen:null
+            ilen:null,
+            widesize:null
         }
     },
 
@@ -58,26 +59,25 @@ export default {
         else if(this.side=="left"){
             this.ilen=this.images2.length
         }
+        if(window.innerWidth>768){
+            this.widesize=true
+            if(this.side=="left"){
+                //console.log("1")
+                document.getElementById("slider-nav").style.left="0"
+                document.getElementById("slider-nav").style.removeProperty("right")
+            }
+            else if(this.side=="right"){
+                //console.log("2")
+                //document.getElementById("slider-nav").style.removeProperty("left")
+                document.getElementById("slider-nav").style.right="0"
+            }
+        }else{
+            this.widesize=false
+        }
     },
 
     mounted(){
-
-        if(window.innerWidth<768){
-            console.log("küçük")
-            document.getElementById("nav").style.right="0"
-            document.getElementById("nav").style.removeProperty("left")
-        }else{
-            if(this.side=="left"){
-                console.log("1")
-                document.getElementById("nav").style.left="0"
-                document.getElementById("nav").style.removeProperty("right")
-            }
-            else if(this.side=="right"){
-                console.log("2")
-                document.getElementById("nav").style.removeProperty("left")
-                document.getElementById("nav").style.right="0"
-            }
-        }
+        //console.log(this.side)
         this.timer()
         window.addEventListener("resize",this.resize)
     },
@@ -94,32 +94,35 @@ export default {
 
         resize(){
             if(window.innerWidth<768){
-                console.log("küçük")
-                document.getElementById("nav").style.right="0"
-                document.getElementById("nav").style.removeProperty("left")
+                this.widesize=false
+                //console.log("küçük")
+                document.getElementById("slider-nav").style.right="0"
+                document.getElementById("slider-nav").style.removeProperty("left")
             }else{
+                this.widesize=true
                 if(this.side=="left"){
-                    console.log("1")
-                    document.getElementById("nav").style.left="0"
-                    document.getElementById("nav").style.removeProperty("right")
+                    //console.log("1")
+                    document.getElementById("slider-nav").style.left="0"
+                    document.getElementById("slider-nav").style.removeProperty("right")
                 }
                 else if(this.side=="right"){
-                    console.log("2")
-                    document.getElementById("nav").style.removeProperty("left")
-                    document.getElementById("nav").style.right="0"
+                    //console.log("2")
+                    document.getElementById("slider-nav").style.removeProperty("left")
+                    document.getElementById("slider-nav").style.right="0"
                 }
             }
         },
 
         timer(){
-            this.intrvl=setInterval(() => {
+            console.log()
+            /*this.intrvl=setInterval(() => {
                 if(this.index==this.images.length-1){
                     this.index=0
                 }else{
                     this.index++
                 }
             }, 10000);
-            console.log("timer")
+            console.log("timer")*/
         },
 
         stop(){
@@ -159,7 +162,7 @@ export default {
         overflow: hidden;
     }
 
-        #nav{
+        #slider-nav{
             position: absolute;
             width: 3%;
             height: 95%;
@@ -172,14 +175,14 @@ export default {
             z-index: 2;
         }
 
-            #nav img{
+            #slider-nav img{
                 width: 100%;
                 height: auto;
                 cursor:pointer;
                 opacity: .85;
             }
 
-            #nav img:hover{
+            #slider-nav img:hover{
                 opacity: 0.5;
                 transition-duration: 0.2s;
             }
@@ -188,12 +191,13 @@ export default {
         #slider{
             width: 100%;
             height: 25.9vh;
+            margin-block: .5vh;
         }
-            #nav{
+            #slider-nav{
                 width: 4%;
                 right: 0;
             }
-            #nav img{
+            #slider-nav img{
                 filter: drop-shadow(0 0 1vmax whitesmoke);
             }
     }

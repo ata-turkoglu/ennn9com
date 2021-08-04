@@ -12,6 +12,7 @@
             </div>
         </div>
         <list-slide/>
+        <blog-list/>
 
         <div class="clearfix"></div>
 
@@ -57,10 +58,12 @@
 <script>
 import Slider from "../slider/Slider.vue"
 import ListSlide from "../client/utilities/ListSlide.vue"
+import BlogList from "../client/utilities/BlogList.vue"
 export default {
     components:{
         Slider,
-        ListSlide
+        ListSlide,
+        BlogList,
     }
 }
 </script>
@@ -177,6 +180,7 @@ export default {
     @media screen and (max-width:768px) {
         #home{
             padding-top: 0;
+            background-color:rgba(30,30,100,.15);
         }
             #first{
                 flex-direction: column;
@@ -184,6 +188,7 @@ export default {
             }
                 #slide{
                     height: 25.9vh;
+                    margin-top: 1vh;
                 }
                 #bg{
                     height: 25.9vh;
