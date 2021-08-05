@@ -203,10 +203,15 @@ export default {
             top: 0;
             right: 0;
             bottom: 0;
-            width: 100%;
+            width: calc(96% - 1vh);
             object-fit: contain;
         }
-
+        button{
+            padding-bottom: .8vmax;
+            padding-top: 1vmax;
+            padding-inline: 1.5vmax;
+            font-size: 1.8vmax;
+        }
 
         
         

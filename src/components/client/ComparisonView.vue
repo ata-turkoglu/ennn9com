@@ -429,7 +429,6 @@ export default {
                 justify-content: flex-start;
                 width: fit-content;
                 overflow: visible;
-                justify-content: flex-start;
                 transition: all .5s ease-in-out;
             }
                 .ppic{

@@ -87,7 +87,7 @@
         },
         methods:{
             touchstart(event){
-                event.preventDefault();
+                //event.preventDefault();
                 this.click=new Date().getTime()            
                 this.touch.startX=event.changedTouches[0].clientX
             },
@@ -139,7 +139,7 @@
         justify-content: flex-start;
         margin: 0;
         padding:0;
-        height: 17vh;
+        height: 25vh;
         overflow: hidden;
         margin-top: 1vh;
     }
@@ -193,4 +193,25 @@
                     z-index: 1;
                     background-color: white;
                 }
+
+    @media screen and (max-width:768px) {
+        .list-slide{
+            height: 17vh;
+        }
+        .item{
+            padding-left:1vh;
+        }
+        .item:last-child{
+            padding-right: 1vh;
+        }
+
+        .slide-head:first-child{
+            background-color: transparent;
+            background-image: linear-gradient(to right, whitesmoke, transparent);
+        }
+        .slide-head:last-child{
+            background-color: transparent;
+            background-image: linear-gradient(to left, whitesmoke, transparent);
+        }
+    }
 </style>

@@ -190,12 +190,16 @@ export default {
     @media screen and (max-width:768px) {
         #slider{
             width: 100%;
-            height: 25.9vh;
+            height: 25vh;
             margin-block: .5vh;
         }
             #slider-nav{
+                box-sizing: border-box;
                 width: 4%;
-                right: 0;
+                right: -1px;
+                height: 100%;
+                background-color: transparent;
+                background-image: linear-gradient(to left, whitesmoke, transparent);
             }
             #slider-nav img{
                 filter: drop-shadow(0 0 1vmax whitesmoke);

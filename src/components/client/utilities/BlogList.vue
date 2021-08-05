@@ -5,26 +5,63 @@
          :style="drag?{cursor:'grabbing'}:null"
          @touchstart="touchstart($event)"
          @touchmove="touchmove($event)"
-         @touchend="touchend()"
+         @touchend="touchend($event)"
          @mousedown.prevent="mouse_down()" 
          @mousemove.prevent="mouse_move($event)" 
          @mouseup.prevent="mouse_up($event)" 
          @mouseout="drag=false"
         >
+            <div class="blog-head">
+                <p>Blog</p>
+            </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f9.jpg">
-                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
+                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
                 <button class="blog-btn">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f10.jpg">
-                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
+                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
                 <button class="blog-btn">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f11.jpg">
-                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
+                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
                 <button class="blog-btn">Okumaya Devam Et</button>
+            </div>
+            <div class="blog-item">
+                <img class="blog-img" src="../../../assets/images/fashion/f12.jpg">
+                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
+                <button class="blog-btn">Okumaya Devam Et</button>
+            </div>
+            <div class="blog-item">
+                <img class="blog-img" src="../../../assets/images/fashion/f13.jpg">
+                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
+                <button class="blog-btn">Okumaya Devam Et</button>
+            </div>
+            <div class="blog-item">
+                <img class="blog-img" src="../../../assets/images/fashion/f14.jpg">
+                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
+                <button class="blog-btn">Okumaya Devam Et</button>
+            </div>
+
+            <div class="blog-item">
+                <img class="blog-img" src="../../../assets/images/fashion/f16.jpg">
+                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
+                <button class="blog-btn">Okumaya Devam Et</button>
+            </div>
+            <div class="blog-item">
+                <img class="blog-img" src="../../../assets/images/fashion/f17.jpg">
+                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
+                <button class="blog-btn">Okumaya Devam Et</button>
+            </div>
+            <div class="blog-item">
+                <img class="blog-img" src="../../../assets/images/fashion/f18.jpg">
+                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
+                <button class="blog-btn">Okumaya Devam Et</button>
+            </div>
+            <div class="blog-head">
+                <p>Tümü</p>
             </div>
         </div>
     </div>
@@ -38,7 +75,8 @@
                 drag:false,
                 touch:{
                     startX:null,
-                    endX:null
+                    endX:null,
+                    index:0
                 }
             }
         },
@@ -50,17 +88,39 @@
                 this.touch.startX=event.changedTouches[0].clientX
             },
 
-            touchend(cat,id){
-                if(new Date().getTime()-this.click<100){
-                    console.log()
+            touchend(event){
+                if(window.innerWidth>768){
+                    if(new Date().getTime()-this.click<100){
+                        console.log()
+                    }
+                }else{
+                    this.touch.endX=event.changedTouches[0].clientX
+                    let product = document.getElementById("item-list")
+
+                    if(this.touch.endX<this.touch.startX-20){
+                        if(this.touch.index<9-1){
+                            this.touch.index++
+                            console.log(window.innerWidth)
+                            console.log(window.getComputedStyle(product).getPropertyValue("width"))
+                            product.style.transform="translateX(-"+(this.touch.index*100/9)+"%)"
+                        }
+                    }
+                    else if(this.touch.endX-20>this.touch.startX){
+                        if(this.touch.index>0){
+                            this.touch.index--
+                            product.style.transform="translateX(-"+(this.touch.index*100/9)+"%)"
+                        }
+                    }
                 }
 
             },
 
             touchmove(event){
-                this.touch.endX=event.changedTouches[0].clientX
-                document.getElementById("item-list").scrollLeft-=(this.touch.endX-this.touch.startX)*2
-                this.touch.startX=event.changedTouches[0].clientX
+                if(window.innerWidth>768){
+                    this.touch.endX=event.changedTouches[0].clientX
+                    document.getElementById("item-list").scrollLeft-=(this.touch.endX-this.touch.startX)*2
+                    this.touch.startX=event.changedTouches[0].clientX
+                }
             },
 
             mouse_down(){
@@ -88,35 +148,56 @@
     }
 </script>
 
-<style>
+<style scoped>
     #bloglist{
         box-sizing: border-box;
         width: 100%;
-        height: 50vh;
+        height: 60vh;
         display: flex;
+        flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        position: relative;
         margin: 0;
         padding:0;
         margin-top: 1vh;
+        overflow: hidden;
     }
+        .blog-head{
+            background-color: whitesmoke;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+            .blog-head p{
+                transform: rotate(270deg);
+                font-family: Ubuntu, Helvetica, Arial, sans-serif;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                font-weight: 700;
+                font-size: 2.2vmax;
+            }
         #item-list{
             box-sizing: border-box;
+            position: relative;
             margin: 0;
             padding: 0;
+            height: 100%;
+            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: flex-start;
             flex-wrap: nowrap;
-            height: 100%;
-            width: fit-content;
-            overflow: hidden;
+            transition: all .3s ease-out;
         }
             .blog-item{
                 box-sizing: border-box;
                 position:relative;
-                min-width: 80vw;
+                min-width: 20vw;
+                width: 20vw;
+                max-width: 20vw;
                 height: 100%;
                 margin: 0;
                 margin-left: 1vh;
@@ -137,6 +218,7 @@
                     margin: 0;
                     padding:0;
                     z-index: 0;
+                    filter: brightness(.75);
                 }
                 .blog-text{
                     box-sizing: border-box;
@@ -144,7 +226,7 @@
                     padding: 0;
                     padding-inline: 1vw;
                     margin-top: 50%;
-                    height: 35%;
+                    height: 50%;
                     width: 100%;
                     background-color: transparent;
                     color:whitesmoke;
@@ -153,14 +235,25 @@
                     white-space:normal;
                     text-overflow: ellipsis;
                     overflow: hidden;
-                    z-index: 0;
+                    z-index: 1;
+                    position: relative;
+                }
+                .blog-text::after{
+                    content: "";
+                    height: 100%;
+                    width: 100%;
+                    top:0;
+                    left: 0;
+                    position: absolute;
+                    box-sizing: border-box;
+                    background-image: linear-gradient(to bottom, transparent, black);
                 }
 
                 .blog-btn{
                     box-sizing: border-box;
                     border: none;
-                    height: 15%;
-                    width: 100%;
+                    height: fit-content;
+                    width: fit-content;
                     margin: 0;
                     padding: 0;
                     z-index: 0;
@@ -171,6 +264,43 @@
                     font-family: Ubuntu, Helvetica, Arial, sans-serif;
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
+                    font-size: 1vmax;
+                    position: absolute;
+                    z-index: 1;
+                    bottom: 5%;
+                    left: 0;
+                    right: 0;
+                    margin-inline: auto;
+                    cursor: pointer;
+                }
+
+    @media screen and (max-width:768px) {
+        #bloglist{
+            height: 60vh;
+            width: 100%;
+            padding: 0;
+        }
+            .blog-head:first-child{
+                width: calc((100vw - 80vw - 2vh) / 2);
+                background-color: transparent;
+                background-image: linear-gradient(to right, whitesmoke, transparent);
+            }
+            .blog-head:last-child{
+                margin-left: 1vh;
+                width: calc((100vw - 80vw - 2vh) / 2);
+                background-color: transparent;
+                background-image: linear-gradient(to left, whitesmoke, transparent);
+            }
+            #item-list{
+                height: 100%;
+                width: fit-content;
+                overflow: visible;
+            }
+            .blog-item{
+                min-width: 80vw;
+            }
+                .blog-btn{
                     font-size: 2vmax;
                 }
+    }
 </style>
