@@ -48,7 +48,8 @@ export default {
             intrvl:null,
             direction:"slide-forward",
             ilen:null,
-            widesize:null
+            widesize:null,
+            tt:9000
         }
     },
 
@@ -114,20 +115,18 @@ export default {
         },
 
         timer(){
-            console.log()
-            /*this.intrvl=setInterval(() => {
+            this.intrvl=setInterval(() => {
+                this.tt=(Math.floor(Math.random()*5)+5)*1000
                 if(this.index==this.images.length-1){
                     this.index=0
                 }else{
                     this.index++
                 }
-            }, 10000);
-            console.log("timer")*/
+            }, this.tt);
         },
 
         stop(){
             clearInterval(this.intrvl)
-            console.log("stop")
         },
 
         fwd(){

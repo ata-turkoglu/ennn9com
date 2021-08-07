@@ -98,6 +98,7 @@ export default {
         width: 100%;
         height: auto;
         object-fit: contain;
+        filter: brightness(.85);
     }
 
     #info{

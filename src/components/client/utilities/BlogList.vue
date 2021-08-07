@@ -6,9 +6,9 @@
          @touchstart="touchstart($event)"
          @touchmove="touchmove($event)"
          @touchend="touchend($event)"
-         @mousedown.prevent="mouse_down()" 
-         @mousemove.prevent="mouse_move($event)" 
-         @mouseup.prevent="mouse_up($event)" 
+         @mousedown="mouse_down()" 
+         @mousemove="mouse_move($event)" 
+         @mouseup="mouse_up($event)" 
          @mouseout="drag=false"
         >
             <div class="blog-head">
@@ -44,7 +44,11 @@
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
                 <button class="blog-btn">Okumaya Devam Et</button>
             </div>
-
+            <div class="blog-item">
+                <img class="blog-img" src="../../../assets/images/fashion/f15.jpg">
+                <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
+                <button class="blog-btn">Okumaya Devam Et</button>
+            </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f16.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
@@ -98,17 +102,15 @@
                     let product = document.getElementById("item-list")
 
                     if(this.touch.endX<this.touch.startX-20){
-                        if(this.touch.index<9-1){
+                        if(this.touch.index<10-1){
                             this.touch.index++
-                            console.log(window.innerWidth)
-                            console.log(window.getComputedStyle(product).getPropertyValue("width"))
-                            product.style.transform="translateX(-"+(this.touch.index*100/9)+"%)"
+                            product.style.transform="translateX(-"+(this.touch.index*(80+18/9))+"vw)"
                         }
                     }
                     else if(this.touch.endX-20>this.touch.startX){
                         if(this.touch.index>0){
                             this.touch.index--
-                            product.style.transform="translateX(-"+(this.touch.index*100/9)+"%)"
+                            product.style.transform="translateX(-"+(this.touch.index*(80+18/9))+"vw)"
                         }
                     }
                 }
@@ -137,11 +139,13 @@
             },
             
             mouse_move(event){       
+                event.stopPropagation();
+                
                 event.preventDefault();
                 event.target.draggable=false
                 if(this.drag){
                     document.getElementById("item-list").style.cursor="grabbing"
-                    document.getElementById("item-list").scrollLeft-=event.movementX
+                    document.getElementById("item-list").scrollLeft-=event.movementX*0.7
                 }
             },
         }
@@ -176,7 +180,7 @@
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
                 font-weight: 700;
-                font-size: 2.2vmax;
+                font-size: 1.2vmax;
             }
         #item-list{
             box-sizing: border-box;
@@ -184,18 +188,20 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            width: 100%;
+            width: fit-content;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: flex-start;
             flex-wrap: nowrap;
             transition: all .3s ease-out;
+            overflow:hidden;
+            user-select: none;
         }
             .blog-item{
                 box-sizing: border-box;
                 position:relative;
-                min-width: 20vw;
+                min-width: 280px;
                 width: 20vw;
                 max-width: 20vw;
                 height: 100%;
@@ -206,6 +212,7 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content:flex-end;
+                user-select: none;
             }
                 .blog-img{
                     box-sizing: border-box;
@@ -219,6 +226,7 @@
                     padding:0;
                     z-index: 0;
                     filter: brightness(.75);
+                    user-select: none;
                 }
                 .blog-text{
                     box-sizing: border-box;
@@ -237,6 +245,7 @@
                     overflow: hidden;
                     z-index: 1;
                     position: relative;
+                    user-select: none;
                 }
                 .blog-text::after{
                     content: "";
@@ -264,7 +273,7 @@
                     font-family: Ubuntu, Helvetica, Arial, sans-serif;
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
-                    font-size: 1vmax;
+                    font-size: 2vmin;
                     position: absolute;
                     z-index: 1;
                     bottom: 5%;
@@ -272,6 +281,7 @@
                     right: 0;
                     margin-inline: auto;
                     cursor: pointer;
+                    user-select: none;
                 }
 
     @media screen and (max-width:768px) {
@@ -281,16 +291,19 @@
             padding: 0;
         }
             .blog-head:first-child{
-                width: calc((100vw - 80vw - 2vh) / 2);
+                width: 8vw;
                 background-color: transparent;
                 background-image: linear-gradient(to right, whitesmoke, transparent);
             }
             .blog-head:last-child{
-                margin-left: 1vh;
-                width: calc((100vw - 80vw - 2vh) / 2);
+                margin-left: 2vw;
+                width: 8vw;
                 background-color: transparent;
                 background-image: linear-gradient(to left, whitesmoke, transparent);
             }
+                .blog-head p{
+                    font-size: 2.2vmax;
+                }
             #item-list{
                 height: 100%;
                 width: fit-content;
@@ -298,6 +311,9 @@
             }
             .blog-item{
                 min-width: 80vw;
+                width: 80vw;
+                max-width: 80vw;
+                margin-left: 2vw;
             }
                 .blog-btn{
                     font-size: 2vmax;

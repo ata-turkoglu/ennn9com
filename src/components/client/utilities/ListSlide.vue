@@ -5,8 +5,8 @@
      :style="drag?{cursor:'grabbing'}:null"
      @touchstart="touchstart($event)"
      @touchmove="touchmove($event)"
-     @touchend="touchend()"
-     @mousedown.prevent="mouse_down()" 
+     @touchend="touchend($event)"
+     @mousedown.prevent="mouse_down($event)" 
      @mousemove.prevent="mouse_move($event)" 
      @mouseup.prevent="mouse_up($event)" 
      @mouseout="drag=false"
@@ -105,25 +105,39 @@
                 this.touch.startX=event.changedTouches[0].clientX
             },
 
-            mouse_down(){
+            mouse_down(event){
                 this.drag=true
                 this.click=new Date().getTime()
+                this.touch.startX=event.clientX
             },
 
             mouse_up(event){
                 this.drag=false
+                this.touch.endX=event.clientX
+                let time = new Date().getTime()-this.click
+                let distance = this.touch.endX-this.touch.startX
+                let v = distance/time
                 if(new Date().getTime()-this.click<100){
                     //this.$router.push({name:"ComparisonView", params:{cat:cat,id:id}})
                     console.log()
+                }else{
+                    document.getElementById("listslide").style.scrollBehavior="smooth"
+                    if(v<0 && Math.abs(v)>1.5){
+                        document.getElementById("listslide").scrollLeft+=600
+                    }
+                    else if(v>0 && Math.abs(v)>1.5){
+                        document.getElementById("listslide").scrollLeft-=600
+                    }
                 }
             },
             
             mouse_move(event){       
-                event.preventDefault();
+                //event.preventDefault();
+                document.getElementById("listslide").style.scrollBehavior="unset"
                 event.target.draggable=false
                 if(this.drag){
                     document.getElementById("listslide").style.cursor="grabbing"
-                    document.getElementById("listslide").scrollLeft-=event.movementX
+                    document.getElementById("listslide").scrollLeft-=event.movementX*0.7
                 }
             },
         }

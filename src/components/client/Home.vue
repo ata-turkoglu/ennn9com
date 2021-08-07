@@ -11,8 +11,8 @@
                 <slider side="left"/>
             </div>
         </div>
-        <list-slide/>
         <blog-list/>
+        <list-slide/>
 
         <div class="clearfix"></div>
 
@@ -84,7 +84,7 @@ export default {
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
-            height: 60vh;
+            height: 27vw;
             width: 100%;
             margin: 0;
             padding: 0;
