@@ -13,6 +13,7 @@
         </div>
         <blog-list/>
         <list-slide/>
+        <news-list/>
 
         <div class="clearfix"></div>
 
@@ -59,11 +60,13 @@
 import Slider from "../slider/Slider.vue"
 import ListSlide from "../client/utilities/ListSlide.vue"
 import BlogList from "../client/utilities/BlogList.vue"
+import NewsList from "../client/utilities/NewsList.vue"
 export default {
     components:{
         Slider,
         ListSlide,
         BlogList,
+        NewsList
     }
 }
 </script>

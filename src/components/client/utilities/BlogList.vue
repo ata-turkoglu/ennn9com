@@ -6,7 +6,7 @@
          @touchstart="touchstart($event)"
          @touchmove="touchmove($event)"
          @touchend="touchend($event)"
-         @mousedown="mouse_down()" 
+         @mousedown="mouse_down($event)" 
          @mousemove="mouse_move($event)" 
          @mouseup="mouse_up($event)" 
          @mouseout="drag=false"
@@ -85,7 +85,22 @@
             }
         },
 
+        mounted(){
+            window.addEventListener("resize",this.resize)
+        },
+        beforeDestroy(){
+            window.removeEventListener("resize",this.resize)
+        },
+
         methods:{
+
+            resize(){
+                if(window.innerWidth<768){
+                    document.getElementById("item-list").style.transform="translateX(0)"
+                }else{
+                    document.getElementById("item-list").style.transform="translateX(0)"
+                }
+            },
             
             touchstart(event){
                 this.click=new Date().getTime()            
@@ -125,28 +140,54 @@
                 }
             },
 
-            mouse_down(){
-                this.drag=true
-                this.click=new Date().getTime()
+            mouse_down(event){
+                if(window.innerWidth<768){
+                    this.click=new Date().getTime()            
+                    this.touch.startX=event.clientX
+                }else{
+                    this.drag=true
+                    this.click=new Date().getTime()
+                }
+
             },
 
             mouse_up(event){
-                this.drag=false
-                if(new Date().getTime()-this.click<100){
-                    //this.$router.push({name:"ComparisonView", params:{cat:cat,id:id}})
-                    console.log()
+                if(window.innerWidth<768){
+                    event.target.draggable=false
+                    this.touch.endX=event.clientX
+                    let product = document.getElementById("item-list")
+
+                    if(this.touch.endX<this.touch.startX-20){
+                        if(this.touch.index<10-1){
+                            this.touch.index++
+                            product.style.transform="translateX(-"+(this.touch.index*(80+18/9))+"vw)"
+                        }
+                    }
+                    else if(this.touch.endX-20>this.touch.startX){
+                        if(this.touch.index>0){
+                            this.touch.index--
+                            product.style.transform="translateX(-"+(this.touch.index*(80+18/9))+"vw)"
+                        }
+                    }
+                }else{
+                    this.drag=false
+                    if(new Date().getTime()-this.click<100){
+                        //this.$router.push({name:"ComparisonView", params:{cat:cat,id:id}})
+                        console.log()
+                    }
                 }
             },
             
-            mouse_move(event){       
-                event.stopPropagation();
-                
-                event.preventDefault();
-                event.target.draggable=false
-                if(this.drag){
-                    document.getElementById("item-list").style.cursor="grabbing"
-                    document.getElementById("item-list").scrollLeft-=event.movementX*0.7
-                }
+            mouse_move(event){
+                if(window.innerWidth>768){
+                    //event.stopPropagation();
+                    event.preventDefault();
+                    event.target.draggable=false
+                    if(this.drag){
+                        document.getElementById("item-list").style.cursor="grabbing"
+                        document.getElementById("item-list").scrollLeft-=event.movementX*0.7
+                    }
+                }   
             },
         }
     }

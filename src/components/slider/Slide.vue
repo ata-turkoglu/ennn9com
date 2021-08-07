@@ -4,8 +4,6 @@
          id="slide"
          class="slide"
          v-show="visible"
-         @mouseleave="timer" 
-         @mouseover="stop"
          @touchstart="touchstart($event)"
          @touchend="touchend($event)"
          >
@@ -50,16 +48,7 @@ export default {
 
     methods:{
 
-        timer(){
-            this.$parent.timer()
-        },
-
-        stop(){
-            this.$parent.stop()
-        },
-
-        touchstart(event){ 
-            this.$parent.stop()          
+        touchstart(event){      
             this.touch.startX=event.changedTouches[0].clientX
         },
 

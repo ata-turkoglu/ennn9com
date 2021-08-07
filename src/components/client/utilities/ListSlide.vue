@@ -122,10 +122,10 @@
                     console.log()
                 }else{
                     document.getElementById("listslide").style.scrollBehavior="smooth"
-                    if(v<0 && Math.abs(v)>1.5){
+                    if(v<0 && Math.abs(v)>1.3){
                         document.getElementById("listslide").scrollLeft+=600
                     }
-                    else if(v>0 && Math.abs(v)>1.5){
+                    else if(v>0 && Math.abs(v)>1.3){
                         document.getElementById("listslide").scrollLeft-=600
                     }
                 }

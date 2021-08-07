@@ -60,27 +60,31 @@ export default {
         else if(this.side=="left"){
             this.ilen=this.images2.length
         }
-        if(window.innerWidth>768){
-            this.widesize=true
-            if(this.side=="left"){
-                //console.log("1")
-                document.getElementById("slider-nav").style.left="0"
-                document.getElementById("slider-nav").style.removeProperty("right")
-            }
-            else if(this.side=="right"){
-                //console.log("2")
-                //document.getElementById("slider-nav").style.removeProperty("left")
-                document.getElementById("slider-nav").style.right="0"
-            }
-        }else{
-            this.widesize=false
-        }
     },
 
     mounted(){
         //console.log(this.side)
         this.timer()
         window.addEventListener("resize",this.resize)
+
+        if(window.innerWidth>768){
+            this.widesize=true
+            if(this.side=="left"){
+                //console.log("1")
+                document.getElementById("slider-nav").style.left="0"
+                if(document.getElementById("slider-nav").style.right>=0){
+                    document.getElementById("slider-nav").style.removeProperty("right")
+                }
+            }
+            else if(this.side=="right"){
+                document.getElementById("slider-nav").style.right="0"
+                if(document.getElementById("slider-nav").style.left>=0){
+                    document.getElementById("slider-nav").style.removeProperty("left")
+                }
+            }
+        }else{
+            this.widesize=false
+        }
     },
 
     beforeDestroy(){
@@ -115,8 +119,9 @@ export default {
         },
 
         timer(){
+            this.tt=(Math.floor(Math.random()*5)+5)*1000
+                console.log("tt",this.tt)
             this.intrvl=setInterval(() => {
-                this.tt=(Math.floor(Math.random()*5)+5)*1000
                 if(this.index==this.images.length-1){
                     this.index=0
                 }else{
