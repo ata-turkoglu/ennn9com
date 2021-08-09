@@ -16,55 +16,55 @@
         </div>
         <div class="items">
             <div class="item">
-                <img src="../../../assets/images/offer1.jpg">
+                <img src="../../../assets/images/offers/offer1.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer2.jpg">
+                <img src="../../../assets/images/offers/offer2.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer3.jpg">
+                <img src="../../../assets/images/offers/offer3.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer4.jpg">
+                <img src="../../../assets/images/offers/offer4.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer5.jpg">
+                <img src="../../../assets/images/offers/offer5.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer6.jpg">
+                <img src="../../../assets/images/offers/offer6.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer7.jpg">
+                <img src="../../../assets/images/offers/offer7.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer1.jpg">
+                <img src="../../../assets/images/offers/offer8.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer2.jpg">
+                <img src="../../../assets/images/offers/offer9.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer3.jpg">
+                <img src="../../../assets/images/offers/offer10.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer4.jpg">
+                <img src="../../../assets/images/offers/offer11.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer5.jpg">
+                <img src="../../../assets/images/offers/offer12.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer6.jpg">
+                <img src="../../../assets/images/offers/offer13.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer5.jpg">
+                <img src="../../../assets/images/offers/offer14.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer6.jpg">
+                <img src="../../../assets/images/offers/offer15.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer7.jpg">
+                <img src="../../../assets/images/offers/offer16.jpg">
             </div>
             <div class="item">
-                <img src="../../../assets/images/offer1.jpg">
+                <img src="../../../assets/images/offers/offer17.jpg">
             </div>
         </div>
         <div class="slide-head">

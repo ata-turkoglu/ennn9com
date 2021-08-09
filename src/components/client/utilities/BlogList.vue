@@ -17,52 +17,52 @@
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f9.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
-                <button class="blog-btn">Okumaya Devam Et</button>
+                <button class="blog-btn" @click="toBlog()">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f10.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
-                <button class="blog-btn">Okumaya Devam Et</button>
+                <button class="blog-btn" @click="toBlog()">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f11.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
-                <button class="blog-btn">Okumaya Devam Et</button>
+                <button class="blog-btn" @click="toBlog()">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f12.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
-                <button class="blog-btn">Okumaya Devam Et</button>
+                <button class="blog-btn" @click="toBlog()">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f13.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
-                <button class="blog-btn">Okumaya Devam Et</button>
+                <button class="blog-btn" @click="toBlog()">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f14.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
-                <button class="blog-btn">Okumaya Devam Et</button>
+                <button class="blog-btn" @click="toBlog()">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f15.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
-                <button class="blog-btn">Okumaya Devam Et</button>
+                <button class="blog-btn" @click="toBlog()">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f16.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
-                <button class="blog-btn">Okumaya Devam Et</button>
+                <button class="blog-btn" @click="toBlog()">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f17.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
-                <button class="blog-btn">Okumaya Devam Et</button>
+                <button class="blog-btn" @click="toBlog()">Okumaya Devam Et</button>
             </div>
             <div class="blog-item">
                 <img class="blog-img" src="../../../assets/images/fashion/f18.jpg">
                 <p class="blog-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque esse, qui iure sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. Sint minus maiores quisquam ducimus molestias nisi totam possimus cumque sequi quidem repudiandae ex odit ab similique accusantium. cumque sequi quidem repudiandae ex odit ab similique accusantium.</p>
-                <button class="blog-btn">Okumaya Devam Et</button>
+                <button class="blog-btn" @click="toBlog()">Okumaya Devam Et</button>
             </div>
             <div class="blog-head">
                 <p>Tümü</p>
@@ -94,9 +94,13 @@
 
         methods:{
 
+            toBlog(){
+                this.$router.push("/bloglist/blog")
+            },
+
             resize(){
                 if(window.innerWidth<768){
-                    document.getElementById("item-list").style.transform="translateX(0)"
+                    //document.getElementById("item-list").style.transform="translateX(0)"
                 }else{
                     document.getElementById("item-list").style.transform="translateX(0)"
                 }
@@ -113,6 +117,8 @@
                         console.log()
                     }
                 }else{
+                    
+
                     this.touch.endX=event.changedTouches[0].clientX
                     let product = document.getElementById("item-list")
 
@@ -214,6 +220,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        .blog-head:last-child{
+            margin-left: .5vw;
         }
             .blog-head p{
                 transform: rotate(270deg);

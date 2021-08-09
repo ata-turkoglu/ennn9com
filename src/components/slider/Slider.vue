@@ -43,6 +43,7 @@ export default {
                 require("../../assets/images/fashion/f6.jpg"),
                 require("../../assets/images/fashion/f7.jpg"),
                 require("../../assets/images/fashion/f8.jpg"),
+                require("../../assets/images/fashion/f4.jpg"),
             ],
             index:0,
             intrvl:null,
@@ -66,25 +67,6 @@ export default {
         //console.log(this.side)
         this.timer()
         window.addEventListener("resize",this.resize)
-
-        if(window.innerWidth>768){
-            this.widesize=true
-            if(this.side=="left"){
-                //console.log("1")
-                document.getElementById("slider-nav").style.left="0"
-                if(document.getElementById("slider-nav").style.right>=0){
-                    document.getElementById("slider-nav").style.removeProperty("right")
-                }
-            }
-            else if(this.side=="right"){
-                document.getElementById("slider-nav").style.right="0"
-                if(document.getElementById("slider-nav").style.left>=0){
-                    document.getElementById("slider-nav").style.removeProperty("left")
-                }
-            }
-        }else{
-            this.widesize=false
-        }
     },
 
     beforeDestroy(){
@@ -162,16 +144,18 @@ export default {
         height: 100%;
         margin: 0;
         padding: 0;
+        margin-left: .5vw;
         box-sizing: border-box;
         overflow: hidden;
     }
+    
 
         #slider-nav{
             position: absolute;
             width: 3%;
-            height: 95%;
+            height: 100%;
             top: 0;
-            /*right: 0;*/
+            right: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -195,7 +179,7 @@ export default {
         #slider{
             width: 100%;
             height: 25vh;
-            margin-block: .5vh;
+            margin-left: 0;
         }
             #slider-nav{
                 box-sizing: border-box;

@@ -7,6 +7,7 @@ import ComparisonView from "../components/client/ComparisonView"
 import ProductGroupList from "../components/client/ProductGroupList"
 import ProductList from "../components/client/ProductList"
 import BlogList from "../components/client/BlogList"
+import Blog from "../components/client/Blog"
 
 import Admin from "../views/Admin"
 import AdminHome from "../components/admin/AdminHome"
@@ -30,6 +31,11 @@ const routes = [
         path:"/bloglist",
         component:BlogList,
         name:"BlogList",
+      },
+      {
+        path:"/blog",
+        component:Blog,
+        name:"Blog",
       },
       {
         path:"/comparisonview",
