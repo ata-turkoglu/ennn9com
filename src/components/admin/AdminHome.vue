@@ -30,7 +30,7 @@
          tag="div"
          to="/admin/addblog">
             <img src="../../assets/items/adddoc.png">
-            <p>Duyuruları Düzenle</p>
+            <p>Blog Ekle</p>
         </router-link>
 
     </div>

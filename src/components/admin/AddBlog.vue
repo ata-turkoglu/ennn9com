@@ -14,8 +14,8 @@
                     <input id="brand" type="text" v-model="$v.product.brand.$model">
                 </div>
                 <div class="form-group">
-                    <label for="specs">Bölüm</label>
-                    <textarea id="specs" :onkeyup="autoGrow()" v-model="$v.product.specs.$model"></textarea>
+                    <label for="section">Bölüm</label>
+                    <textarea id="section" :onkeyup="autoGrow()" v-model="$v.product.section.$model"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Resim/Reklam</label>
@@ -33,10 +33,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="specs">Bölüm</label>
-                    <textarea id="specs" :onkeyup="autoGrow()" v-model="$v.product.specs.$model"></textarea>
+                    <label for="section">Bölüm</label>
+                    <textarea id="section" :onkeyup="autoGrow()" v-model="$v.product.section.$model"></textarea>
                 </div>
             </form>
+        </div>
+        <div class="addbuttons">
+            <button class="btn" @click="addSection()">Bölüm Ekle</button>
+            <button class="btn" @click="addImage()">Resim Ekle</button>
         </div>
     </div>
 </template>
@@ -72,7 +76,7 @@
                 videolink:{
                     required
                 },
-                specs:{
+                section:{
                     required
                 },
                 images:{
@@ -92,7 +96,7 @@
                     category3:null,
                     link:null,
                     videolink:null,
-                    specs:[],
+                    section:[],
                     images:[],
                 },
                 categories1:[],
@@ -109,9 +113,90 @@
         },
 
         methods:{
+            addSection(){
+                let div =  document.createElement("div")
+                div.classList.add("form-group")
+                div.style.cssText="box-sizing: border-box; padding: .5vmax; width: 100%; height: fit-content; display: flex; align-items: center; justify-content: space-between;"
+                document.getElementById("form").appendChild(div)
+
+                let label = document.createElement("label")
+                label.setAttribute("for","section");
+                label.innerHTML="Bölüm"
+                div.appendChild(label)
+
+                let textarea = document.createElement("textarea")
+                textarea.id="section"
+                textarea.style.cssText="box-sizing: border-box; width: 80%; min-width: 80%; max-width: 80%; height: 25vh; border-radius: .5vmax; outline: none; border: 1px solid black; padding-inline: .5vmax; font-family: Ubuntu, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;"
+                div.appendChild(textarea)
+            },
+
+            addImage(){
+                /*<div class="form-group">
+                    <label>Resim/Reklam</label>
+                    <div class="visuals">
+                        <div class="v-img">
+                            <img src="">
+                            <input style="display:none" type="file">
+                            <p>Resim Ekle</p>
+                        </div>
+                        <div class="v-advert">
+                            <img src="">
+                            <input style="display:none" type="file">
+                            <p>Reklam Ekle</p>
+                        </div>
+                    </div>
+                </div>*/
+
+
+
+                let div = document.createElement("div")
+                div.classList.add("form-group")
+                div.style.cssText = "box-sizing: border-box; padding: .5vmax; width: 100%; height: fit-content; display: flex; align-items: center; justify-content: space-between;"
+                document.getElementById("form").appendChild(div)
+
+                let label = document.createElement("label")
+                label.innerHTML="Resim/Reklam"
+                div.appendChild(label)
+
+                let div1 = document.createElement("div")
+                div1.classList.add("visuals")
+                div1.style.cssText = "box-sizing: border-box; width: 80%; height: 20vh; border: 1px solid black; display: flex; align-items: center; justify-content: center;"
+                div.appendChild(div1)
+                
+                let div2 = document.createElement("div")
+                div2.classList.add("v-img")
+                div2.style.cssText = "box-sizing: border-box; height: 100%; width: 50%; display: flex; position: relative;"
+                div1.appendChild(div2)
+
+                let img1 = document.createElement("img")
+                div2.appendChild(img1)
+
+                let p1 = document.createElement("p")
+                p1.innerHTML = "Resim Ekle"
+                p1.style.cssText = "box-sizing: border-box; margin: 0; height: fit-content; width: fit-content; padding: 0; position: absolute; top: 0; bottom: 0; right: 0; left: 0; margin: auto; cursor:pointer;"
+                div2.appendChild(p1)
+
+                let div3 = document.createElement("div")
+                div3.classList.add("v-advert")
+                div3.style.cssText = "box-sizing: border-box; height: 100%; width: 50%; display: flex; position: relative;"
+                div1.appendChild(div3)
+
+                let img2 = document.createElement("img")
+                div3.appendChild(img2)
+
+                let p2 = document.createElement("p")
+                p2.innerHTML = "Reklam Ekle"
+                p2.style.cssText = "box-sizing: border-box; margin: 0; height: fit-content; width: fit-content; padding: 0; position: absolute; top: 0; bottom: 0; right: 0; left: 0; margin: auto; cursor:pointer;"
+                div3.appendChild(p2)
+
+                
+
+
+            },
+
             autoGrow(){
                 setTimeout(() => {
-                    let spc = document.getElementById("specs")
+                    let spc = document.getElementById("section")
                     if (spc.scrollHeight > spc.clientHeight) {
                         spc.style.height = spc.scrollHeight + "px";
                     }
@@ -127,13 +212,24 @@
 </script>
 
 <style scoped>
-    #addProduct{
+    #addBlog{
         box-sizing: border-box;
+        height: fit-content;
         min-height: 50vh;
         width: 100%;
         display: flex;
+        flex-direction: row;
         margin-top: 2vmax;
     }
+        .addbuttons{
+            padding: 1vh;
+            width: 30%;
+            height: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            box-sizing: border-box;            
+        }
         #form-container{
             box-sizing: border-box;
             height: 100%;
@@ -222,6 +318,7 @@
                     .form-group textarea{
                         box-sizing: border-box;
                         width: 80%;
+                        min-width: 80%;
                         max-width: 80%;
                         height: 25vh;
                         border-radius: .5vmax;
