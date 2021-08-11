@@ -28,7 +28,7 @@
         <router-link
          id="doc"
          tag="div"
-         to="/admin/addAnnouncement">
+         to="/admin/addblog">
             <img src="../../assets/items/adddoc.png">
             <p>Duyuruları Düzenle</p>
         </router-link>

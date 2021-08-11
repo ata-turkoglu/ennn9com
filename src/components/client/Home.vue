@@ -135,7 +135,6 @@ export default {
                 grid-template-rows: 33% 33% 33%;
                 grid-gap: .5vh;
                 overflow: hidden;
-                margin-bottom: 1vh;
                 position: relative;
             }
             .section-text{

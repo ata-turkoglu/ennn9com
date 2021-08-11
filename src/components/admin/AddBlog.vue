@@ -1,19 +1,7 @@
 <template>
-    <div id="addProduct">
+    <div id="addBlog">
         <div id="form-container">
             <form id="form" @submit.prevent>
-                <div class="form-group">
-                    <label for="brand">Marka</label>
-                    <input id="brand" type="text" v-model="$v.product.brand.$model">
-                </div>
-                <div class="form-group">
-                    <label for="origin">Model</label>
-                    <input id="model" type="text" v-model="$v.product.model.$model">
-                </div>
-                <div class="form-group">
-                    <label for="origin">Menşei</label>
-                    <input id="origin" type="text" v-model="$v.product.origin.$model">
-                </div>
                 <div class="form-group">
                     <label for="cat1">Kategori-1</label>
                     <select id="cat1" @change="onCat1Change()" v-model="$v.product.category1.$model">
@@ -22,193 +10,120 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="cat2">Kategori-2</label>
-                    <select id="cat2" v-model="$v.product.category2.$model">
-                        <option value="null" selected disabled>Kategori-2 Seçin</option>
-                        <option v-for="(item, index) in categories2" :key="index">{{item}}</option>
-                    </select>
+                    <label for="brand">Başlık</label>
+                    <input id="brand" type="text" v-model="$v.product.brand.$model">
                 </div>
                 <div class="form-group">
-                    <label for="cat3">Kategori-3</label>
-                    <input id="cat3" type="text" v-model="$v.product.category3.$model">
-                </div>
-                <div class="form-group">
-                    <label for="link">Link</label>
-                    <input id="link" type="text" v-model="$v.product.link.$model">
-                </div>
-                <div class="form-group">
-                    <label for="videolink">Video</label>
-                    <input id="videolink" type="text" v-model="$v.product.videolink.$model">
-                </div>
-                <div class="form-group">
-                    <label for="specs">Özellikler</label>
+                    <label for="specs">Bölüm</label>
                     <textarea id="specs" :onkeyup="autoGrow()" v-model="$v.product.specs.$model"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="addimage">Resimler</label>
-                    <input type="file" accept="image/*" ref="inputImage" :style="{'display':'none'}" @change="addImage" @input="$v.product.images.$touch()">
-                    <button id="inputButton" @click="$refs.inputImage.click()">Ekle</button>
+                    <label>Resim/Reklam</label>
+                    <div class="visuals">
+                        <div class="v-img">
+                            <img src="">
+                            <input style="display:none" type="file">
+                            <p>Resim Ekle</p>
+                        </div>
+                        <div class="v-advert">
+                            <img src="">
+                            <input style="display:none" type="file">
+                            <p>Reklam Ekle</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="image-group">
-                    <img v-for="(item,index) in imgUrls" :key="index" :src="item">
-                </div>
-                <div class="button-group">
-                    <button id="save" type="button" @click="save()" class="btn" :disabled="$v.$invalid">
-                        Kaydet
-                        <p class="warn" v-if="$v.$invalid">Boş alanları doldurun</p>
-                    </button>
-                    <button id="reset" type="reset" @click="reset" class="btn">Temizle - Yeni Ürün</button>
+                <div class="form-group">
+                    <label for="specs">Bölüm</label>
+                    <textarea id="specs" :onkeyup="autoGrow()" v-model="$v.product.specs.$model"></textarea>
                 </div>
             </form>
         </div>
-        <crop-image v-if="cropstart" :parcomp="'addproduct'" :image="croppingImage"></crop-image>
     </div>
 </template>
 
 <script>
+    import { mapGetters } from "vuex"
+    import { required } from "vuelidate/lib/validators"
+    export default {     
 
-import CropImage from "./utilities/CropImage.vue"
-import { mapGetters } from "vuex"
-import { required } from    "vuelidate/lib/validators"
-
-export default {
-
-    components:{
-        CropImage,
-    },
-
-    validations:{
-        product:{
-            brand:{
-                required
-            },
-            model:{
-                required
-            },
-            origin:{
-                required
-            },
-            category1:{
-                required
-            },
-            category2:{
-                required
-            },
-            category3:{
-                required
-            },
-            link:{
-                required
-            },
-            videolink:{
-                required
-            },
-            specs:{
-                required
-            },
-            images:{
-                required
-            }
-        },
-    },
-
-    data(){
-        return{
+        validations:{
             product:{
-                brand:null,
-                model:null,
-                origin:null,
-                category1:null,
-                category2:null,
-                category3:null,
-                link:null,
-                videolink:null,
-                specs:[],
-                images:[],
+                brand:{
+                    required
+                },
+                model:{
+                    required
+                },
+                origin:{
+                    required
+                },
+                category1:{
+                    required
+                },
+                category2:{
+                    required
+                },
+                category3:{
+                    required
+                },
+                link:{
+                    required
+                },
+                videolink:{
+                    required
+                },
+                specs:{
+                    required
+                },
+                images:{
+                    required
+                }
             },
-            categories1:[],
-            categories2:[],
-            cropstart:false,
-            file:null,
-            croppingImage:null,
-            imgUrls:[]
+        },
+
+        data(){
+            return{
+                product:{
+                    brand:null,
+                    model:null,
+                    origin:null,
+                    category1:null,
+                    category2:null,
+                    category3:null,
+                    link:null,
+                    videolink:null,
+                    specs:[],
+                    images:[],
+                },
+                categories1:[],
+                categories2:[],
+                cropstart:false,
+                file:null,
+                croppingImage:null,
+                imgUrls:[]
+            }
+        },
+
+        computed:{
+            ...mapGetters(["getFilters"])
+        },
+
+        methods:{
+            autoGrow(){
+                setTimeout(() => {
+                    let spc = document.getElementById("specs")
+                    if (spc.scrollHeight > spc.clientHeight) {
+                        spc.style.height = spc.scrollHeight + "px";
+                    }
+                }, 500);
+            },
+
+            onCat1Change(){
+
+            },
         }
-    },
-
-    computed:{
-        ...mapGetters(["getFilters"])
-    },
-
-    methods:{
-
-        autoGrow(){
-            setTimeout(() => {
-                let spc = document.getElementById("specs")
-                if (spc.scrollHeight > spc.clientHeight) {
-                    spc.style.height = spc.scrollHeight + "px";
-                }
-            }, 500);
-
-        },
-
-        addImage(event){
-            this.croppingImage = null
-            this.file = event.target.files[0]
-            let reader = new FileReader()
-            reader.onload = e=>{
-                this.croppingImage=e.target.result
-                //this.$refs.cropper.replace(e.target.result)
-                this.$refs.cropper.replace(event.target.result)
-            }
-            reader.readAsDataURL(this.file)
-            this.cropstart=true
-        },
-
-        onCat1Change(){
-            let list = this.getFilters.categories.filter(e=>{
-                return e.title==this.product.category1
-            })
-            this.categories2=list[0].sub
-        },
-
-        save(){
-            let lines = this.product.specs.split("\n")
-            this.product.specs=lines
-            if(this.update){
-                let conf=confirm("Ürün Güncellensin mi?")
-                if(conf){
-                    this.wait=true
-                    this.$store.dispatch("updateProduct",[this.product,this.updateid,this.updateimg])
-                }
-            }else{
-                let conf=confirm("Kaydedilsin mi?")
-                if(conf){
-                    this.wait=true
-                    this.$store.dispatch("saveProduct",this.product)
-                }
-            }
-        },
-
-        reset(){
-            this.product={
-                brand:null,
-                model:null,
-                origin:null,
-                category1:null,
-                category2:null,
-                category3:null,
-                link:null,
-                videolink:null,
-                specs:[],
-                images:[],
-            }
-            this.imgUrls=[]
-        }
-
 
     }
-
-}
 </script>
 
 <style scoped>
@@ -222,11 +137,12 @@ export default {
         #form-container{
             box-sizing: border-box;
             height: 100%;
-            width: 50%;
+            width: 70%;
+            border: 1px solid purple;
         }
             #form{
                 box-sizing: border-box;
-
+                width: 100%;
             }
                 .image-group{
                     box-sizing: border-box;
@@ -248,16 +164,46 @@ export default {
                 .form-group{
                     box-sizing: border-box;
                     padding: .5vmax;
-                    width: 25vmax;
+                    width: 100%;
                     height: fit-content;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
 
                 }
+                    .visuals{
+                        box-sizing: border-box;
+                        width: 80%;
+                        height: 20vh;
+                        border: 1px solid black;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                        .v-img, .v-advert{
+                            box-sizing: border-box;
+                            height: 100%;
+                            width: 50%;
+                            display: flex;
+                            position: relative;
+                        }
+                            .visuals p{
+                                box-sizing: border-box;
+                                margin: 0;
+                                height: fit-content;
+                                width: fit-content;
+                                padding: 0;
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                right: 0;
+                                left: 0;
+                                margin: auto;
+                                cursor:pointer;
+                            }
                     .form-group input{
                         box-sizing: border-box;
-                        width: 15vmax;
+                        width: 80%;
                         height: 2vmax;
                         border-radius: .5vmax;
                         outline: none;
@@ -266,7 +212,7 @@ export default {
                     }
                     .form-group select{
                         box-sizing: border-box;
-                        width: 15vmax;
+                        width: 80%;
                         height: 2vmax;
                         border-radius: .5vmax;
                         outline: none;
@@ -275,9 +221,9 @@ export default {
                     }
                     .form-group textarea{
                         box-sizing: border-box;
-                        width: 15vmax;
-                        max-width: 15vmax;
-                        height: 6vmax;
+                        width: 80%;
+                        max-width: 80%;
+                        height: 25vh;
                         border-radius: .5vmax;
                         outline: none;
                         border: 1px solid black;

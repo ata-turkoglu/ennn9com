@@ -13,6 +13,7 @@ import Admin from "../views/Admin"
 import AdminHome from "../components/admin/AdminHome"
 import AddProduct from "../components/admin/AddProduct"
 import AddComparison from "../components/admin/AddComparison"
+import AddBlog from "../components/admin/AddBlog"
 
 Vue.use(VueRouter)
 
@@ -75,7 +76,12 @@ const routes = [
         path:"addcomparison",
         component:AddComparison,
         name:"AddComparison"
-      }
+      },
+      {
+        path:"addblog",
+        component:AddBlog,
+        name:"AddBlog"
+      },
     ]
   }
 ]
