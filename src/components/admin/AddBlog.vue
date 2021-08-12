@@ -1,21 +1,22 @@
 <template>
     <div id="addBlog">
         <div id="form-container">
-            <form id="form" @submit.prevent>
+            <form id="form" ref="form" @submit.prevent>
                 <div class="form-group">
                     <label for="cat1">Kategori-1</label>
-                    <select id="cat1" @change="onCat1Change()" v-model="$v.product.category1.$model">
+                    <select id="cat1" @change="onCat1Change()" v-model="category">
                         <option value="null" selected disabled>Kategori-1 Seçin</option>
                         <option v-for="(item, index) in getFilters.categories" :key="index">{{item.title}}</option>
                     </select>
                 </div>
+                <blog-section/>
                 <div class="form-group">
-                    <label for="brand">Başlık</label>
-                    <input id="brand" type="text" v-model="$v.product.brand.$model">
+                    <label for="head">Başlık</label>
+                    <input id="head" type="text" v-model="header">
                 </div>
                 <div class="form-group">
                     <label for="section">Bölüm</label>
-                    <textarea id="section" :onkeyup="autoGrow()" v-model="$v.product.section.$model"></textarea>
+                    <textarea class="section" :onkeyup="autoGrow()" v-model="sections[0]"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Resim/Reklam</label>
@@ -34,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label for="section">Bölüm</label>
-                    <textarea id="section" :onkeyup="autoGrow()" v-model="$v.product.section.$model"></textarea>
+                    <textarea class="section" :onkeyup="autoGrow()" v-model="sections[1]"></textarea>
                 </div>
             </form>
         </div>
@@ -46,59 +47,25 @@
 </template>
 
 <script>
+
+    import Vue from "vue" 
+    import BlogSection from "../admin/utilities/BlogSection.vue"
     import { mapGetters } from "vuex"
-    import { required } from "vuelidate/lib/validators"
+    import { eventBus } from "../../main"
+
     export default {     
 
-        validations:{
-            product:{
-                brand:{
-                    required
-                },
-                model:{
-                    required
-                },
-                origin:{
-                    required
-                },
-                category1:{
-                    required
-                },
-                category2:{
-                    required
-                },
-                category3:{
-                    required
-                },
-                link:{
-                    required
-                },
-                videolink:{
-                    required
-                },
-                section:{
-                    required
-                },
-                images:{
-                    required
-                }
-            },
+        components:{
+            BlogSection
         },
-
+        
         data(){
             return{
-                product:{
-                    brand:null,
-                    model:null,
-                    origin:null,
-                    category1:null,
-                    category2:null,
-                    category3:null,
-                    link:null,
-                    videolink:null,
-                    section:[],
-                    images:[],
-                },
+                category:null,
+                header:null,
+                sections:[],
+                sec:1,
+
                 categories1:[],
                 categories2:[],
                 cropstart:false,
@@ -114,6 +81,22 @@
 
         methods:{
             addSection(){
+                this.sec++
+
+                let CompClass = Vue.extend(BlogSection)
+                let instance = new CompClass({
+                    props:{
+                        "sections" : 3
+                    }
+                })
+                console.log(instance)
+                instance.$mount()
+                this.$refs.form.appendChild(instance.$el)
+
+                /*this.sections.forEach(e=>{
+                    console.log(e)
+                })
+
                 let div =  document.createElement("div")
                 div.classList.add("form-group")
                 div.style.cssText="box-sizing: border-box; padding: .5vmax; width: 100%; height: fit-content; display: flex; align-items: center; justify-content: space-between;"
@@ -124,30 +107,16 @@
                 label.innerHTML="Bölüm"
                 div.appendChild(label)
 
+                this.sec++
                 let textarea = document.createElement("textarea")
-                textarea.id="section"
+                textarea.classList.add("section")
+                this.$set(document.getElementsByClassName("section")[document.getElementsByClassName("section").length-1],"v-model",this.sections[this.sec])
                 textarea.style.cssText="box-sizing: border-box; width: 80%; min-width: 80%; max-width: 80%; height: 25vh; border-radius: .5vmax; outline: none; border: 1px solid black; padding-inline: .5vmax; font-family: Ubuntu, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;"
-                div.appendChild(textarea)
+                div.appendChild(textarea)*/
+
             },
 
             addImage(){
-                /*<div class="form-group">
-                    <label>Resim/Reklam</label>
-                    <div class="visuals">
-                        <div class="v-img">
-                            <img src="">
-                            <input style="display:none" type="file">
-                            <p>Resim Ekle</p>
-                        </div>
-                        <div class="v-advert">
-                            <img src="">
-                            <input style="display:none" type="file">
-                            <p>Reklam Ekle</p>
-                        </div>
-                    </div>
-                </div>*/
-
-
 
                 let div = document.createElement("div")
                 div.classList.add("form-group")
@@ -188,19 +157,15 @@
                 p2.innerHTML = "Reklam Ekle"
                 p2.style.cssText = "box-sizing: border-box; margin: 0; height: fit-content; width: fit-content; padding: 0; position: absolute; top: 0; bottom: 0; right: 0; left: 0; margin: auto; cursor:pointer;"
                 div3.appendChild(p2)
-
-                
-
-
             },
 
             autoGrow(){
-                setTimeout(() => {
+                /*setTimeout(() => {
                     let spc = document.getElementById("section")
                     if (spc.scrollHeight > spc.clientHeight) {
                         spc.style.height = spc.scrollHeight + "px";
                     }
-                }, 500);
+                }, 500);*/
             },
 
             onCat1Change(){
@@ -320,7 +285,8 @@
                         width: 80%;
                         min-width: 80%;
                         max-width: 80%;
-                        height: 25vh;
+                        min-height: 25vh;
+                        height: fit-content;
                         border-radius: .5vmax;
                         outline: none;
                         border: 1px solid black;
