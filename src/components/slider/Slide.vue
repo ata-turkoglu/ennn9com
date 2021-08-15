@@ -12,7 +12,7 @@
                 <div id="info">
                     <p v-if="side=='right'">Beraber Oynayabileceğiniz Oyunlar</p>
                     <p v-if="side=='left'">Trendleri Takip Edin</p>
-                    <button>İncele</button>
+                    <button @click="toAdvice()">İncele</button>
                 </div>
             </transition>
         </div>
@@ -47,6 +47,10 @@ export default {
     },
 
     methods:{
+
+        toAdvice(){
+            this.$router.push("/advice")
+        },
 
         touchstart(event){      
             this.touch.startX=event.changedTouches[0].clientX

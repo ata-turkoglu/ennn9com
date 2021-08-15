@@ -1,26 +1,20 @@
 <template>
     <div id="BlogSection" class="form-group">
         <label for="section">Bölüm</label>
-        <textarea id="section" class="section" :onkeyup="autoGrow()" v-model="sections[]"></textarea>
+        <textarea id="section" class="section" :onkeyup="autoGrow()"></textarea>
     </div>
 </template>
 
 <script>
     
-    import {eventBus} from "../main"
-    
     export default {
         
         data(){
             return{
-                lion:999
             }
         },
 
         mounted(){
-            eventBus.$on("pops",()=>{
-                this.newProducts = this.getNewProducts
-            })
         },
 
         methods:{

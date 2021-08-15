@@ -8,6 +8,7 @@ import ProductGroupList from "../components/client/ProductGroupList"
 import ProductList from "../components/client/ProductList"
 import BlogList from "../components/client/BlogList"
 import Blog from "../components/client/Blog"
+import AdviceList from "../components/client/AdviceList"
 
 import Admin from "../views/Admin"
 import AdminHome from "../components/admin/AdminHome"
@@ -37,6 +38,11 @@ const routes = [
         path:"/blog",
         component:Blog,
         name:"Blog",
+      },
+      {
+        path:"/advice",
+        component:AdviceList,
+        name:"AdviceList",
       },
       {
         path:"/comparisonview",

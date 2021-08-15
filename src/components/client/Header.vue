@@ -272,6 +272,7 @@ export default {
                     margin-inline: .7vw;
                     width: auto;
                     object-fit: contain;
+                    cursor:pointer;
                 }
 
         #menu-btn{

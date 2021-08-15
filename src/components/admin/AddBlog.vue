@@ -18,24 +18,26 @@
                     <label for="section">Bölüm</label>
                     <textarea class="section" :onkeyup="autoGrow()" v-model="sections[0]"></textarea>
                 </div>
-                <div class="form-group">
-                    <label>Resim/Reklam</label>
-                    <div class="visuals">
-                        <div class="v-img">
-                            <img src="">
-                            <input style="display:none" type="file">
-                            <p>Resim Ekle</p>
-                        </div>
-                        <div class="v-advert">
-                            <img src="">
-                            <input style="display:none" type="file">
-                            <p>Reklam Ekle</p>
+                <div>
+                    <div class="form-group">
+                        <label>Resim/Reklam</label>
+                        <div class="visuals">
+                            <div class="v-img">
+                                <img src="">
+                                <input style="display:none" type="file">
+                                <p>Resim Ekle</p>
+                            </div>
+                            <div class="v-advert">
+                                <img src="">
+                                <input style="display:none" type="file">
+                                <p>Reklam Ekle</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="section">Bölüm</label>
-                    <textarea class="section" :onkeyup="autoGrow()" v-model="sections[1]"></textarea>
+                    <div class="form-group">
+                        <label for="section">Bölüm</label>
+                        <textarea class="section" :onkeyup="autoGrow()" v-model="sections[1]"></textarea>
+                    </div>
                 </div>
             </form>
         </div>
@@ -51,7 +53,6 @@
     import Vue from "vue" 
     import BlogSection from "../admin/utilities/BlogSection.vue"
     import { mapGetters } from "vuex"
-    import { eventBus } from "../../main"
 
     export default {     
 
@@ -83,17 +84,14 @@
             addSection(){
                 this.sec++
 
-                let CompClass = Vue.extend(BlogSection)
-                let instance = new CompClass({
-                    props:{
-                        "sections" : 3
-                    }
-                })
+                /*let CompClass = Vue.extend(BlogSection)
+                let instance = new CompClass()
                 console.log(instance)
                 instance.$mount()
                 this.$refs.form.appendChild(instance.$el)
+                eventBus.$emit("props",(this.sections,this.sec))
 
-                /*this.sections.forEach(e=>{
+                this.sections.forEach(e=>{
                     console.log(e)
                 })
 
