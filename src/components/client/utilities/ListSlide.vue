@@ -191,6 +191,7 @@
                 box-sizing: border-box;
                 height: 100%;
                 width: fit-content;
+                padding-left:1vh;
             }
                 .item img{
                     box-sizing: border-box;
