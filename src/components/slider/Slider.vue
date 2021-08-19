@@ -102,7 +102,6 @@ export default {
 
         timer(){
             this.tt=(Math.floor(Math.random()*5)+5)*1000
-                console.log("tt",this.tt)
             this.intrvl=setInterval(() => {
                 if(this.index==this.images.length-1){
                     this.index=0

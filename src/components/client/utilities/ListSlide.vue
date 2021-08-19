@@ -212,6 +212,7 @@
     @media screen and (max-width:768px) {
         .list-slide{
             height: 17vh;
+            margin-top: 2vh;
         }
         .item{
             padding-left:1vh;

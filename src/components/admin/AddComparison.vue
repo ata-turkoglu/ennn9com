@@ -11,6 +11,7 @@
                         <option>Çocuk</option>
                         <option>Moda</option>
                         <option>Kozmetik</option>
+                        <option>Diğer</option>
                     </select>
                     <input id="adjective" type="text" placeholder="Ennn" v-model="comp.adj">
                     <input id="header" type="text" placeholder="Başlık" v-model="comp.name">
@@ -129,9 +130,6 @@ export default {
                 for(let i=0; i<this.comp.productlist.length; i++){
                     this.comp.productlist[i]=db.doc("/products/"+this.comp.productlist[i])
                 }
-
-
-                console.log(this.comp)
                 this.$store.dispatch("saveComparison",this.comp)
             }
         }

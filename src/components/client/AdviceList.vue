@@ -328,6 +328,14 @@
                     width: 30vw;
                 }
 
+                .item-pic::after{
+                    width: 30vw;
+                }
+
+                .item-pic img{
+                    width: 30vw;
+                }
+
                 .item:nth-child(odd){
                     align-self: flex-start;
                 }
@@ -341,6 +349,9 @@
                 }
                 .item:nth-child(even) > .item-info{
                     background-image: linear-gradient(to left, whitesmoke, transparent);
+                }
+                .text{
+                    width: 30vw;
                 }
                 .text p{
                     font-size: 1.5vmax;

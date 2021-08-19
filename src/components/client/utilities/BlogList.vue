@@ -339,6 +339,7 @@
             height: 60vh;
             width: 100%;
             padding: 0;
+            margin-top: 2vh;
         }
             .blog-head:first-child{
                 width: 8vw;

@@ -134,7 +134,6 @@
             touchstart(event){
                 this.click=new Date().getTime()            
                 this.touch.startX=event.changedTouches[0].clientX
-                console.log(document.getElementById("n-item-list").style)
             },
 
             touchend(event){
@@ -391,6 +390,7 @@
             padding: 0;
             flex-direction: column;
             justify-content: flex-start;
+            margin-top: 2vh;
         }
             .news-head:first-child{
                 display: none;

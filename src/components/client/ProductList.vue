@@ -212,7 +212,6 @@ export default {
     methods:{
 
         arrows(){
-            console.log("sss")
             if(window.innerWidth<768){
                 let f1 = this.$refs.f1
                 let f2 = this.$refs.f2
@@ -266,7 +265,8 @@ export default {
         },
 
         touchend(event){
-            if(new Date().getTime()-this.click<100 && event.target.localName=="p"){
+            this.touch.endX=event.changedTouches[0].clientX
+            if(new Date().getTime()-this.click<150 && event.target.localName=="p"){
                 if(event.target.parentElement.tabIndex==100 || event.target.tabIndex==100){
                     if(event.target.innerText=="Tümü"){
                         this.filter1(null)
@@ -278,7 +278,6 @@ export default {
                 }else if(event.target.parentElement.tabIndex==200 || event.target.tabIndex==200){
                     this.filter2(event.target.innerText)
                     this.isSub=event.target.tabIndex
-                    console.log(this.isSub)
                 }
             }
 

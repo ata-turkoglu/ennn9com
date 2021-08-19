@@ -122,7 +122,7 @@ export default {
             height: 27vw;
             width: 100%;
             margin: 0;
-            margin-top: 1vh;
+            margin-top: 2vh;
             padding: 0;
         }
             .section{
@@ -255,7 +255,7 @@ export default {
                 }
                 #slide{
                     height: 25.9vh;
-                    margin-top: 0;
+                    margin-top: 2vh;
                 }
 
             .offers{
