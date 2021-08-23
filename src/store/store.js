@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { db } from "../../firebase" 
 import firebase from "firebase"
+import login from "./modules/login"
 
 Vue.use(Vuex)
 
@@ -122,6 +123,7 @@ export default new Vuex.Store({
         link:product.link,
         videolink:product.videolink,
         specs:product.specs,
+        differences:product.differences,
         addedDate: firebase.firestore.Timestamp.now().seconds,
       })
       .then(result=>{
@@ -226,5 +228,6 @@ export default new Vuex.Store({
   },
 
   modules: {
+    login
   }
 })

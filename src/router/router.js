@@ -11,10 +11,13 @@ import Blog from "../components/client/Blog"
 import AdviceList from "../components/client/AdviceList"
 
 import Admin from "../views/Admin"
+import Login from "../components/admin/utilities/Login"
 import AdminHome from "../components/admin/AdminHome"
 import AddProduct from "../components/admin/AddProduct"
 import AddComparison from "../components/admin/AddComparison"
 import AddBlog from "../components/admin/AddBlog"
+
+import login from "../store/modules/login"
 
 Vue.use(VueRouter)
 
@@ -70,23 +73,48 @@ const routes = [
     children:[
       {
         path:"/",
+        component:Login,
+        name:"Login",
+      },
+      {
+        path:"adminhome",
         component:AdminHome,
-        name:"AdminHome"
+        name:"AdminHome",
+        beforeEnter: (to, from, next) => {
+          if(login.state.logged){
+            next()
+          }
+        }
       },
       {
         path:"addproduct",
         component:AddProduct,
-        name:"addProduct"
+        name:"addProduct",
+        beforeEnter: (to, from, next) => {
+          if(login.state.logged){
+            next()
+          }
+        }
       },
       {
         path:"addcomparison",
         component:AddComparison,
-        name:"AddComparison"
+        name:"AddComparison",
+        beforeEnter: (to, from, next) => {
+          if(login.state.logged){
+            next()
+          }
+        }
       },
       {
         path:"addblog",
         component:AddBlog,
-        name:"AddBlog"
+        name:"AddBlog",
+        beforeEnter: (to, from, next) => {
+          if(login.state.logged){
+            next()
+          }
+        }
       },
     ]
   }

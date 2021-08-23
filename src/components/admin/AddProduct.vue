@@ -42,7 +42,11 @@
                 </div>
                 <div class="form-group">
                     <label for="specs">Özellikler</label>
-                    <textarea id="specs" :onkeyup="autoGrow()" v-model="$v.product.specs.$model"></textarea>
+                    <textarea id="specs" :onkeyup="autoGrow('specs')" v-model="$v.product.specs.$model"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="diff">Farklar</label>
+                    <textarea id="diff" :onkeyup="autoGrow('diff')" v-model="$v.product.differences.$model"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="addimage">Resimler</label>
@@ -106,6 +110,9 @@ export default {
             specs:{
                 required
             },
+            differences:{
+                
+            },
             images:{
                 required
             }
@@ -124,6 +131,7 @@ export default {
                 link:null,
                 videolink:null,
                 specs:[],
+                differences:[],
                 images:[],
             },
             categories1:[],
@@ -141,9 +149,9 @@ export default {
 
     methods:{
 
-        autoGrow(){
+        autoGrow(id){
             setTimeout(() => {
-                let spc = document.getElementById("specs")
+                let spc = document.getElementById(id)
                 if (spc.scrollHeight > spc.clientHeight) {
                     spc.style.height = spc.scrollHeight + "px";
                 }
@@ -173,7 +181,9 @@ export default {
 
         save(){
             let lines = this.product.specs.split("\n")
+            let difflines = this.product.differences.split("\n")
             this.product.specs=lines
+            this.product.differences=difflines
             if(this.update){
                 let conf=confirm("Ürün Güncellensin mi?")
                 if(conf){
@@ -200,6 +210,7 @@ export default {
                 link:null,
                 videolink:null,
                 specs:[],
+                differences:[],
                 images:[],
             }
             this.imgUrls=[]

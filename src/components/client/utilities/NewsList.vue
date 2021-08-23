@@ -390,7 +390,7 @@
             padding: 0;
             flex-direction: column;
             justify-content: flex-start;
-            margin-top: 2vh;
+            margin-top: 1vh;
         }
             .news-head:first-child{
                 display: none;

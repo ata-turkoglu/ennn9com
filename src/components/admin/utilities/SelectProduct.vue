@@ -84,6 +84,7 @@ export default {
             this.products=this.getProducts.filter(product=>{
                 return product.category1==this.category1 && product.category2==this.category2 && product.category3==this.category3
             })
+            console.log(this.products)
         },
 
         selectProduct(id,index){
@@ -138,7 +139,8 @@ export default {
         #view{
             box-sizing: border-box;
             width: 70vw;
-            height: 70vh;
+            min-height: 70vh;
+            height: fit-content;
             background: whitesmoke;
             z-index: 1;
             box-shadow: 0 0 .8vmax -.3vmax grey;
@@ -148,7 +150,8 @@ export default {
             #filters{
                 width: 100%;
                 box-sizing: border-box;
-                height: 10%;
+                min-height: 5vh;
+                height: 5vh;
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
@@ -163,7 +166,8 @@ export default {
                 }
                     .filtergroup select{
                         width: 60%;
-                        height: 60%;
+                        min-height: 70%;
+                        height: 70%;
                         box-sizing: border-box;
                         border-radius: .5vmax;
                         margin: .5vmax;
@@ -178,6 +182,7 @@ export default {
                 align-items: flex-start;
                 justify-content: center;
                 padding: .5vmax;
+                overflow: auto;
             }
                 .listitem{
                     display: flex;

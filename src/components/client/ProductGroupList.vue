@@ -10,7 +10,7 @@
                 <div class="item-list" ref="itemlist">
                     
                     <div 
-                     v-for="(content,indx) in item.contents" 
+                     v-for="(content,indx) in item.contents"
                      :key="indx" 
                      class="item"
                      :style="drag?{cursor:'grabbing'}:null" 
@@ -19,7 +19,7 @@
                      @mouseup.prevent="mouse_up(item.title,content.id)" 
                      @mouseout="drag=false"
                      @touchstart="touchstart($event,indx)"
-                     @touchmove="touchmove($event)"
+                     @touchmove="touchmove($event,index)"
                      @touchend="touchend(item.title,content.id)"
                     >
                         <div class="item-image">
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="section">
+        <!--<div class="section">
             <p class="header">Bebek Ürünleri</p>
             <hr>
             <div class="container">
@@ -235,7 +235,7 @@
                     <img class="arrow" src="../../assets/items/right-arrow.png" @click="right($event)">
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </template>
 
@@ -259,12 +259,12 @@ export default {
     computed:{
         ...mapGetters(["getFilters","getComparisons"])
     },
-
-    mounted(){
-        this.$store.dispatch("getComparisons")
-    },
-
+    
     methods:{
+
+        push(){
+            this.$router.push({name:"ComparisonView", params:{cat:"Bebek",id:"lW3Unst4hvNRuHydHQDq"}})
+        },
 
         mouse_down(){
             this.drag=true
@@ -274,6 +274,8 @@ export default {
         mouse_up(cat,id){
             this.drag=false
             if(new Date().getTime()-this.click<100){
+                console.log(cat)
+                console.log(id)
                 this.$router.push({name:"ComparisonView", params:{cat:cat,id:id}})
             }
         },
@@ -357,9 +359,9 @@ export default {
 
         },
 
-        touchmove(event){
+        touchmove(event,index){
             this.touch.endX=event.changedTouches[0].clientX
-            this.$refs.itemlist[0].scrollLeft-=(this.touch.endX-this.touch.startX)*2
+            this.$refs.itemlist[index].scrollLeft-=(this.touch.endX-this.touch.startX)*2
             this.touch.startX=event.changedTouches[0].clientX
         }
     }

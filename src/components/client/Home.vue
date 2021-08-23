@@ -15,7 +15,7 @@
                 <img src="../../assets/images/cleaner/8.jpg">
                 <img src="../../assets/images/cleaner/9.jpg">
                 <div class="section-text">
-                    <p><strong>ennn</strong> Uygun <strong>9</strong> <br> Robot Süpürge </p>
+                    <p @click="toSection1"><strong>ennn</strong> Uygun <strong>9</strong> <br> Robot Süpürge </p>
                 </div>
             </div>
             <div id="slide">
@@ -91,13 +91,21 @@ import Slider from "../slider/Slider.vue"
 import ListSlide from "../client/utilities/ListSlide.vue"
 import BlogList from "../client/utilities/BlogList.vue"
 import NewsList from "../client/utilities/NewsList.vue"
+
 export default {
     components:{
         Slider,
         ListSlide,
         BlogList,
         NewsList
+    },
+
+    methods:{
+        toSection1(cat,id){
+            this.$router.push({name:"ComparisonView", params:{cat:"Diğer",id:"pft57R58bxx7Ybc6VtFO"}})
+        }
     }
+
 }
 </script>
 
@@ -122,7 +130,7 @@ export default {
             height: 27vw;
             width: 100%;
             margin: 0;
-            margin-top: 2vh;
+            margin-top: 1vh;
             padding: 0;
         }
             .section{
@@ -255,7 +263,7 @@ export default {
                 }
                 #slide{
                     height: 25.9vh;
-                    margin-top: 2vh;
+                    margin-top: 1vh;
                 }
 
             .offers{

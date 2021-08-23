@@ -29,7 +29,7 @@ export default {
   methods:{
     home(){
       this.$router.push(
-        {path:"/admin"}
+        {path:"/admin/adminhome"}
       )
     }
   }

@@ -38,16 +38,23 @@
                     <div class="des-text">
                         <p>{{product.origin}}</p>
                     </div>
-                    <button>Detaylı İncele</button>
+                    <button @click="sendToAffiliate(product.link)">Detaylı İncele</button>
+                </div>
+                <div class="differences">
+                    <div class="pm">
+                        <img src="../../assets/items/scope.png">
+                    </div>
+                    <p class="diff-item" v-for="(spec,ind) in product.specs" :key="ind">{{spec}}</p>
                 </div>
                 <div class="differences">
                     <div class="pm">
                         <img src="../../assets/items/pm.png">
                     </div>
-                    <p class="diff-item" v-for="(spec,ind) in product.specs" :key="ind">{{spec}}</p>
+                    <p class="diff-item" v-for="(diff,ind) in product.differences" :key="ind">{{diff}}</p>
                 </div>
                 <div class="pvideo">
-                    <iframe @focus="focusframe($event)" :src="product.videolink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <img v-if="product.videolink==''" src="../../assets/items/youtube.png" @click="toVideo">
+                    <iframe v-if="product.videolink!=null" @focus="focusframe($event)" :src="product.videolink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -72,13 +79,10 @@ export default {
     },
 
     computed:{
-
-        ...mapGetters(["getComparisons"]),
-            
+        ...mapGetters(["getComparisons"]), 
     },
 
     mounted(){
-
         this.item = this.getComparisons.find(c=>{
             return c.title==this.cat
         }).contents.find(f=>{
@@ -92,6 +96,13 @@ export default {
     },
 
     methods:{
+
+        sendToAffiliate(link){
+            window.open(link)
+        },
+        toVideo(){
+            window.open("https:/youtube.com")
+        },
         
         touchstart(event){        
             //event.preventDefault();                
@@ -108,10 +119,10 @@ export default {
             let left = document.getElementsByClassName("arrow-left")
 
             if(this.touch.endX<this.touch.startX-20){
-                if(this.touch.swipe[index]<2){
+                if(this.touch.swipe[index]<3){
                     this.touch.swipe[index]++
                     product.style.transform="translateX(-"+(this.touch.swipe[index]*100)+"%)"
-                    if(this.touch.swipe[index]==2){
+                    if(this.touch.swipe[index]==3){
                         right[index].style.display="none"
                         left[index].style.display="flex"
                     }
@@ -161,10 +172,10 @@ export default {
             let right = document.getElementsByClassName("arrow-right")
             let left = document.getElementsByClassName("arrow-left")
 
-            if(this.touch.swipe[index]<2){
+            if(this.touch.swipe[index]<3){
                 this.touch.swipe[index]++
                 product.style.transform="translateX(-"+(this.touch.swipe[index]*100)+"%)"
-                if(this.touch.swipe[index]==2){
+                if(this.touch.swipe[index]==3){
                     right[index].style.display="none"
                     left[index].style.display="flex"
                 }
@@ -257,7 +268,7 @@ export default {
                 width: 100%;
                 height: 100%;
                 display: grid;
-                grid-template-columns: 20% 30% 30% auto;
+                grid-template-columns: 15% 17% 24% 24% auto;
                 grid-template-rows: 100%;
             }
                 .des{
@@ -291,9 +302,13 @@ export default {
                         background-color: rgb(255, 174, 119);
                         box-shadow: 0 0 .7vmax -.2vmax grey;
                         cursor:pointer;
+                        font-size: .9vw;
                     }
                     .des button:hover{
                         box-shadow:none
+                    }
+                    .des-text p{
+                        font-size: 1.2vw;
                     }
 
                 .differences{
@@ -303,7 +318,7 @@ export default {
                     flex-direction: column;
                     align-items: flex-start;
                     justify-content: start;
-                    overflow: auto;
+                    overflow:visible;
                 }
                     .pm{
                         height: 10%;
@@ -345,10 +360,22 @@ export default {
                     box-sizing: border-box;
                     height: 100%;
                     width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    justify-items: center;
                 }
                     .pvideo iframe{
                         height: 100%;
                         width: auto;
+                    }
+                    .pvideo img{
+                        height: 50%;
+                        width: auto;
+                        margin: 0;
+                        margin-left: 40%;
+                        padding: 0;
+                        cursor: pointer;
                     }
 
     @media screen and (max-width:768px) {
@@ -436,7 +463,7 @@ export default {
                     max-height: 100%;
                 }
                     .ppic img{
-                        width: 25vh;
+                        width: 45vw;
                         height: 100%;
                         object-fit: contain;
                     }
@@ -454,7 +481,11 @@ export default {
                         height: 4.5vh;
                         padding-inline: 2vmax;
                         margin-bottom: 1vmax;
+                        font-size: 3.5vw;
                     }
+                .des-text p{
+                    font-size: 3.5vw;
+                }
                 .differences{
                     min-width: 100vw;
                     max-height: 100%;
@@ -475,6 +506,9 @@ export default {
                     .pvideo iframe{
                         height: 100%;
                         width: auto;
+                    }
+                    .pvideo img{
+                        margin-left: 77%;
                     }
     }
 </style>

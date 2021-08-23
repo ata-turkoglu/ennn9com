@@ -23,6 +23,7 @@
                     <p @click="filter1('Çocuk'), isCat=3" class="filter1-p" tabindex="3" :class="{'border1':isCat==3}">Çocuk</p>
                     <p @click="filter1('Moda'), isCat=4" class="filter1-p" tabindex="4" :class="{'border1':isCat==4}">Moda</p>
                     <p @click="filter1('Kozmetik'), isCat=5" class="filter1-p" tabindex="5" :class="{'border1':isCat==5}">Kozmetik</p>
+                    <p @click="filter1('Diğer'), isCat=6" class="filter1-p" tabindex="6" :class="{'border1':isCat==6}">Diğer</p>
                 </div>
             </div>
             <div class="filter" style="margin-top:1.5vh">
