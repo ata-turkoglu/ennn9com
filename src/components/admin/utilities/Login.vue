@@ -110,7 +110,7 @@ export default {
         align-items: center;
         justify-content: center;
         border-radius: 1vmin;
-        box-shadow: 0vmin 0vmin 3vmin 0.1vmin gray ;
+        box-shadow: 0vmin 0vmin 3vmin 0.1vmin rgb(200, 200, 200) ;
     }
 
     .container input{
@@ -119,7 +119,7 @@ export default {
         width: 37vmin;
         border-radius: 0.8vmin;
         border:none;
-        box-shadow: 0vmin 0vmin 1vmin -0.01vmin gray ;
+        box-shadow: 0vmin 0vmin 1vmin -0.01vmin rgb(200,200,200) ;
     }
 
     .new {
@@ -180,7 +180,7 @@ export default {
         border:none;
         border-radius: 0.5vmin;
         background-color:white;
-        box-shadow: 0vmin 0vmin 1vmin -0.01vmin gray ;
+        box-shadow: 0vmin 0vmin 1vmin -0.01vmin rgb(200, 200, 200) ;
         font-weight: 700;
         cursor: pointer;
     }
@@ -207,5 +207,41 @@ export default {
         box-sizing: border-box;
         position: absolute;
         bottom: -15%;
+    }
+
+    @media screen and (max-width:768px) {
+        .container{
+            width: 70vw;
+            height: 80vw;
+        }
+        .container input{
+            width: 50vw;
+            height: 7vw;
+            font-size: 4vw;
+        }
+        h2{
+            font-size: 7.5vw;
+        }
+        .formgroup label{
+            font-size: 4.5vw;
+            align-self: flex-start;
+            margin-left: 1vw;
+            margin-bottom: 1vw;
+        }
+        .new{
+            font-size: 2.5vw;
+        }
+        #login{
+            width: 12vw;
+            height: 7vw;
+            font-size: 3.5vw;
+            margin-left: 2vw;
+        }
+        #forget{
+            font-size: 3.2vw;
+        }
+        #err{
+            font-size: 3.5vw;
+        }
     }
 </style>

@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import ProductSlider from "./ProductSlider.vue"
+import ProductSlider from "./utilities/ProductSlider.vue"
 import { mapGetters } from "vuex"
 export default {
 
@@ -203,6 +203,10 @@ export default {
             if(f1.clientWidth+25>=f1.scrollWidth){
                 f1.parentElement.firstChild.nextSibling.style.display="none"
             }
+        }else{
+            let f1 = this.$refs.f1
+            f1.parentElement.firstChild.style.display="none"
+            f1.parentElement.firstChild.nextSibling.style.display="none"
         }
     },
 
@@ -229,6 +233,13 @@ export default {
                 }else if(f2.clientWidth<f2.scrollWidth && this.isCat>0){
                     f2.parentElement.firstChild.nextSibling.style.display="flex"
                 }
+            }else{
+                let f1 = this.$refs.f1
+                let f2 = this.$refs.f2
+                f1.parentElement.firstChild.style.display="none"
+                f1.parentElement.firstChild.nextSibling.style.display="none"
+                f2.parentElement.firstChild.style.display="none"
+                f2.parentElement.firstChild.nextSibling.style.display="none"
             }
         },
 
@@ -367,6 +378,7 @@ export default {
                 background-image: linear-gradient(to right, whitesmoke, whitesmoke, transparent);
             }
             .right-arrow{
+                display: none;
                 right: -1px;
                 padding-left: 2.5vw;
                 background-image: linear-gradient(to left, whitesmoke, whitesmoke, transparent);
@@ -454,10 +466,12 @@ export default {
             border-radius: .5vmax;
             transition: all .5s ease ;
         }
-        .product:hover{
-            height: 20vmax;
-            
+        
+        .product:hover .pimage{
+            opacity: .2;
+            z-index: -1;
         }
+        
         .product .pimage{
             width: 12vmax;
             min-height: 12vmax;
@@ -465,6 +479,11 @@ export default {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity .5s;
         }
             .slider{
                 height: 100%;
@@ -489,13 +508,13 @@ export default {
                 z-index: 1;
             }
         .product .content{
-            height: 8vmax;
-            width: 12vmax;
+            height: 100%;
+            width: 100%;
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             display: none;
-            animation: show 2s ease;  
+            animation: show .5s ease;  
         }
             .brand{
                 box-sizing: border-box;
@@ -508,18 +527,21 @@ export default {
                 justify-content: center;
             }
                 .text1{
-                    font-size: 1.1vmax;
+                    font-size: 1.2vmax;
                     margin: 0;
                     margin-right: 1vmax;
                     padding:0;
                 }
                 .text2{
-                    font-size: .8vmax; 
+                    font-size: .9vmax; 
                     margin: 0;
                     padding:0;
                 }
             .text3{
-                font-size: .7vmax;
+                font-size: .8vmax;
+                margin: .3vh;
+                margin-left: 1vw;
+                text-align: left;
             }
         .product:hover .content{
                 display: block;
@@ -527,9 +549,11 @@ export default {
 
         @keyframes show{
             from{
+                transform: translateY(100%);
                 opacity: 0;
             }
             to{
+                transform: translateY(0);
                 opacity: 1;
             }
         }
@@ -667,9 +691,6 @@ export default {
             .product{
                 height: 40vw;
                 width: 40vw;
-            }
-            .product:hover{
-                height: 70vw;     
             }
             .product .pimage{
                 width: 40vw;

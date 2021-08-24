@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+      <router-view></router-view>
   </div>
 </template>
 
@@ -10,9 +10,6 @@ export default {
     this.$store.dispatch("getProducts")
     this.$store.dispatch("getCategories")
     this.$store.dispatch("getComparisons")
-    setTimeout(() => {
-      console.log("env",process.env)
-    }, 2000);
   }
 }
 </script>

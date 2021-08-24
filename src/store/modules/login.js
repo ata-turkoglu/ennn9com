@@ -2,9 +2,9 @@ import axios from "axios"
 import router from "../../router/router"
 const state = {
 
-    API:process.env.VUE_APP_API_KEY,
-    token:"",
-    logged:false,
+    API : process.env.VUE_APP_API_KEY,
+    token : "",
+    logged : false,
 
 }
 

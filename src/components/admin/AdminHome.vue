@@ -37,6 +37,7 @@
 </template>
 
 <style scoped>
+
     #home{
         box-sizing: border-box;
         height: 90%;

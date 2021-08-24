@@ -101,7 +101,7 @@ export default {
             window.open(link)
         },
         toVideo(){
-            window.open("https:/youtube.com")
+            window.open("https://www.youtube.com")
         },
         
         touchstart(event){        
@@ -508,7 +508,7 @@ export default {
                         width: auto;
                     }
                     .pvideo img{
-                        margin-left: 77%;
+                        margin-left: 80%;
                     }
     }
 </style>
