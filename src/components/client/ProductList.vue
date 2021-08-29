@@ -51,11 +51,11 @@
                     <product-slider class="slider" :images="item.imageURLs"></product-slider>
                 </div>
                 <div class="content">
-                    <div class="brand">
-                        <p class="text1">{{item.brand}}</p>
-                        <p class="text2">{{item.model}}</p>
-                    </div>
                     <p class="text3" v-for="(spec,indx) in item.specs" :key="indx">{{spec}}</p>
+                </div>
+                <div class="brand">
+                    <p class="text1">{{item.brand}}</p>
+                    <p class="text2">{{item.model}}</p>
                 </div>
             </div>
             <div class="product">
@@ -453,6 +453,7 @@ export default {
             position: relative;
             box-sizing: border-box;
             margin: 1.5vmax;
+            margin-bottom: 3vmax;
             padding: 0;
             height: 12vmax;
             width: 12vmax;
@@ -462,7 +463,7 @@ export default {
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            overflow: hidden;
+            overflow: visible;
             border-radius: .5vmax;
             transition: all .5s ease ;
         }
@@ -515,6 +516,7 @@ export default {
             padding: 0;
             display: none;
             animation: show .5s ease;  
+            margin-top: 1vh;
         }
             .brand{
                 box-sizing: border-box;
@@ -525,15 +527,20 @@ export default {
                 flex-direction: row;
                 align-items: baseline;
                 justify-content: center;
+                position:absolute;
+                bottom:-20%;
+                left: 0;
+                width: fit-content;
+                height: fit-content;
             }
                 .text1{
-                    font-size: 1.2vmax;
+                    font-size: 1.1vmax;
                     margin: 0;
                     margin-right: 1vmax;
                     padding:0;
                 }
                 .text2{
-                    font-size: .9vmax; 
+                    font-size: .8vmax; 
                     margin: 0;
                     padding:0;
                 }
@@ -691,6 +698,7 @@ export default {
             .product{
                 height: 40vw;
                 width: 40vw;
+                margin-bottom: 5vh;
             }
             .product .pimage{
                 width: 40vw;
