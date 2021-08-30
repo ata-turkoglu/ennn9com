@@ -65,7 +65,7 @@
                 </div>
             </form>
         </div>
-        <crop-image v-if="cropstart" :parcomp="'addproduct'" :image="croppingImage"></crop-image>
+        <crop-image v-if="cropstart" :parcomp="'addproduct'" :image="croppingImage" :ratio="1/1"></crop-image>
     </div>
 </template>
 

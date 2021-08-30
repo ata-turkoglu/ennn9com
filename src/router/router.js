@@ -16,6 +16,7 @@ import AdminHome from "../components/admin/AdminHome"
 import AddProduct from "../components/admin/AddProduct"
 import AddComparison from "../components/admin/AddComparison"
 import AddBlog from "../components/admin/AddBlog"
+import AddSlide from "../components/admin/AddSlide"
 
 import login from "../store/modules/login"
 
@@ -110,6 +111,16 @@ const routes = [
         path:"addblog",
         component:AddBlog,
         name:"AddBlog",
+        beforeEnter: (to, from, next) => {
+          if(login.state.logged){
+            next()
+          }
+        }
+      },
+      {
+        path:"addslide",
+        component:AddSlide,
+        name:"AddSlide",
         beforeEnter: (to, from, next) => {
           if(login.state.logged){
             next()

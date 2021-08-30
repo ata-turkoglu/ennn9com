@@ -20,9 +20,9 @@
         <router-link
          id="dealer"
          tag="div"
-         to="/admin/addDealer">
-            <img src="../../assets/items/adddealer.png">
-            <p>Bayileri Düzenle</p>
+         to="/admin/addslide">
+            <img src="../../assets/items/addslide.png">
+            <p>Slide Ekle</p>
         </router-link>
 
         <router-link

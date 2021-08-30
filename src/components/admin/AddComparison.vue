@@ -57,7 +57,7 @@
             </div>
         </div>
         <select-product v-if="select"></select-product>
-        <crop-image v-if="cropstart" :parcomp="'addcomparison'" :image="croppingImage"></crop-image>
+        <crop-image v-if="cropstart" :parcomp="'addcomparison'" :image="croppingImage" :ratio="1/1"></crop-image>
     </div>
 </template>
 
@@ -109,7 +109,7 @@ export default {
             this.comp.productlist=[]
         },
 
-        addImage(){
+        addImage(event){
             this.croppingImage = null
             this.file = event.target.files[0]
             let reader = new FileReader()

@@ -223,6 +223,10 @@ export default new Vuex.Store({
         console.log(err)
         alert("Bir Hata Oluştu")
       })
+    },
+
+    saveSlide({commit}, slide){
+      
     }
 
   },

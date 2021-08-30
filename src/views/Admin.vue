@@ -10,8 +10,8 @@
       <router-link tag="div" class="navlink" to="/admin/addcomparison">
         <p>Karşılaştırma Ekle</p>
       </router-link>
-      <router-link tag="div" class="navlink" to="/admin/addDealer">
-        <p>Yazı Ekle</p>
+      <router-link tag="div" class="navlink" to="/admin/addslide">
+        <p>Slide Ekle</p>
       </router-link>
     </div>
     <router-view/>

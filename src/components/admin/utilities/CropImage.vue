@@ -14,7 +14,7 @@
                         ref="cropper"
                         :guides="true"
                         :src="image"
-                        :aspectRatio="1/1"
+                        :aspectRatio="ratio"
                         :outputSize="1"
                         :fixedBox="true"
                         :maxImgSize="800"
@@ -36,17 +36,18 @@ export default {
         VueCropper
     },
 
-    props:["parcomp","image"],
+    props:["parcomp","image","ratio"],
 
     data(){
         return{
-            croppedImage:null
+            croppedImage:null,
         }
     },
 
     mounted(){
         window.scrollTo(0,0)
         document.getElementById("cropperview").style.height=document.body.scrollHeight+"px"
+
     },
 
     watch:{
@@ -79,6 +80,15 @@ export default {
                     return this.dataURLtoFile(result,this.$parent.file.name)
                 }).then(img=>{
                     this.$parent.comp.image=img
+                }).catch(err=>{
+                    console.log(err)
+                })
+            }else if(this.parcomp=="addslide"){
+                this.resizeImg(this.croppedImage,1000,562.5).then(result=>{
+                    this.$parent.imageprev=result
+                    return this.dataURLtoFile(result,this.$parent.file.name)
+                }).then(img=>{
+                    this.$parent.slide.image=img
                 }).catch(err=>{
                     console.log(err)
                 })
