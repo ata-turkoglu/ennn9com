@@ -225,9 +225,40 @@ export default new Vuex.Store({
       })
     },
 
-    saveSlide({commit}, slide){
-      
-    }
+    async saveSlide({commit}, slide){
+      let key
+      let img
+      await db.collection("slides").add({
+        addedDate: firebase.firestore.Timestamp.now().seconds,
+        text:slide.text,
+      })
+      .then(result=>{
+        key = result.id
+        return key
+      })
+      .then(async key =>{
+        let filename = slide.image.name
+        let ext = filename.slice(filename.lastIndexOf("."))
+        await firebase.storage().ref("slideImages/"+key+ext).put(slide.image)
+        .then(data=>{
+          return data.ref.getDownloadURL()
+        })
+        .then(url=>{
+          img=url
+        })
+      })
+      await db.collection("slides").doc(key).update({
+        image:img,
+        path:key
+      })
+      .then(()=>{
+        alert("Kaydetme Başarılı")
+      })
+      .catch(err=>{
+        console.log(err)
+        alert("Bir Hata Oluştu")
+      })
+    },
 
   },
 

@@ -1,9 +1,17 @@
 <template>
     <div id="addslide">
-        <input type="text" v-model="text" placeholder="Slide için yazı">
+        <input type="text" v-model="slide.text" placeholder="Slide için yazı">
         <div class="img" @click="$refs.slideInputImage.click()">
             <img :src="imageprev">
         </div>
+        <div id="category">
+            <label>Kategori</label>
+            <select id="select">
+                <option>Moda</option>
+                <option>Aile</option>
+            </select>
+        </div>
+        <button @click="save()">Kaydet</button>
         <input type="file" accept="image/*" ref="slideInputImage" :style="{'display':'none'}" @change="addImage($event)">
         <crop-image v-if="cropstart" :parcomp="'addslide'" :image="croppingImage" :ratio="16/9"></crop-image>
     </div>
@@ -23,7 +31,7 @@
                 text:"",
                 slide:{
                     text:"",
-                    image:null
+                    image:null,
                 }
             }
         },
@@ -79,6 +87,7 @@
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
+            margin-bottom: 2vh;
             cursor: pointer;
             box-shadow: 0 0 1vmax -.3vmax rgb(200, 200, 200);
         }
@@ -99,8 +108,36 @@
             border-radius: .5vmax;
             outline: none;
             border: none;
-            box-shadow: 0 0 1vmax -.3vmax rgb(160, 160, 160);;
+            box-shadow: 0 0 1vmax -.3vmax rgb(160, 160, 160);
             padding-inline: 1vmax;
+        }
+        button{
+            width: 10vw;
+            height: 4vh;
+            border: none;
+            box-shadow: 0 0 1vmax -.3vmax rgb(100, 100, 100);
+            cursor: pointer;
+        }
+
+        #category{
+            height: 4vh;
+            width: 89vh;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 2vh;
+        }
+        #category label{
+            margin-right: 3vw;
+        }
+        #category select{
+            outline: none;
+            width: 10vw;
+            border-radius: .5vmax;
+            height: 3vh;
+            padding-inline: .5vmax;
+            cursor: pointer;
         }
 
         ::placeholder {
