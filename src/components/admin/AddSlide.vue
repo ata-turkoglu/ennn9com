@@ -151,4 +151,28 @@
         ::-ms-input-placeholder {
             color: rgb(180, 180, 180);
         }
+
+    @media screen and (max-width:768px) {
+        .img{
+            height: 53.5vw;
+            width: 95vw;
+        }
+        input{
+            width: 95%;
+        }
+        #category{
+            width: 95%
+        }
+        #category label{
+            margin-left: 1vw;
+            font-size: 2vmax;
+        }
+        #category select{
+            width: 25vw;
+        }
+        button{
+            width: 25vw;
+            height: 4vh;
+        }
+    }
 </style>

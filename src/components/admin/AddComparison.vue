@@ -350,4 +350,38 @@ export default {
                     height: 100%;
                     width: auto;
                 }
+
+    
+    @media screen and (max-width:768px) {
+        #head{
+            flex-direction: column;
+        }
+        #head img{
+            height: 40vw;
+            width: 40vw;
+        }
+        .inputs{
+            width: 50vw;
+        }
+        .buttons{
+            flex-direction: row;
+            margin-block: 1.5vh;
+        }
+        .buttons button{
+            height: 3vh;
+            width: 25vw;
+            margin-inline: 2vw;
+        }
+        #content{
+                grid-template-columns: 100%;
+                grid-template-rows: 1fr 1fr 1fr;
+            }
+                #content textarea{
+                    width: 100%;
+                    min-height: 25vh;
+                }
+    }
+
+    
+
 </style>

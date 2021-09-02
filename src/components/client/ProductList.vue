@@ -532,6 +532,7 @@ export default {
                 left: 0;
                 width: fit-content;
                 height: fit-content;
+                z-index: 3;
             }
                 .text1{
                     font-size: 1.1vmax;
@@ -711,10 +712,10 @@ export default {
             }
 
                     .text1{
-                        font-size: 2.1vmax;
+                        font-size: 1.65vmax;
                     }
                     .text2{
-                        font-size: 1.6vmax; 
+                        font-size: 1.3vmax; 
                     }
                 .text3{
                     font-size: 1.3vmax;

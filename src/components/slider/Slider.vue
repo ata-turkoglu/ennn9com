@@ -71,9 +71,11 @@ export default {
 
     beforeDestroy(){
         this.stop()
+        window.removeEventListener("resize",this.resize)
     },
 
     beforeUpdate(){
+        window.removeEventListener("resize",this.resize)
         this.stop()
     },
 
@@ -87,7 +89,7 @@ export default {
                 document.getElementById("slider-nav").style.removeProperty("left")
             }else{
                 this.widesize=true
-                if(this.side=="left"){
+                /*if(this.side=="left"){
                     //console.log("1")
                     document.getElementById("slider-nav").style.left="0"
                     document.getElementById("slider-nav").style.removeProperty("right")
@@ -96,7 +98,7 @@ export default {
                     //console.log("2")
                     document.getElementById("slider-nav").style.removeProperty("left")
                     document.getElementById("slider-nav").style.right="0"
-                }
+                }*/
             }
         },
 

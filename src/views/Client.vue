@@ -31,7 +31,7 @@ export default {
         animation: slide-right-in .4s ease-out;
     }
     .slide-forward-leave-active {
-        animation: slide-right-out .6s ease-in;
+        animation: slide-right-out .5s ease-in;
     }
 
     @keyframes slide-right-out{
