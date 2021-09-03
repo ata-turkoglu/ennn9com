@@ -10,6 +10,12 @@ export default {
     this.$store.dispatch("getProducts")
     this.$store.dispatch("getCategories")
     this.$store.dispatch("getComparisons")
+
+    if(localStorage.getItem("blapg")==null){
+      let blapg = (Math.random()*1000)+1
+      localStorage.setItem("blapg",blapg)
+    }
+    console.log(localStorage.getItem("blapg"))
   }
 }
 </script>

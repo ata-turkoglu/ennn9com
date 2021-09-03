@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import { db } from "../../firebase" 
 import firebase from "firebase"
 import login from "./modules/login"
+import log from "./modules/log"
 
 Vue.use(Vuex)
 
@@ -263,6 +264,7 @@ export default new Vuex.Store({
   },
 
   modules: {
-    login
+    login,
+    log
   }
 })

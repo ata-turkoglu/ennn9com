@@ -361,24 +361,36 @@ export default {
             width: 40vw;
         }
         .inputs{
-            width: 50vw;
+            width: 60vw;
         }
         .buttons{
             flex-direction: row;
             margin-block: 1.5vh;
         }
         .buttons button{
-            height: 3vh;
+            height: 3.5vh;
             width: 25vw;
             margin-inline: 2vw;
         }
+        #header{
+            height: 3.5vmax;
+            border: 1px solid grey;
+        }
+        #adjective{
+            height: 3.5vmax;
+            border: 1px solid grey;
+        }
+        #category{
+            height: 3.5vmax;
+        }
         #content{
-                grid-template-columns: 100%;
+            grid-template-columns: 100%;
                 grid-template-rows: 1fr 1fr 1fr;
             }
                 #content textarea{
                     width: 100%;
                     min-height: 25vh;
+                    border: 1px solid grey;
                 }
     }
 
