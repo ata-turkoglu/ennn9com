@@ -5,17 +5,62 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 export default {
+
+  computed:{
+    ...mapGetters(["getIdList"])
+  },
+
+  methods:{
+
+    log(){
+
+
+
+      let pass = {
+        blapg : null,
+        new : true
+      }
+
+      let list = []
+
+      new Promise(()=>{
+        this.$store.dispatch("getLog")
+        .then(()=>{
+          list = this.getIdList
+        })
+      })
+
+
+      if(localStorage.getItem("blapg")==null){
+        
+        let same = null
+        do{
+          pass.blapg = (Math.floor(Math.random()*1000)+1)
+          same = list.includes(pass.blapg)
+          localStorage.setItem("blapg",pass.blapg)
+        }while(same)
+        
+        this.$store.dispatch("setLog",pass)
+
+      }else{
+
+        pass.blapg = localStorage.getItem("blapg")
+        pass.new = false
+        this.$store.dispatch("setLog",pass)
+
+      }
+
+    }
+
+  },
+
   created(){
     this.$store.dispatch("getProducts")
     this.$store.dispatch("getCategories")
     this.$store.dispatch("getComparisons")
-
-    if(localStorage.getItem("blapg")==null){
-      let blapg = (Math.random()*1000)+1
-      localStorage.setItem("blapg",blapg)
-    }
-    console.log(localStorage.getItem("blapg"))
+    this.log()
   }
 }
 </script>

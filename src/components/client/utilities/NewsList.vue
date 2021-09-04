@@ -246,6 +246,7 @@
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
+            cursor: pointer;
         }
             .news-head:last-child{
                 margin-left: .5vw;

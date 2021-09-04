@@ -220,6 +220,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
         }
         .blog-head:last-child{
             margin-left: .5vw;

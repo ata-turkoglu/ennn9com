@@ -140,6 +140,7 @@ export default {
 
         button:hover{
             box-shadow: none;
+            transform: scale(.99);
             transition: all .3s;
         }
 

@@ -167,6 +167,7 @@
             width: fit-content;
             background-color: whitesmoke;
             padding-inline: 2vmax;
+            cursor: pointer;
         }
             .slide-head p{
                 box-sizing: border-box;
@@ -192,6 +193,9 @@
                 height: 100%;
                 width: fit-content;
                 padding-left:1vh;
+            }
+            .item:last-child{
+                padding-right: 1vh;
             }
                 .item img{
                     box-sizing: border-box;
