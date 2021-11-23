@@ -39,7 +39,7 @@ const actions = {
         if(pass.new){
             console.log(pass)
             await db.collection("log").doc(String(pass.blapg)).set({
-                date : firebase.firestore.Timestamp.now(),
+                date: firebase.firestore.FieldValue.arrayUnion(firebase.firestore.Timestamp.now())
             })
         }else{
             await db.collection("log").doc(pass.blapg).update({

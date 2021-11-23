@@ -1,7 +1,7 @@
 <template>
-    <div class="card-pic">
-        <img :src="image" @mouseover="Slide" @mouseleave="StopSlide">
-    </div>
+  <div class="card-pic">
+    <img :src="image" @mouseover="Slide" @mouseleave="StopSlide" />
+  </div>
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
                     this.index=0
                 }else{
                     this.index++
-                }  
+                }
             },1000)
         },
         StopSlide(){
@@ -36,21 +36,21 @@ export default {
 </script>
 
 <style scoped>
-    .card-pic{
-        position: relative;
-        width: 100%;
-        height:100%;
-    }
+.card-pic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
-    img{
-        width: 100%;
-        height: 12vmax;
-        object-fit: cover;
-    }
+img {
+  width: 100%;
+  height: 12vmax;
+  object-fit: cover;
+}
 
-    @media screen and (max-width:768px) {
-        img{
-            height: 40vw;
-        }
-    }
+@media screen and (max-width: 768px) {
+  img {
+    height: 40vw;
+  }
+}
 </style>

@@ -265,6 +265,6 @@ export default new Vuex.Store({
 
   modules: {
     login,
-    log
+    log,
   }
 })

@@ -1,14 +1,13 @@
 <template>
-    <div id="slider" @mouseleave="timer" @mouseover="stop">
-        <div v-for="(image,index) in (side=='right'?images:images2)" :key="index">
-            <slide :image="{image,index}" :side="side"></slide>
-        </div>
-        <div id="slider-nav">
-            <img src="../../assets/items/right-arrow.png" @click="fwd">
-            <img src="../../assets/items/left-arrow.png" @click="back">
-        </div>
-
+  <div id="slider" @mouseleave="timer" @mouseover="stop">
+    <div v-for="(image,index) in (side=='right'?images:images2)" :key="index">
+      <slide :image="{image,index}" :side="side"></slide>
     </div>
+    <div id="slider-nav">
+      <img src="../../assets/items/right-arrow.png" @click="fwd" />
+      <img src="../../assets/items/left-arrow.png" @click="back" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -125,7 +124,7 @@ export default {
             }
             this.direction="slide-forward"
         },
-        
+
         back(){
             if(this.index==0){
                 this.index=this.ilen-1
@@ -139,60 +138,58 @@ export default {
 </script>
 
 <style scoped>
-    #slider{
-        position: relative;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        margin-left: .5vw;
-        box-sizing: border-box;
-        overflow: hidden;
-    }
-    
+#slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  margin-left: 0.5vw;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 
-        #slider-nav{
-            position: absolute;
-            width: 3%;
-            height: 100%;
-            top: 0;
-            right: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-around;
-            z-index: 2;
-        }
+#slider-nav {
+  position: absolute;
+  width: 3%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 2;
+}
 
-            #slider-nav img{
-                width: 100%;
-                height: auto;
-                cursor:pointer;
-                opacity: .85;
-            }
+#slider-nav img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  opacity: 0.85;
+}
 
-            #slider-nav img:hover{
-                opacity: 0.5;
-                transition-duration: 0.2s;
-            }
+#slider-nav img:hover {
+  opacity: 0.5;
+  transition-duration: 0.2s;
+}
 
-    @media screen and (max-width:768px) {
-        #slider{
-            width: 100%;
-            height: 25vh;
-            margin-left: 0;
-        }
-            #slider-nav{
-                box-sizing: border-box;
-                width: 4%;
-                right: -1px;
-                height: 100%;
-                background-color: transparent;
-                background-image: linear-gradient(to left, whitesmoke, transparent);
-            }
-            #slider-nav img{
-                filter: drop-shadow(0 0 1vmax whitesmoke);
-            }
-    }
-
+@media screen and (max-width: 768px) {
+  #slider {
+    width: 100%;
+    height: 25vh;
+    margin-left: 0;
+  }
+  #slider-nav {
+    box-sizing: border-box;
+    width: 4%;
+    right: -1px;
+    height: 100%;
+    background-color: transparent;
+    background-image: linear-gradient(to left, whitesmoke, transparent);
+  }
+  #slider-nav img {
+    filter: drop-shadow(0 0 1vmax whitesmoke);
+  }
+}
 </style>
