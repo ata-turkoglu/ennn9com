@@ -27,6 +27,7 @@ export default {
   height: 100%;
   min-height: 50vh;
   margin: 0;
+  margin-top: 10vh;
   padding: 1vmax;
 }
 .section {
@@ -43,5 +44,10 @@ export default {
   width: 50%;
   margin-right: 0;
   margin-left: 0;
+}
+@media screen and (max-width: 768px) {
+  #bloglist {
+      margin-top: 4vh;
+  }
 }
 </style>

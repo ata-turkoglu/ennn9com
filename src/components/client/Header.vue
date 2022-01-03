@@ -1,72 +1,74 @@
 <template>
-  <div id="header">
-    <div id="lg">
-      <p>ennn9</p>
-    </div>
-
-    <div v-show="menu" id="navigation">
-      <router-link
-        tag="p"
-        to="/"
-        class="nav-item"
-        exact-active-class="nav_item_active"
-        @click.native="menuClose()"
-        >Anasayfa</router-link
-      >
-
-      <router-link
-        tag="p"
-        to="/bloglist"
-        class="nav-item"
-        exact-active-class="nav_item_active"
-        @click.native="menuClose()"
-        >Blog</router-link
-      >
-
-      <router-link
-        tag="p"
-        to="/productgrouplist"
-        class="nav-item"
-        exact-active-class="nav_item_active"
-        @click.native="menuClose()"
-        >Karşılaştırmalar</router-link
-      >
-
-      <router-link
-        tag="p"
-        to="/productlist"
-        class="nav-item"
-        exact-active-class="nav_item_active"
-        @click.native="menuClose()"
-        >Keşif</router-link
-      >
-
-      <router-link
-        tag="p"
-        to="#"
-        class="nav-item"
-        exact-active-class="nav_item_active"
-        @click.native="menuClose()"
-        >Sağlık</router-link
-      >
-    </div>
-
-    <div v-show="menu" id="tosocial">
-      <div class="ts" @click="link('facebook')">
-        <img src="../../assets/images/social/facebook.png" />
+  <transition name="bounce">  
+    <div v-if="headerState" id="header">
+      <div id="lg">
+        <p>ennn9</p>
       </div>
-      <div class="ts" @click="link('instagram')">
-        <img src="../../assets/images/social/instagram.png" />
-      </div>
-      <div class="ts" @click="link('twitter')">
-        <img src="../../assets/images/social/twitter.png" />
-      </div>
-    </div>
 
-    <div v-if="menubutton" id="menu-btn" @click="menuChange()">
-      <div class="menu-btn-burger"></div>
+      <div v-show="menu" id="navigation">
+        <router-link
+          tag="p"
+          to="/"
+          class="nav-item"
+          exact-active-class="nav_item_active"
+          @click.native="menuClose()"
+          >Anasayfa</router-link
+        >
+
+        <router-link
+          tag="p"
+          to="/bloglist"
+          class="nav-item"
+          exact-active-class="nav_item_active"
+          @click.native="menuClose()"
+          >Blog</router-link
+        >
+
+        <router-link
+          tag="p"
+          to="/productgrouplist"
+          class="nav-item"
+          exact-active-class="nav_item_active"
+          @click.native="menuClose()"
+          >Karşılaştırmalar</router-link
+        >
+
+        <router-link
+          tag="p"
+          to="/productlist"
+          class="nav-item"
+          exact-active-class="nav_item_active"
+          @click.native="menuClose()"
+          >Keşif</router-link
+        >
+
+        <router-link
+          tag="p"
+          to="#"
+          class="nav-item"
+          exact-active-class="nav_item_active"
+          @click.native="menuClose()"
+          >Sağlık</router-link
+        >
+      </div>
+
+      <div v-show="menu" id="tosocial">
+        <div class="ts" @click="link('facebook')">
+          <img src="../../assets/images/social/facebook.png" />
+        </div>
+        <div class="ts" @click="link('instagram')">
+          <img src="../../assets/images/social/instagram.png" />
+        </div>
+        <div class="ts" @click="link('twitter')">
+          <img src="../../assets/images/social/twitter.png" />
+        </div>
+      </div>
+
+      <div v-if="menubutton" id="menu-btn" @click="menuChange()">
+        <div class="menu-btn-burger"></div>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -75,6 +77,8 @@ export default {
         return{
             menu:false,
             menubutton:false,
+            pageScroll:0,
+            headerState:true
         }
     },
 
@@ -148,6 +152,15 @@ export default {
         }
     },
 
+    mounted(){
+      window.addEventListener("scroll", ()=>{
+        if(window.scrollY<this.pageScroll) this.headerState=true
+        else this.headerState=false
+        this.pageScroll= window.scrollY
+      })
+      
+    },
+
     beforeDestroy(){
         window.removeEventListener("resize",this.resize)
     },
@@ -156,6 +169,10 @@ export default {
 
 <style scoped>
 #header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 3;
   box-sizing: border-box;
   display: flex;
   align-items: flex-end;
@@ -177,6 +194,34 @@ export default {
   height: 0.3vh;
   width: 100%;
   background-color: rgb(30, 30, 100);
+}
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.fade-enter-active {
+  animation: hideheader 1s;
+}
+.fade-leave-active {
+  animation: hideheader 1s reverse;
+}
+@keyframes hideheader {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 #lg {
   box-sizing: border-box;
@@ -328,9 +373,7 @@ export default {
 @media screen and (max-width: 768px) {
   #header {
     height: 8vh;
-    position: relative;
     margin-right: 0;
-    position: relative;
     z-index: 3;
     margin-top: 0.3vh;
   }

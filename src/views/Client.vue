@@ -51,4 +51,10 @@ export default {
     transform: translateX(0);
   }
 }
+
+@media screen and (max-width: 768px) {
+  #client {
+    padding-top: 8vh;
+  }
+}
 </style>

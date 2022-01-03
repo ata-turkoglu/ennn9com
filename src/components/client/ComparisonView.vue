@@ -223,7 +223,7 @@ export default {
   height: 100%;
   width: 100%;
   margin: 0;
-  margin-top: 2vmax;
+  margin-top: 10vh;
   padding: 0;
   padding-inline: 1vmax;
   box-sizing: border-box;
@@ -410,6 +410,7 @@ export default {
 @media screen and (max-width: 768px) {
   #view {
     padding-inline: 0;
+    margin-top: 4vh;
   }
   #info {
     padding-inline: 8vw;

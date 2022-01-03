@@ -52,41 +52,6 @@
     <news-list />
 
     <div class="clearfix"></div>
-
-    <!--<div class="list">
-            <p class="offer-head">Son İncelenen Ürünler</p>
-            <hr>
-            <div class="offers">
-                <div class="offer-item">
-                    <img src="../../assets/images/offer1.jpg">
-                    <p>90 TL</p>
-                </div>
-                <div class="offer-item">
-                    <img src="../../assets/images/offer2.jpg">
-                    <p>200 TL</p>
-                </div>
-                <div class="offer-item">
-                    <img src="../../assets/images/offer3.jpg">
-                    <p>375 TL</p>
-                </div>
-                <div class="offer-item">
-                    <img src="../../assets/images/offer4.jpg">
-                    <p>4000 TL</p>
-                </div>
-                <div class="offer-item">
-                    <img src="../../assets/images/offer5.jpg">
-                    <p>150 TL</p>
-                </div>
-                <div class="offer-item">
-                    <img src="../../assets/images/offer6.jpg">
-                    <p>900 TL</p>
-                </div>
-                <div class="offer-item">
-                    <img src="../../assets/images/offer7.jpg">
-                    <p>100 TL</p>
-                </div>
-            </div>
-        </div>-->
   </div>
 </template>
 
@@ -120,7 +85,7 @@ export default {
   margin: 0;
   padding: 0;
   padding-block: 4vh;
-  padding-top: 0;
+  padding-top: 8vh;
   box-sizing: border-box;
   background-color: rgba(30, 30, 100, 0.15);
   border: 1px solid transparent;
@@ -258,7 +223,7 @@ export default {
     padding-top: 0;
     background-color: rgba(30, 30, 100, 0.15);
   }
-  #first {
+  #first, #second{
     flex-direction: column;
     height: 51.8vh;
   }

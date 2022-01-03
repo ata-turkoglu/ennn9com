@@ -409,7 +409,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
-  margin-top: 0;
+  margin-top: 8vh;
   padding-block: 1vh;
   padding-inline: 1vmax;
 }

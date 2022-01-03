@@ -382,7 +382,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
-  margin-top: 2vmax;
+  margin-top: 10vh;
   padding: 0;
   padding-inline: 1vmax;
 }
@@ -505,6 +505,7 @@ export default {
 
 @media screen and (max-width: 768px) {
   #list {
+    margin-top: 4vh;
     padding-inline: 0;
   }
   .header {
